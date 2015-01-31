@@ -1,0 +1,2175 @@
+################################################################################
+~/.profile
+
+export PATH=.:~/openstack:$PATH
+source ~/openstack/openstack_rc
+
+alias dct='~/openstack/delete_cloud_test.sh'
+
+alias mav='~/openstack/make_and_attach_vm.sh'
+alias mbcn='~/openstack/make_base_cloud_network.sh'
+alias mhcn='~/openstack/make_hybrid_cloud_network.sh'
+
+alias nsgrep='netstat -naop | grep -v grep | grep'
+alias nspython='netstat -naop | grep -v grep | grep python'
+alias nsnova='netstat -naop | grep -v grep | grep nova'
+alias nsapi='netstat -naop | grep -v grep | grep api'
+alias nsglance='netstat -naop | grep -v grep | grep glance'
+alias nsneutron='netstat -naop | grep -v grep | grep neutron'
+alias nscinder='netstat -naop | grep -v grep | grep cinder'
+alias nsovs='netstat -naop | grep -v grep | grep ovs'
+alias nsagent='netstat -naop | grep -v grep | grep agent'
+alias nsmeta='netstat -naop | grep -v grep | grep meta'
+
+alias psgrep='ps -ef | grep -v grep | grep'
+alias pspython='ps -ef | grep -v grep | grep python'
+alias psnova='ps -ef | grep -v grep | grep nova'
+alias psapi='ps -ef | grep -v grep | grep api'
+alias psglance='ps -ef | grep -v grep | grep glance'
+alias psneutron='ps -ef | grep -v grep | grep neutron'
+alias pscinder='ps -ef | grep -v grep | grep cinder'
+alias psovs='ps -ef | grep -v grep | grep ovs'
+alias psagent='ps -ef | grep -v grep | grep agent'
+alias psmeta='ps -ef | grep -v grep | grep meta'
+
+alias h_grep='ngrep -qd em3 port 80'        # horizon monitor
+alias rmq_grep='ngrep -qd em1 port 5672'    # rabbit monitor
+alias db_grep='ngrep -qd any port 3306'     # db internal monitor
+alias na_grep='ngrep -qd em1 port 8774'     # nova api monitor
+alias ns_grep='ngrep -qd em1 port 8776'     # cinder api monitor
+alias ga_grep='ngrep -qd em1 port 9292'     # glance api monitor
+alias ns_grep='ngrep -qd em1 port 9696'     # neutron-server monitor
+
+
+################################################################################
+
+
+sudo netstat -naop | grep -v tcp6 | grep -v unix | grep -v udp
+
+ps -ef | grep python | grep -v grep | awk '{print $2}'
+ps -ef | egrep '('python'|'mysql'|'mq')' | sort | grep -v egrep
+
+sudo service mysql start
+sudo /etc/init.d/mysql restart
+
+root@controller:~/openstack# keystone tenant-list
++----------------------------------+------------+---------+
+|                id                |    name    | enabled |
++----------------------------------+------------+---------+
+| ffa10a7cc5c6439fa5efd19fbebd6bf0 |  service   |   True  |
+| 4e23dcbc89f048b885720a80ed7424c3 | zerooffice |   True  |
++----------------------------------+------------+---------+
+root@controller:~/openstack# keystone tenant-create --name utm
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |                                  |
+|   enabled   |               True               |
+|      id     | ec143bf52a2d464a83efd42f48306140 |
+|     name    |               utm                |
++-------------+----------------------------------+
+
+root@controller:~/openstack# keystone tenant-list
++----------------------------------+------------+---------+
+|                id                |    name    | enabled |
++----------------------------------+------------+---------+
+| ffa10a7cc5c6439fa5efd19fbebd6bf0 |  service   |   True  |
+| ec143bf52a2d464a83efd42f48306140 |    utm     |   True  |
+| 4e23dcbc89f048b885720a80ed7424c3 | zerooffice |   True  |
++----------------------------------+------------+---------+
+
+root@controller:~/openstack# keystone tenant-get utm
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |                                  |
+|   enabled   |               True               |
+|      id     | ec143bf52a2d464a83efd42f48306140 |
+|     name    |               utm                |
++-------------+----------------------------------+
+
+root@controller:~/openstack# keystone user-create -h
+usage: keystone [--version] [--timeout <seconds>]
+                [--os-username <auth-user-name>]
+                [--os-password <auth-password>]
+                [--os-tenant-name <auth-tenant-name>]
+                [--os-tenant-id <tenant-id>] [--os-auth-url <auth-url>]
+                [--os-region-name <region-name>]
+                [--os-identity-api-version <identity-api-version>]
+                [--os-token <service-token>]
+                [--os-endpoint <service-endpoint>]
+                [--os-cacert <ca-certificate>] [--insecure]
+                [--os-cert <certificate>] [--os-key <key>] [--os-cache]
+                [--force-new-token] [--stale-duration <seconds>]
+                <subcommand> ...
+
+Pending deprecation: Command-line interface to the OpenStack Identity API.
+This CLI is pending deprecation in favor of python-openstackclient. For a
+Python library, continue using python-keystoneclient.
+
+Positional arguments:
+  <subcommand>
+    catalog             List service catalog, possibly filtered by service.
+    ec2-credentials-create
+                        Create EC2-compatible credentials for user per tenant.
+    ec2-credentials-delete
+                        Delete EC2-compatible credentials.
+    ec2-credentials-get
+                        Display EC2-compatible credentials.
+    ec2-credentials-list
+                        List EC2-compatible credentials for a user.
+    endpoint-create     Create a new endpoint associated with a service.
+    endpoint-delete     Delete a service endpoint.
+    endpoint-get        Find endpoint filtered by a specific attribute or
+                        service type.
+    endpoint-list       List configured service endpoints.
+    password-update     Update own password.
+    role-create         Create new role.
+    role-delete         Delete role.
+    role-get            Display role details.
+    role-list           List all roles.
+    service-create      Add service to Service Catalog.
+    service-delete      Delete service from Service Catalog.
+    service-get         Display service from Service Catalog.
+    service-list        List all services in Service Catalog.
+    tenant-create       Create new tenant.
+    tenant-delete       Delete tenant.
+    tenant-get          Display tenant details.
+    tenant-list         List all tenants.
+    tenant-update       Update tenant name, description, enabled status.
+    token-get           Display the current user token.
+    user-create         Create new user
+    user-delete         Delete user.
+    user-get            Display user details.
+    user-list           List users.
+    user-password-update
+                        Update user password.
+    user-role-add       Add role to user.
+    user-role-list      List roles granted to a user.
+    user-role-remove    Remove role from user.
+    user-update         Update user's name, email, and enabled status.
+    discover            Discover Keystone servers, supported API versions and
+                        extensions.
+    bootstrap           Grants a new role to a new user on a new tenant, after
+                        creating each.
+    bash-completion     Prints all of the commands and options to stdout.
+    help                Display help about this program or one of its
+                        subcommands.
+
+Optional arguments:
+  --version             Shows the client version and exits.
+  --timeout <seconds>   Set request timeout (in seconds).
+  --os-username <auth-user-name>
+                        Name used for authentication with the OpenStack
+                        Identity service. Defaults to env[OS_USERNAME].
+  --os-password <auth-password>
+                        Password used for authentication with the OpenStack
+                        Identity service. Defaults to env[OS_PASSWORD].
+  --os-tenant-name <auth-tenant-name>
+                        Tenant to request authorization on. Defaults to
+                        env[OS_TENANT_NAME].
+  --os-tenant-id <tenant-id>
+                        Tenant to request authorization on. Defaults to
+                        env[OS_TENANT_ID].
+  --os-auth-url <auth-url>
+                        Specify the Identity endpoint to use for
+                        authentication. Defaults to env[OS_AUTH_URL].
+  --os-region-name <region-name>
+                        Specify the region to use. Defaults to
+                        env[OS_REGION_NAME].
+  --os-identity-api-version <identity-api-version>
+                        Specify Identity API version to use. Defaults to
+                        env[OS_IDENTITY_API_VERSION] or 2.0.
+  --os-token <service-token>
+                        Specify an existing token to use instead of retrieving
+                        one via authentication (e.g. with username &
+                        password). Defaults to env[OS_SERVICE_TOKEN].
+  --os-endpoint <service-endpoint>
+                        Specify an endpoint to use instead of retrieving one
+                        from the service catalog (via authentication).
+                        Defaults to env[OS_SERVICE_ENDPOINT].
+  --os-cacert <ca-certificate>
+                        Specify a CA bundle file to use in verifying a TLS
+                        (https) server certificate. Defaults to
+                        env[OS_CACERT].
+  --insecure            Explicitly allow keystoneclient to perform "insecure"
+                        TLS (https) requests. The server's certificate will
+                        not be verified against any certificate authorities.
+                        This option should be used with caution.
+  --os-cert <certificate>
+                        Defaults to env[OS_CERT].
+  --os-key <key>        Defaults to env[OS_KEY].
+  --os-cache            Use the auth token cache. Defaults to env[OS_CACHE].
+  --force-new-token     If the keyring is available and in use, token will
+                        always be stored and fetched from the keyring until
+                        the token has expired. Use this option to request a
+                        new token and replace the existing one in the keyring.
+  --stale-duration <seconds>
+                        Stale duration (in seconds) used to determine whether
+                        a token has expired when retrieving it from keyring.
+                        This is useful in mitigating process or network
+                        delays. Default is 30 seconds.
+
+See "keystone help COMMAND" for help on a specific command.
+
+root@controller:~/openstack# keystone help user-create
+usage: keystone user-create --name <user-name> [--tenant <tenant>]
+                            [--pass [<pass>]] [--email <email>]
+                            [--enabled <true|false>]
+
+Create new user
+
+Arguments:
+  --name <user-name>    New user name (must be unique).
+  --tenant <tenant>, --tenant-id <tenant>
+                        New user default tenant.
+  --pass [<pass>]       New user password; required for some auth backends.
+  --email <email>       New user email address.
+  --enabled <true|false>
+                        Initial user enabled status. Default is true.
+
+root@controller:~/openstack# keystone user-create --name utm01 --tenant utm --enabled true --pass utm01
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |                                  |
+| enabled  |               True               |
+|    id    | b45ec56e477543108d306ed4da220abd |
+|   name   |              utm01               |
+| tenantId | ec143bf52a2d464a83efd42f48306140 |
+| username |              utm01               |
++----------+----------------------------------+
+root@controller:~/openstack# keystone user-get utm01
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |                                  |
+| enabled  |               True               |
+|    id    | b45ec56e477543108d306ed4da220abd |
+|   name   |              utm01               |
+| tenantId | ec143bf52a2d464a83efd42f48306140 |
+| username |              utm01               |
++----------+----------------------------------+
+
+root@controller:~/openstack# keystone user-role-add --user utm01 --role member --tenant utm
+root@controller:~/openstack# keystone user-role-list
++----------------------------------+----------+----------------------------------+----------------------------------+
+|                id                |   name   |             user_id              |            tenant_id             |
++----------------------------------+----------+----------------------------------+----------------------------------+
+| 9fe2ff9ee4384b1894a90878d3e92bab | _member_ | 137418ab91944866bd278e109bd0e8aa | 4e23dcbc89f048b885720a80ed7424c3 |
+| 9b0dc6215ec948c09983f367c5190297 |  admin   | 137418ab91944866bd278e109bd0e8aa | 4e23dcbc89f048b885720a80ed7424c3 |
++----------------------------------+----------+----------------------------------+----------------------------------+
+
+
+log() {
+4719 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.884 26073 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.884 26073 AUDIT nova.compute.manager [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Starting instance.     ..
+4720 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.982 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Attempting claim: m     emory 512 MB, disk 1 GB, VCPUs 1
+4721 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.983 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Total memory: 5956      MB, used: 1024.00 MB
+4722 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.983 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] memory limit not sp     ecified, defaulting to unlimited
+4723 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.984 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Total disk: 128 GB,      used: 1.00 GB
+4724 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.984 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] disk limit not spec     ified, defaulting to unlimited
+4725 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.985 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Total CPUs: 12 VCPU     s, used: 1.00 VCPUs
+4726 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.985 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] CPUs limit not spec     ified, defaulting to unlimited
+4727 Aug 10 18:09:55 cnode01 2014-08-10 18:09:55.986 26073 AUDIT nova.compute.claims [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Claim successful
+
+4728 Aug 10 18:09:56 cnode01 2014-08-10 18:09:56.623 26073 INFO nova.virt.libvirt.driver [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Creating image
+4729 Aug 10 18:09:58 cnode01 2014-08-10 18:09:58.853 26073 ERROR nova.virt.images [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] /var/lib/nova/instances/_base/f543d2e7cdb741da0847c8097f709a9ba86f94e0      virtual size 2361393152 larger than flavor root disk size 1073741824
+4730 Aug 10 18:09:58 cnode01 2014-08-10 18:09:58.903 26073 ERROR nova.compute.manager [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Instance failed to      spawn#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69] Traceback (most recent call last):#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a6     9]   File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1714, in _spawn#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     block_device_info)#0122014-08-10 18:09:58.903 26073 T     RACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2259, in spawn#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-b     e68-994053c47a69]     admin_pass=admin_password)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2628, in _create_image#     0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     project_id=instance['project_id'])#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]        File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 192, in cache#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     *args, **kwargs)#0122014-08-10 18:09:58.903 2607     3 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 383, in create_image#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3     cea-a354-444c-be68-994053c47a69]     prepare_template(target=base, max_size=size, *args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/ope     nstack/common/lockutils.py", line 249, in inner#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     return f(*args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance:      f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 182, in fetch_func_sync#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]          fetch_func(target=target, *args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/utils.py", line 653, in fetch_image#0122014-0     8-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     max_size=max_size)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.     7/dist-packages/nova/virt/images.py", line 110, in fetch_to_raw#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     raise exception.FlavorDiskTooSmall()#0122014-08-10 18:09:58.903 26073 TRACE nova     .compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69] FlavorDiskTooSmall: Flavor's disk is too small for requested image.#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]
+4731 Aug 10 18:09:58 cnode01 2014-08-10 18:09:58.981 26073 AUDIT nova.compute.manager [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3] [instance: f57a3cea-a354-444c-be68-994053c47a69] Terminating instan
+
+
+# trusty image(2ㅎ)를 가지고 tiny(1G) flavor로 VM 생성 요청시 에러발생
+nova boot myvm --flavor 1 --image fcd371b4-c3fc-4b72-80e9-492d6294689d --nic net-id=17e57ccd-9a2a-420e-a4b9-008f63e70500
+
+ERROR nova.virt.images
+    /var/lib/nova/instances/_base/f543d2e7cdb741da0847c8097f709a9ba86f94e0
+    virtual size 2,361,393,152 larger than flavor root disk size 1,073,741,824
+ERROR nova.compute.manager
+    [req-b48a6cdf-389b-4d65-9a86-87204175043c 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3]
+    [instance: f57a3cea-a354-444c-be68-994053c47a69]
+    Instance failed to spawn#0122014-08-10 18:09:58.903 26073
+    TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69] Traceback (most recent call last):#0122014-08-10 18:09:58.903 26073
+    TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a6     9]   File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py",
+    line 1714, in _spawn#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]
+    block_device_info)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]
+    File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2259,
+    in spawn#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-b     e68-994053c47a69]     admin_pass=admin_password)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2628, in _create_image#     0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     project_id=instance['project_id'])#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]        File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 192, in cache#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     *args, **kwargs)#0122014-08-10 18:09:58.903 2607     3 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 383, in create_image#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3     cea-a354-444c-be68-994053c47a69]     prepare_template(target=base, max_size=size, *args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/ope     nstack/common/lockutils.py", line 249, in inner#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     return f(*args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance:      f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/imagebackend.py", line 182, in fetch_func_sync#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]          fetch_func(target=target, *args, **kwargs)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/utils.py", line 653, in fetch_image#0122014-0     8-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     max_size=max_size)#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]   File "/usr/lib/python2.     7/dist-packages/nova/virt/images.py", line 110, in fetch_to_raw#0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]     raise exception.FlavorDiskTooSmall()#0122014-08-10 18:09:58.903 26073 TRACE nova     .compute.manager [instance: f57a3cea-a354-444c-be68-994053c47a69]
+    FlavorDiskTooSmall:
+    Flavor's disk is too small for requested image.
+    #0122014-08-10 18:09:58.903 26073 TRACE nova.compute.manager
+    [instance: f57a3cea-a354-444c-be68-994053c47a69]
+
+}
+
+root@controller:/var/log/cinder# grep ERROR *
+cinder-scheduler.log:2014-08-10 18:40:22.887 14621 ERROR cinder.scheduler.flows.create_volume [req-3de7aadb-4710-4c52-afeb-afaef0b13ce4 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] Failed to schedule_create_volume: No valid host was found.
+cinder-scheduler.log:2014-08-10 19:19:02.938 14621 ERROR cinder.scheduler.flows.create_volume [req-40d410f2-8641-439a-a105-bab16048c191 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] Failed to schedule_create_volume: No valid host was found.
+
+add_floating_ip2testvm_exam()
+{
+    neutron floatingip-create --tenant-id 4e23dcbc89f048b885720a80ed7424c3 public_net
+    Created a new floatingip:
+    +---------------------+--------------------------------------+
+    | Field               | Value                                |
+    +---------------------+--------------------------------------+
+    | fixed_ip_address    |                                      |
+    | floating_ip_address | 221.145.180.111                      |
+    | floating_network_id | 14ccf48d-dc84-4bac-bea1-90b503412f82 |
+    | id                  | 977a0841-4f27-40e0-ac7d-76d47094159d |
+    | port_id             |                                      |
+    | router_id           |                                      |
+    | status              | DOWN                                 |
+    | tenant_id           | 4e23dcbc89f048b885720a80ed7424c3     |
+    +---------------------+--------------------------------------+
+
+    root@controller:~# neutron floatingip-list
+    +--------------------------------------+------------------+---------------------+---------+
+    | id                                   | fixed_ip_address | floating_ip_address | port_id |
+    +--------------------------------------+------------------+---------------------+---------+
+    | 977a0841-4f27-40e0-ac7d-76d47094159d |                  | 221.145.180.111     |         |
+    +--------------------------------------+------------------+---------------------+---------+
+
+    root@controller:~# neutron port-list
+    +--------------------------------------+------+-------------------+----------------------------------------------------------------------------------------+
+    | id                                   | name | mac_address       | fixed_ips                                                                              |
+    +--------------------------------------+------+-------------------+----------------------------------------------------------------------------------------+
+    | 3c0912a4-5117-4a9b-87d4-561b842f3358 |      | fa:16:3e:ac:74:bf | {"subnet_id": "4d0b923f-ee62-4993-8a14-bfda30075cdd", "ip_address": "10.10.10.3"}      |
+    | 7570bb90-7de3-48d2-8286-30ab4e835ce1 |      | fa:16:3e:c7:b7:86 | {"subnet_id": "2c33f7a1-5dc9-453f-8d13-6564087feaad", "ip_address": "221.145.180.110"} |
+    | 8340274f-1cd8-4877-88fd-02a572b06e35 |      | fa:16:3e:b0:50:6b | {"subnet_id": "4d0b923f-ee62-4993-8a14-bfda30075cdd", "ip_address": "10.10.10.2"}      |
+    | c738e0fa-f86d-44b2-83eb-fbbab22006d2 |      | fa:16:3e:b5:89:f9 | {"subnet_id": "2c33f7a1-5dc9-453f-8d13-6564087feaad", "ip_address": "221.145.180.111"} |
+    | ef43c498-72ed-49c7-925b-59065574ede6 |      | fa:16:3e:f3:84:99 | {"subnet_id": "4d0b923f-ee62-4993-8a14-bfda30075cdd", "ip_address": "10.10.10.1"}      |
+    +--------------------------------------+------+-------------------+----------------------------------------------------------------------------------------+
+}
+
+
+
+root@controller:~# mhcn
+
+    ################################################################################
+        1. hybrid_network 생성 !!!
+    ################################################################################
+
+REGION          : regionOne
+ADMIN_TENANT_ID : 4e23dcbc89f048b885720a80ed7424c3
+HYBRID_PHYSNET_NAME : physnet_hybrid
+
+############################
+# GREEN network 1 생성 !!!
+GREEN_VLAN1_NET : green_vlan1_net
+GREEN_VLAN1     : 2001
+
+neutron net-create green_vlan1_net
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --provider:network_type vlan
+        --provider:physical_network physnet2
+        --provider:segmentation_id 2001
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | d475bf3f-840b-45ae-99ab-83f7ae99fd72 |
+| name                      | green_vlan1_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet2                             |
+| provider:segmentation_id  | 2001                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+# green network 2 생성 !!!
+GREEN_VLAN2_NET : green_vlan2_net
+GREEN_VLAN2     : 2002
+
+neutron net-create green_vlan2_net
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --provider:network_type vlan
+        --provider:physical_network physnet2
+        --provider:segmentation_id 2002
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | b02360ec-256d-4226-b9b0-6c2cb3e90ebc |
+| name                      | green_vlan2_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet2                             |
+| provider:segmentation_id  | 2002                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+############################
+# ORANGE network 1 생성 !!!
+ORANGE_VLAN1_NET : orange_vlan1_net
+ORANGE_VLAN1     : 2501
+
+neutron net-create orange_vlan1_net
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --provider:network_type vlan
+        --provider:physical_network physnet2
+        --provider:segmentation_id 2501
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 45cccd83-67b3-46eb-bd24-2a7f48bc7bda |
+| name                      | orange_vlan1_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet2                             |
+| provider:segmentation_id  | 2501                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+# orange network 2 생성 !!!
+ORANGE_VLAN2_NET : orange_vlan2_net
+ORANGE_VLAN2     : 2502
+
+neutron net-create orange_vlan2_net
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --provider:network_type vlan
+        --provider:physical_network physnet2
+        --provider:segmentation_id 2502
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 55fde477-efe8-43a5-b721-09929178a4aa |
+| name                      | orange_vlan2_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet2                             |
+| provider:segmentation_id  | 2502                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        2. hybrid sub_network 생성 !!!
+    ################################################################################
+
+REGION          : regionOne
+ADMIN_TENANT_ID : 4e23dcbc89f048b885720a80ed7424c3
+############################
+# green sub-network 1 생성 !!!GREEN_VLAN1_NET     : green_vlan1_net
+GREEN_VLAN1_SUBNET  : green_vlan1_subnet
+GREEN_VLAN1_CIDR    : 192.168.1.0/24
+neutron subnet-create green_vlan1_net 192.168.1.0/24
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name green_vlan1_subnet
+
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.1.2", "end": "192.168.1.254"} |
+| cidr             | 192.168.1.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | True                                             |
+| gateway_ip       | 192.168.1.1                                      |
+| host_routes      |                                                  |
+| id               | 38ed17cc-3b76-4801-8a50-3b30828e0186             |
+| ip_version       | 4                                                |
+| name             | green_vlan1_subnet                               |
+| network_id       | d475bf3f-840b-45ae-99ab-83f7ae99fd72             |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                 |
++------------------+--------------------------------------------------+
+
+############################
+# green sub-network 2 생성 !!!GREEN_VLAN2_NET     : green_vlan2_net
+GREEN_VLAN2_SUBNET  : green_vlan2_subnet
+GREEN_VLAN2_CIDR    : 192.168.2.0/24
+neutron subnet-create green_vlan2_net 192.168.2.0/24
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name green_vlan2_subnet
+
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.2.2", "end": "192.168.2.254"} |
+| cidr             | 192.168.2.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | True                                             |
+| gateway_ip       | 192.168.2.1                                      |
+| host_routes      |                                                  |
+| id               | 677f9bdf-5bac-4213-81f5-cc0fd330b869             |
+| ip_version       | 4                                                |
+| name             | green_vlan2_subnet                               |
+| network_id       | b02360ec-256d-4226-b9b0-6c2cb3e90ebc             |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                 |
++------------------+--------------------------------------------------+
+
+############################
+# orange sub-network 1 생성 !!!ORANGE_VLAN1_NET     : orange_vlan1_net
+ORANGE_VLAN1_SUBNET  : orange_vlan1_subnet
+ORANGE_VLAN1_CIDR    : 192.168.51.0/24
+neutron subnet-create orange_vlan1_net 192.168.51.0/24
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name orange_vlan1_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.51.2", "end": "192.168.51.254"} |
+| cidr             | 192.168.51.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | True                                               |
+| gateway_ip       | 192.168.51.1                                       |
+| host_routes      |                                                    |
+| id               | 130eee30-f687-47bd-aa38-c747af634c15               |
+| ip_version       | 4                                                  |
+| name             | orange_vlan1_subnet                                |
+| network_id       | 45cccd83-67b3-46eb-bd24-2a7f48bc7bda               |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                   |
++------------------+----------------------------------------------------+
+
+############################
+# orange sub-network 2 생성 !!!ORANGE_VLAN2_NET     : orange_vlan2_net
+ORANGE_VLAN2_SUBNET  : orange_vlan2_subnet
+ORANGE_VLAN2_CIDR    : 192.168.52.0/24
+neutron subnet-create orange_vlan2_net 192.168.52.0/24
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name orange_vlan2_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.52.2", "end": "192.168.52.254"} |
+| cidr             | 192.168.52.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | True                                               |
+| gateway_ip       | 192.168.52.1                                       |
+| host_routes      |                                                    |
+| id               | 9b57911a-20b8-4f75-962f-6b61c55cbc9e               |
+| ip_version       | 4                                                  |
+| name             | orange_vlan2_subnet                                |
+| network_id       | 55fde477-efe8-43a5-b721-09929178a4aa               |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                   |
++------------------+----------------------------------------------------+
+root@controller:~#
+
+
+glance image-download --file ubuntu12.04.img ubuntu-12.04-lts
+
+# LJG:  잘못된 VM 을 DB에서 삭제하는 법
+#       연결고리(FK)를 찾아서 하부테이블에서 부터 삭제해 나가야 함
+# 1. instance_actions_events -> action_id     <-> instance_actions.id
+# 2. instance_actions        -> instance_uuid <-> instances.id
+# 3. instance_info_caches    -> instance_uuid <-> instances.id
+# 4. instance_system_metadata-> instance_uuid <-> instances.id
+# 5. instance
+
+# vm network 접속
+ip netns 
+ip netns exec qrouter-990e0ac6-4088-4479-b475-30367d5327a4 ssh root@10.0.10.4
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping 10.10.10.12
+
+glance image-create --name='ubuntu12.04' --disk-format=qcow2 --container-format=bare --public < ubuntu12.04.img
+
+# vm vnc 접속
+nova get-vnc-console 4c68e3fa-7e32-4a4b-bf49-3b5a43ba7053 novnc
+
+ip a
+ip route
+brctl show
+ovs-vsctl show
+
+network node
+# LJG: VNC 없이 VM 상태 파악하기
+ip netns
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping 10.10.10.14
+ps -ef | grep qemu
+ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa ifconfig
+ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep
+ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq
+ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq -f1
+ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq -fl
+ip netns
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n -t nat
+ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n
+ovs-vsctl show
+ovs-ofctl dump-flows br-em1
+ovs-ofctl dump-flows br-em2
+ovs-ofctl dump-flows br-ext
+ovs-vsctl show
+ovs-ofctl dump-flows br-ex
+ovs-ofctl dump-flows br-em2
+ovs-ofctl show br-em2
+ovs-ofctl dump-flows br-int
+ovs-ofctl dump-flows br-ex
+
+compute node
+  249  ip netns
+  250  ifconfig | grep tap
+  251  ovs-vsctl show
+  252  ov-ofctl dump-flows br-int
+  253  ovs-ofctl dump-flows br-int
+  254  ovs-ofctl dump-flows br-em2
+  255  ovs-ofctl dump-flows br-em3
+
+root@west-cloud:~# nova get-vnc-console 673c7900-7795-4d17-a948-791504f1bf17 novnc
++-------+--------------------------------------------------------------------------------------+
+| Type  | Url                                                                                  |
++-------+--------------------------------------------------------------------------------------+
+| novnc | http://211.224.204.156:6080/vnc_auto.html?token=0c1fec43-63d0-4290-9961-d23ac61a115f |
++-------+--------------------------------------------------------------------------------------+
+
+################################################################################
+# LJG: openstack vnc connection example
+################################################################################
+
+client <-> novncproxy(controller-node) <-> VM(vnc-server)(compute-node)
+=> controller node
+  1. nova-novncproxy가 동작중(6080 port에서 listen)
+  2. client가 nova-novncproxy 6080 port로 접속
+  3. nova-novncproxy 가 cnode(211.224.204.157)에 존재하는 VM process 5914 port로 접속
+root@west-controller:~# nsgrep 2227
+tcp        0      0 0.0.0.0:6080            0.0.0.0:*               LISTEN      2227/python      off (0.00/0/0)
+tcp        0      0 211.224.204.156:6080    222.118.131.56:29760    ESTABLISHED 2227/python      off (0.00/0/0) -> client가 접속해옴
+tcp        0      0 211.224.204.156:45650   211.224.204.157:5914    ESTABLISHED 2227/python      off (0.00/0/0) -> VM이 실행중인 cnode에 접속
+
+=> compute node
+  1. vm에 해당하는 process가 novnc 접속을 위해 5914 port에서 listen
+    -> novnc에서 5900포트부터 vnc port pool로 사용, 이 VM은 14번째로 생성된 것임을 예상가능
+    -> KVM에서는 기본적으로 하나의 process로 VM을 시뮬레이션하고 개별 thread가 cpu 역할 수행
+  2. nova-novncproxy VM process 5914 port로 접속
+  3. 이제부터는 사용자가 vnc 사용가능
+root@west-cloud:~# nsgrep 5914
+tcp        0      0 0.0.0.0:5914            0.0.0.0:*               LISTEN      46517/qemu-system-x off (0.00/0/0) -> vnc server open
+tcp        0      0 211.224.204.157:5914    211.224.204.156:45650   ESTABLISHED 46517/qemu-system-x off (0.00/0/0) -> novncproxy가 접속해옴
+
+################################################################################
+LJG: lsof는 반드시 숙지해야 할 명령어
+
+lsof /var/log/neutron/dhcp-agent.log
+lsof /var/log/neutron
+lsof -i
+lsof -iTCP
+lsof -iUDP
+lsof -c ovs-vswitchd
+lsof -p 12484
+lsof /dev
+################################################################################
+
+################################################################################
+LJG: ngrep 는 반드시 숙지해야 할 명령어
+ngrep -qd em1 port 5672 # openstack rabbit-mq sniffing
+
+
+# LJG: package uninstall :--purge 옵션을 주면 구성정보도 삭제
+# sudo apt-get -y --purge remove nova-novncproxy nova-consoleauth
+# dpkg --list | grep -i 'nova-novncproxy'
+
+# service networking restart 안됨 -> 개별 interface를 ifdown/ifup 해야 됨
+
+ 1134  vi /etc/init/networking.conf
+ 1135  vi /etc/init.d/networking
+ 1136  mv /etc/init/networking.conf /etc/init/networking.conf.1404
+ 1137  mv /etc/init.d/networking /etc/init.d/networking.1404
+ 1138  sudo service networking restart
+ 1139  service networking restart
+ 1140  mv /etc/init/networking.conf.1404 /etc/init/networking.conf
+ 1141  mv /etc/init.d/networking.1404 /etc/init.d/networking
+ 1142  service networking restart
+ 
+
+# LJG: package 정보보기
+
+# root@controller: /root# dpkg -c /var/cache/apt/archives/neutron-plugin-ml2_1%3a2014.1.1-0ubuntu2_all.deb
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./usr/
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./usr/share/
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./usr/share/doc/
+drwxr-xr-x root/root         0 2014-06-25 00:41 ./usr/share/doc/neutron-plugin-ml2/
+-rw-r--r-- root/root      1418 2014-06-16 17:03 ./usr/share/doc/neutron-plugin-ml2/copyright
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./etc/
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./etc/neutron/
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./etc/neutron/plugins/
+drwxr-xr-x root/root         0 2014-06-25 00:39 ./etc/neutron/plugins/ml2/
+-rw-r--r-- root/root       439 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_ofa.ini
+-rw-r--r-- root/root      1663 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_arista.ini
+-rw-r--r-- root/root       235 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_mlnx.ini
+-rw-r--r-- root/root       315 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_brocade.ini
+-rw-r--r-- root/root      1521 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_cisco.ini
+-rw-r--r-- root/root       798 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_odl.ini
+-rw-r--r-- root/root       830 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf_ncs.ini
+-rw-r--r-- root/root      2271 2014-06-08 06:38 ./etc/neutron/plugins/ml2/ml2_conf.ini
+lrwxrwxrwx root/root         0 2014-06-25 00:41 ./usr/share/doc/neutron-plugin-ml2/NEWS.Debian.gz -> ../python-neutron/NEWS.Debian.gz
+lrwxrwxrwx root/root         0 2014-06-25 00:41 ./usr/share/doc/neutron-plugin-ml2/changelog.Debian.gz -> ../py
+
+ 
+root@controller:/usr/bin# apt-cache show neutron-plugin-ml2
+Package: neutron-plugin-ml2
+Priority: optional
+Section: net
+Installed-Size: 60
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Chuck Short <zulcss@ubuntu.com>
+Architecture: all
+Source: neutron
+Version: 1:2014.1.1-0ubuntu2
+Provides: neutron-plugin
+Depends: neutron-common (= 1:2014.1.1-0ubuntu2)
+Filename: pool/main/n/neutron/neutron-plugin-ml2_2014.1.1-0ubuntu2_all.deb
+Size: 4834
+MD5sum: d8b841cc167ae21a6b5b9581844846ba
+SHA1: ca28f52f84e454b3ac5b5002ccfb92499bec75c4
+SHA256: a73f03d3a403c180df5a7c800c2e21c1ece29946631eb0eae381b799182d3306
+Description-en: Neutron is a virtual network service for Openstack - ML2 plugin
+ Neutron is a virtual network service for Openstack, and a part of
+ Netstack. Just like OpenStack Nova provides an API to dynamically
+ request and configure virtual servers, Neutron provides an API to
+ dynamically request and configure virtual networks. These networks
+ connect "interfaces" from other OpenStack services (e.g., virtual NICs
+ from Nova VMs). The Neutron API supports extensions to provide
+ advanced network capabilities (e.g., QoS, ACLs, network monitoring,
+ etc.)
+ .
+ This package provides the Modular Layer 2 plugin.
+Description-md5: 04c3b1da612333dffe94afb38e17f6ee
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+
+
+# LJG: cnode network debug
+root@cnode01:~# history
+    1  vi /etc/network/interfaces
+    2  ifup em1
+    3  ifup em2
+    4  ifup em3
+    5  ifup em4
+    6  vi /etc/hosts
+    7  ping nnode
+    8  ping controller
+    9  ping 8.8.8.8
+   10  exit
+   11  ssh root@controller
+   12  tcls
+   13  tclsh
+   14  apt-get install -y tclsh
+   15  tclsh
+   16  vi /etc/resolv.conf
+   17  vi /etc/rsyslog.conf
+   18  cd /var/log
+   19  ll
+   20  tail -f syslog
+   21  ls
+   22  ssh root@controler
+   23  ssh root@controller
+   24  mkdir openstack
+   25  vi .profile
+   26  . .profile
+   27  cd openstack
+   28  ll
+   29  egrep -c '(vmx|svm)' /proc/cpuinfo
+   30  ll
+   31  rm -f install.log
+   32  ll
+   33  chmod 755 *
+   34  ll
+   35  compute.sh
+   36  ll
+   37  vi cnode_install.log
+   38  tcpdump -i em3 -ne -l
+   39  tcpdump -i em3 -ne -l arp or icmp
+   40  tcpdump -i em3 -ne -l
+   41  exit
+   42  ifconfig
+   43  tcpdump -i em3 -ne -l arp or icmp
+   44  exit
+   45  tcpdump -i em3 -ne -l arp or icmp
+   46  exit
+   47  ifconfig
+   48  lshw -c network -short
+   49  ethtool em4
+   50  ifconfig em4
+   51  ethtool em3
+   52  ifconfig em3
+   53  ovs-vsctl show
+   54  tcpdump -i em3 -ne -l
+   55  tcpdump -i em3 -ne -l arp
+   56  ifconfig
+   57  ovs-vsctl show
+   58  exit
+   59  ifconfig
+   60  tcpdump -i eth3 -ne -l
+   61  tcpdump -i em3 -ne -l
+   62  tcpdump -i em3 -ne -l arp or icmp
+   63  ps -ef | grep qemu
+   64  cd /var/lib/nova
+   65  ll
+   66  cd ins*
+   67  ll
+   68  cd _base
+   69  ll
+   70  glance list
+   71  ll
+   72  glance image-list
+   73  cinder list
+   74  cd ..
+   75  ll
+   76  cd a*
+   77  ll
+   78  vi disk.info
+   79  vi lib*
+   80  ps -ef | grep qemu
+   81  ps -ef | grep libvirt
+   82  ssh root@nnode
+   83  vi /etc/resolv.conf
+   84  ping www.sun.com
+   85  history
+
+
+# LJG: nnode ovs switch network debug
+287  ps -ef | grep ovs | grep -v grep | sort
+  288  ip netns
+  289  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af710.10.10.14
+  290  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping 10.10.10.14
+  291  ps -ef | grep qemu
+  292  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af710.10.10.14u
+  293  ip netns
+  294  ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa ifconfig
+  295  ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep
+  296  ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq
+  297  ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq -f1
+  298  ip netns exec qdhcp-55fde477-efe8-43a5-b721-09929178a4aa pgrep dnsmasq -fl
+  299  ip netns 
+  300  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig
+  301  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n
+  302  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n -t nat
+  303  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L -n 
+  304  ovs-vsctl show
+  305  ovs-ofctl dump-flows br-em1
+  306  ovs-ofctl dump-flows br-em2
+  307  ovs-ofctl dump-flows br-ext
+  308  ovs-vsctl show
+  309  ovs-ofctl dump-flows br-ex
+  310  ovs-ofctl dump-flows br-em2
+  311  ovs-ofctl show br-em2
+  312  ovs-ofctl dump-flows br-int
+  313  ovs-ofctl dump-flows br-ex
+  314  histroy
+  315  history
+  316  vi .profile
+  317  . .profile
+  318  psgrep nova
+  319  psgrep neutron
+  320  psgrep python
+  321  psgrep python | sort
+  322  nsgrep python
+  323  nsgrep python | sort
+  324  nsgrep LISTEN | sort
+  325  psgrep ovs | sort
+  326  psgrep agent | sort
+  327  psgrep ovs | sort
+  328  vi /etc/sysctl.conf
+  329  psgrep openvswitch | sort
+  330  nsgrep 12484
+  331  psgrep metadata
+  332  lsof /var/lib/neutron/external/pids/dcdb85e0-3006-4efb-a3a5-4c12e0167af7.pid
+  333  lsof /var/log
+  334  lsof /var/log/neutron
+  335  lsof -i
+  336  lsof -iTCP
+  337  lsof -iUDP
+  338  lsof -c ovs-vswitchd
+  339  lsof -p 12484
+  340  lsof /dev
+  341  history
+  342  cd /var/log/neutron
+  343  ll
+  344  lsof /var/log/neutron
+  345  lsof /var/log
+  346  lsof /var/log/dhcp-agent.log
+  347  pwd
+  348  lsof /var/log/neutron/dhcp-agent.log
+  349  lsof /var/log/syslog
+  350  ls /var/run/openvswitch/br-ex.snoop
+  351  cd /var/run/openvswitch/br-ex.snoop
+  352  lsof /var/run/openvswitch/br-ex.snoop
+  353  psgrep 30915
+  354  tail -f ovs-vswitchd.log
+  355  tail -f /var/log/openvswitch/ovs-vswitchd.log
+  356  cat /var/log/openvswitch/ovs-vswitchd.log
+  357  cd /var/log/openvswitch
+  358  ll
+  359  gcat ovs-vswitchd.log.2.gz
+  360  apt-get install onioncat
+  361  gcat ovs-vswitchd.log.2.gz
+  362  ll
+  363  gzip -d ovs-vswitchd.log.2.gz
+  364  ll
+  365  vi ovs-vswitchd.log.2
+  366  cat /etc/openvswitch/conf.db
+  367  ngrep
+  368  apt-get install ngrep
+  369  cd
+  370  vi .profile
+  371  . .profile
+  372  ps -ef -L ovs
+  373  ps -ef -L | grep ovs
+  374  ps -ef -L | grep ovs-vswitchd
+  375  ps -ef -L | grep 30914
+  376  ps -ef | grep 30914
+  377  lsof ovs-vswitchd
+  378  lsof -p 30914
+  379  lsof -p 30915
+  380  ps -ef -L | grep 30914
+  381  ps -ef -L | grep 30915
+  382  pstree -G
+  383  pstree 
+  384  ps -ef -L H | grep 30915
+  385  ps -ef H | grep 30915
+  386  ps -ef m | grep 30915
+  387  ps -efm | grep 30915
+  388  ps -ef -m | grep 30915
+  389  ps -efL | grep 30915
+  390  cd /var/run/openvswitch
+  391  ll
+  392  cat ovs-vswitchd.pid
+  393  cat ovsdb-server.pid
+  394  ps -efL | grep 30906
+  395  lsof -p 30906
+  396  cd
+  397  vi .profile
+  398  . .profile
+  399  ps
+  400  ps -ef
+  401  ps -ef | sort
+  402  ps -ef | sort | more
+  403  ps -ef | grep -v python | grep -v ovs | sort | more
+  404  clear
+  405  ps -ef | grep -v python | grep -v ovs | sort 
+  406  ps -ef | grep -v python | grep -v ovs | grep scsi
+  407  psgrep dns
+  408  ll
+  409  chmod 755 *.sh
+  410  vi nnode_openstack_restart.sh
+  411  nnode_openstack_restart.sh
+  412  ping controller
+  413  neutron agent-list
+  414  ifconfig
+  415  ip netns
+  416  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping 192.168.0.7
+  417  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ping 192.168.0.6
+  418  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig
+  419  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig -L 
+  420  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig -L  -n
+  421  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig -L  -n -tnat
+  422  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 ifconfig -L  -n -t nat
+  423  ip netns exec qrouter-dcdb85e0-3006-4efb-a3a5-4c12e0167af7 iptables -L  -n -t nat
+  424  ip netns
+  425  ll
+  426  neutron agent-list
+  427  nnode_openstack_restart.sh
+  428  neutron agent-list
+  429  ip netns
+  430  neutron db_sync
+  431  psgrep dns
+  432  route -n
+  433  vi /etc/hosts
+  434  cat /etc/hosts
+  435  ping controller
+  436  vi /etc/resolv.conf
+  437  reboot
+  438  ip netns
+  439  vi /etc/resolv.conf
+  440  ping www.sun.com
+  441  ip netns
+  442  history
+
+# LJG: green server farm host debugging 사례
+cat /proc/scsi/scsi
+  962  cat /proc/ide/hda/model
+  963  ifconfig
+  964  ifconfig eth1 192.168.2.2/24 up
+  965  route -n
+  966  ping 192.168.2.3
+  967  ethtool eth2
+  968  ifconfig
+  969  ethtool eth1
+  970  exit
+  971  ifconfig
+  972  vi /etc/sysconfig/network-scripts/ifcfg-eth1
+  973  route -n
+  974  exit
+  975  ifconfig
+  976  ps ax 
+  977  grep /var/log/secure
+  978  tail /var/log/secure
+  979  ps ax | grep ping
+  980  kill 6700
+  981  exit
+  982  ifconfig
+  983  route -n
+  984  ifconfig eth1 192.168.2.5/24 up
+  985  tcpdump -i eth1 -ne -l
+  986  ifconfig
+  987  tcpdump -i eth1 -ne -l
+  988  tcpdump -i eth1 -ne -l
+  989  ifconfig
+  990  tcpdump -i eth1 -ne -l
+  991  tcpdump -i eth1 -ne -l arp or icmp
+  992  ping 192.168.2.3
+  993  ping 192.168.2.3
+  994  ping 192.168.2.3
+  995  ifconfig
+  996  tcpdump -i eth1
+  997  ping 192.168.2.3
+  998  ping 192.168.2.2
+  999  exit
+ 1000  history
+ 
+# LJG : cinder로 볼륨생성시 에러발생  
+root@controller:/var/log# grep req-e7855618-8734-4849-a077-fc733bb90f19 syslog
+Aug 16 18:43:11 controller 2014-08-16 18:43:11.599 1623 INFO cinder.api.openstack.wsgi [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] POST http://10.0.0.11:8776/v1/4e23dcbc89f048b885720a80ed7424c3/volumes
+Aug 16 18:43:11 controller 2014-08-16 18:43:11.600 1623 AUDIT cinder.api.v1.volumes [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] Create volume of 40 GB
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.455 1623 INFO oslo.messaging._drivers.impl_rabbit [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] Connected to AMQP server on 10.0.0.11:5672
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.458 1623 AUDIT cinder.api.v1.volumes [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] vol={'migration_status': None, 'availability_zone': u'nova', 'terminated_at': None, 'reservations': ['dc19b7d0-be01-4c50-8370-201f9fa8ecca', '2cc50d84-41fc-459e-a9a2-a2210a717332'], 'updated_at': None, 'provider_geometry': None, 'snapshot_id': None, 'ec2_id': None, 'mountpoint': None, 'deleted_at': None, 'id': '1d763769-5542-4fd3-93f4-d401248b3a87', 'size': 40, 'user_id': u'137418ab91944866bd278e109bd0e8aa', 'attach_time': None, 'attached_host': None, 'display_description': u'private, green, orange nic \uc874\uc7ac', 'volume_admin_metadata': [], 'encryption_key_id': None, 'project_id': u'4e23dcbc89f048b885720a80ed7424c3', 'launched_at': None, 'scheduled_at': None, 'status': 'creating', 'volume_type_id': None, 'deleted': False, 'provider_location': None, 'host': None, 'source_volid': None, 'provider_auth': None, 'display_name': u'ubuntu_3nic_shapshot_volume', 'instance_uuid': None, 'bootable': False, 'created_at': datetime.datetime(2014, 8, 16, 9, 43, 12, 359802), 'attach_status': 'detached', 'volume_type': None, '_name_id': None, 'volume_metadata': [], 'metadata': {}}
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.459 1623 INFO cinder.api.openstack.wsgi [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] http://10.0.0.11:8776/v1/4e23dcbc89f048b885720a80ed7424c3/volumes returned with HTTP 200
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.460 1623 INFO eventlet.wsgi.server [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] 10.0.0.11 - - [16/Aug/2014 18:43:12] "POST /v1/4e23dcbc89f048b885720a80ed7424c3/volumes HTTP/1.1" 200 711 0.862787
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.519 1392 WARNING cinder.scheduler.filters.capacity_filter [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] 
+    Insufficient free space for volume creation (requested / avail): 40/0.0
+Aug 16 18:43:12 controller 2014-08-16 18:43:12.520 1392 ERROR cinder.scheduler.flows.create_volume [req-e7855618-8734-4849-a077-fc733bb90f19 137418ab91944866bd278e109bd0e8aa 4e23dcbc89f048b885720a80ed7424c3 - - -] 
+    Failed to schedule_create_volume: No valid host was found. 
+
+# LJG: west에서 instance 생성에러: horizon에서 나오는 메시지는 할당할 호스트를 찾을수 없다 였슴
+# LJG: vif allocation 에러 발생 해결책
+#   vif_plugging_is_fatal: false
+#   vif_plugging_timeout: 0
+
+nova-scheduler.log:2014-08-21 22:28:11.530 13568 
+    ERROR nova.scheduler.filter_scheduler 
+    [req-e22aebde-75ef-4480-ab58-581a4729ab56 c9568ab6869549a992be276f042de85e 2784331044254c62ababfb712ea874b0] 
+    [instance: 2ca5b055-a343-4ca8-a0a8-176e029b8b06] 
+    Error from last host: cnode01 (node cnode01.cnode01.west.lab): [
+    u'Traceback (most recent call last):\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1329, in _build_instance\n    
+        set_access_ip=set_access_ip)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 393, in decorated_function\n    
+        return function(self, context, *args, **kwargs)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1741, in _spawn\n    
+        LOG.exception(_(\'Instance failed to spawn\'), instance=instance)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/openstack/common/excutils.py", line 68, in __exit__\n    
+        six.reraise(self.type_, self.value, self.tb)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1738, in _spawn\n    
+        block_device_info)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2284, in spawn\n    
+        write_to_disk=True)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3478, in to_xml\n    
+        disk_info, rescue, block_device_info)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3292, in get_guest_config\n    
+        flavor)\n', 
+    u'File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/vif.py", line 384, in get_config\n
+        _("Unexpected vif_type=%s") % vif_type)\n', u'NovaException: Unexpected vif_type=binding_failed\n']
+        
+        
+nova-scheduler.log:2014-08-21 22:28:13.574 13568 ERROR nova.scheduler.filter_scheduler [req-e22aebde-75ef-4480-ab58-581a4729ab56 c9568ab6869549a992be276f042de85e 2784331044254c62ababfb712ea874b0] [instance: 2ca5b055-a343-4ca8-a0a8-176e029b8b06] Error from last host: cnode01 (node cnode01.cnode01.west.lab): [u'Traceback (most recent call last):\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1329, in _build_instance\n    set_access_ip=set_access_ip)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 393, in decorated_function\n    return function(self, context, *args, **kwargs)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1741, in _spawn\n    LOG.exception(_(\'Instance failed to spawn\'), instance=instance)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/openstack/common/excutils.py", line 68, in __exit__\n    six.reraise(self.type_, self.value, self.tb)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1738, in _spawn\n    block_device_info)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2284, in spawn\n    write_to_disk=True)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3478, in to_xml\n    disk_info, rescue, block_device_info)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3292, in get_guest_config\n    flavor)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/vif.py", line 384, in get_config\n    _("Unexpected vif_type=%s") % vif_type)\n', u'NovaException: Unexpected vif_type=binding_failed\n']
+nova-scheduler.log:2014-08-21 22:28:15.463 13568 ERROR nova.scheduler.filter_scheduler [req-e22aebde-75ef-4480-ab58-581a4729ab56 c9568ab6869549a992be276f042de85e 2784331044254c62ababfb712ea874b0] [instance: 2ca5b055-a343-4ca8-a0a8-176e029b8b06] Error from last host: cnode01 (node cnode01.cnode01.west.lab): [u'Traceback (most recent call last):\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1329, in _build_instance\n    set_access_ip=set_access_ip)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 393, in decorated_function\n    return function(self, context, *args, **kwargs)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1741, in _spawn\n    LOG.exception(_(\'Instance failed to spawn\'), instance=instance)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/openstack/common/excutils.py", line 68, in __exit__\n    six.reraise(self.type_, self.value, self.tb)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/compute/manager.py", line 1738, in _spawn\n    block_device_info)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 2284, in spawn\n    write_to_disk=True)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3478, in to_xml\n    disk_info, rescue, block_device_info)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py", line 3292, in get_guest_config\n    flavor)\n', u'  File "/usr/lib/python2.7/dist-packages/nova/virt/libvirt/vif.py", line 384, in get_config\n    _("Unexpected vif_type=%s") % vif_type)\n', u'NovaException: Unexpected vif_type=binding_failed\n']
+nova-scheduler.log:2014-08-21 22:28:15.465 13568 WARNING nova.scheduler.utils [req-e22aebde-75ef-4480-ab58-581a4729ab56 c9568ab6869549a992be276f042de85e 2784331044254c62ababfb712ea874b0] [instance: 2ca5b055-a343-4ca8-a0a8-176e029b8b06] Setting instance to ERROR state    
+
+
+
+
+
+
+
+root@controller:~/openstack# make_base_cloud_network.sh
+
+    ################################################################################
+        1. public_network 생성 !!!
+    ################################################################################
+    
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 53822f53-bd64-4957-98da-4ad1cb74c86e |
+| name                      | public_net                           |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_ext                          |
+| provider:segmentation_id  | 2                                    |
+| router:external           | True                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        2. public sub_network 생성 !!!
+    ################################################################################
+    
+Created a new subnet:
++------------------+------------------------------------------------------+
+| Field            | Value                                                |
++------------------+------------------------------------------------------+
+| allocation_pools | {"start": "221.145.180.86", "end": "221.145.180.98"} |
+| cidr             | 221.145.180.64/26                                    |
+| dns_nameservers  |                                                      |
+| enable_dhcp      | False                                                |
+| gateway_ip       | 221.145.180.65                                       |
+| host_routes      |                                                      |
+| id               | 01f68f00-0802-4f62-b478-ae965207e4bb                 |
+| ip_version       | 4                                                    |
+| name             | public_subnet                                        |
+| network_id       | 53822f53-bd64-4957-98da-4ad1cb74c86e                 |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                     |
++------------------+------------------------------------------------------+
+
+    ################################################################################
+        3. customer tenant(test)/user(test) 생성 및 role(member) 추가 !!!
+    ################################################################################
+    
+Conflict occurred attempting to store project. (IntegrityError) (1062, "Duplicate entry 'default-zerooffice' for key 'domain_id'") 'INSERT INTO project (id, name, domain_id, description, enabled, extra) VALUES (%s, %s, %s, %s, %s, %s)' ('f5420114cbc5485da15051a8e5573eeb', 'zerooffice', 'default', None, 1, '{}') (HTTP 409)
+Conflict occurred attempting to store user. (IntegrityError) (1062, "Duplicate entry 'default-admin' for key 'domain_id'") 'INSERT INTO user (id, name, domain_id, password, enabled, extra, default_project_id) VALUES (%s, %s, %s, %s, %s, %s, %s)' ('49609af79e204a22b8ffc6747aa3c0d9', 'admin', 'default', '$6$rounds=40000$FrCdn6gLlDYHTPRh$oXA/tK3AGkedguXkaEuU8tOPFlvUO80q0TbDoNujoO3rPulBJNHL2KasIQD1MvUBSvSvAF3NlDEpm5oKqfYpA/', 1, '{"email": null}', '4e23dcbc89f048b885720a80ed7424c3') (HTTP 409)
+Conflict occurred attempting to store role grant. User 137418ab91944866bd278e109bd0e8aa already has role d3a3e0a955974f93a794ed17ebf362c7 in tenant 4e23dcbc89f048b885720a80ed7424c3 (HTTP 409)
+
+    ################################################################################
+        4. customer(test) test_network(test_net) 생성 !!!
+    ################################################################################
+    
+  TEST_TENANT_NAME  ->  zerooffice
+  TEST_TENANT_ID    ->  4e23dcbc89f048b885720a80ed7424c3
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 21578030-74a1-4cff-bea6-c90898e7af97 |
+| name                      | test_net                             |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet1                             |
+| provider:segmentation_id  | 100                                  |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        5. customer(test) test_subnet(test_subnet) 생성 !!!
+    ################################################################################
+    
+  TEST_TENANT_ID ->  4e23dcbc89f048b885720a80ed7424c3
+Created a new subnet:
++------------------+------------------------------------------------+
+| Field            | Value                                          |
++------------------+------------------------------------------------+
+| allocation_pools | {"start": "10.10.10.2", "end": "10.10.10.254"} |
+| cidr             | 10.10.10.0/24                                  |
+| dns_nameservers  |                                                |
+| enable_dhcp      | True                                           |
+| gateway_ip       | 10.10.10.1                                     |
+| host_routes      |                                                |
+| id               | 358d41f2-269d-4e78-97cb-ad3a76e45747           |
+| ip_version       | 4                                              |
+| name             | test_subnet                                    |
+| network_id       | 21578030-74a1-4cff-bea6-c90898e7af97           |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3               |
++------------------+------------------------------------------------+
+
+    ################################################################################
+        6. customer(test) router(test_router) 생성 !!!
+    ################################################################################
+    
+  TEST_TENANT_ID ->  4e23dcbc89f048b885720a80ed7424c3
+Created a new router:
++-----------------------+--------------------------------------+
+| Field                 | Value                                |
++-----------------------+--------------------------------------+
+| admin_state_up        | True                                 |
+| external_gateway_info |                                      |
+| id                    | b69ce067-50d7-428b-b0e4-bbdd32f9f718 |
+| name                  | test_router                          |
+| status                | ACTIVE                               |
+| tenant_id             | 4e23dcbc89f048b885720a80ed7424c3     |
++-----------------------+--------------------------------------+
+
+    ################################################################################
+        7. customer(test) router(test_router)에 subnet(test_subnet) 연결 !!!
+    ################################################################################
+    
+TEST_SUBNET_ID ->  358d41f2-269d-4e78-97cb-ad3a76e45747
+Added interface c7fc57eb-9702-4e88-a571-83ea98f9b0a8 to router test_router.
+
+    ################################################################################
+        8. customer(test) router(test_router)에 public_network(public_net) 연결 !!!
+    ################################################################################
+    
+TEST_ROUTER_ID ->  b69ce067-50d7-428b-b0e4-bbdd32f9f718
+PUBLIC_NET_ID ->  53822f53-bd64-4957-98da-4ad1cb74c86e
+Set gateway for router b69ce067-50d7-428b-b0e4-bbdd32f9f718
+
+root@controller:~/openstack# make_hybrid_cloud_network.sh
+
+    ################################################################################
+        1. hybrid_network 생성 !!!
+    ################################################################################
+    
+REGION          : regionOne
+ADMIN_TENANT_ID : 4e23dcbc89f048b885720a80ed7424c3
+INTERWORK_PHYSNET_NAME : physnet_hybrid
+
+
+############################
+# green network 1 생성 !!!
+GREEN_VLAN1_NET : green_vlan1_net
+GREEN_VLAN1     : 2001
+
+neutron net-create green_vlan1_net 
+        --os-region-name regionOne 
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3 
+        --provider:network_type vlan 
+        --provider:physical_network physnet_hybrid 
+        --provider:segmentation_id 2001 
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 106106e7-27f8-4049-8145-7933904a27e9 |
+| name                      | green_vlan1_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 2001                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+############################
+# green network 2 생성 !!!
+GREEN_VLAN2_NET : green_vlan2_net
+GREEN_VLAN2     : 2002
+
+neutron net-create green_vlan2_net 
+        --os-region-name regionOne 
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3 
+        --provider:network_type vlan 
+        --provider:physical_network physnet_hybrid 
+        --provider:segmentation_id 2002 
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 5f6c0b2c-845c-4333-9721-aeab1ef825f5 |
+| name                      | green_vlan2_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 2002                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+############################
+# orange network 1 생성 !!!
+ORANGE_VLAN1_NET : orange_vlan1_net
+ORANGE_VLAN1     : 2501
+
+neutron net-create orange_vlan1_net 
+        --os-region-name regionOne 
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3 
+        --provider:network_type vlan 
+        --provider:physical_network physnet_hybrid 
+        --provider:segmentation_id 2501 
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 773b058e-472a-4d51-ac8e-68e489dbb0f0 |
+| name                      | orange_vlan1_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 2501                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+############################
+# orange network 2 생성 !!!
+ORANGE_VLAN2_NET : orange_vlan2_net
+ORANGE_VLAN2     : 2502
+
+neutron net-create orange_vlan2_net 
+        --os-region-name regionOne 
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3 
+        --provider:network_type vlan 
+        --provider:physical_network physnet_hybrid 
+        --provider:segmentation_id 2502 
+
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 420dc469-6ece-4c9d-b85b-af8965812b3a |
+| name                      | orange_vlan2_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 2502                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        2. hybrid sub_network 생성 !!!
+    ################################################################################
+    
+REGION          : regionOne
+ADMIN_TENANT_ID : 4e23dcbc89f048b885720a80ed7424c3
+
+############################
+# green sub-network 1 생성 !!!GREEN_VLAN1_NET     : green_vlan1_net
+GREEN_VLAN1_SUBNET  : green_vlan1_subnet
+GREEN_VLAN1_CIDR    : 192.168.1.0/24
+neutron subnet-create green_vlan1_net 192.168.1.0/24
+        --disable-dhcp
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name green_vlan1_subnet
+
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.1.2", "end": "192.168.1.254"} |
+| cidr             | 192.168.1.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | False                                            |
+| gateway_ip       | 192.168.1.1                                      |
+| host_routes      |                                                  |
+| id               | 5a1b10d7-d2a4-4b0c-819f-f97709521fd4             |
+| ip_version       | 4                                                |
+| name             | green_vlan1_subnet                               |
+| network_id       | 106106e7-27f8-4049-8145-7933904a27e9             |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                 |
++------------------+--------------------------------------------------+
+
+############################
+# green sub-network 2 생성 !!!GREEN_VLAN2_NET     : green_vlan2_net
+GREEN_VLAN2_SUBNET  : green_vlan2_subnet
+GREEN_VLAN2_CIDR    : 192.168.2.0/24
+neutron subnet-create green_vlan2_net 192.168.2.0/24
+        --disable-dhcp
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name green_vlan2_subnet
+
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.2.2", "end": "192.168.2.254"} |
+| cidr             | 192.168.2.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | False                                            |
+| gateway_ip       | 192.168.2.1                                      |
+| host_routes      |                                                  |
+| id               | 9d760122-8778-4421-b34c-1892476fad73             |
+| ip_version       | 4                                                |
+| name             | green_vlan2_subnet                               |
+| network_id       | 5f6c0b2c-845c-4333-9721-aeab1ef825f5             |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                 |
++------------------+--------------------------------------------------+
+
+############################
+# orange sub-network 1 생성 !!!ORANGE_VLAN1_NET     : orange_vlan1_net
+ORANGE_VLAN1_SUBNET  : orange_vlan1_subnet
+ORANGE_VLAN1_CIDR    : 192.168.51.0/24
+neutron subnet-create orange_vlan1_net 192.168.51.0/24
+        --disable-dhcp
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name orange_vlan1_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.51.2", "end": "192.168.51.254"} |
+| cidr             | 192.168.51.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | False                                              |
+| gateway_ip       | 192.168.51.1                                       |
+| host_routes      |                                                    |
+| id               | 0d96a2dc-ed8e-4916-8526-a5f7cb59c9e6               |
+| ip_version       | 4                                                  |
+| name             | orange_vlan1_subnet                                |
+| network_id       | 773b058e-472a-4d51-ac8e-68e489dbb0f0               |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                   |
++------------------+----------------------------------------------------+
+
+############################
+# orange sub-network 2 생성 !!!ORANGE_VLAN2_NET     : orange_vlan2_net
+ORANGE_VLAN2_SUBNET  : orange_vlan2_subnet
+ORANGE_VLAN2_CIDR    : 192.168.52.0/24
+neutron subnet-create orange_vlan2_net 192.168.52.0/24
+        --disable-dhcp
+        --os-region-name regionOne
+        --tenant-id 4e23dcbc89f048b885720a80ed7424c3
+        --name orange_vlan2_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.52.2", "end": "192.168.52.254"} |
+| cidr             | 192.168.52.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | False                                              |
+| gateway_ip       | 192.168.52.1                                       |
+| host_routes      |                                                    |
+| id               | 804c3443-26a5-475f-bc71-62e6acbf12d9               |
+| ip_version       | 4                                                  |
+| name             | orange_vlan2_subnet                                |
+| network_id       | 420dc469-6ece-4c9d-b85b-af8965812b3a               |
+| tenant_id        | 4e23dcbc89f048b885720a80ed7424c3                   |
++------------------+----------------------------------------------------+
+
+root@controller:~/openstack# make_and_attach_vm.sh
+
+    ################################################################################
+        1. security_group_add[tcp: 22 open, icmp: enable] !!!
+    ################################################################################
+    
+nova secgroup-add-rule default tcp  22 22 0.0.0.0/0
+nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+ERROR: This rule already exists in group 0f44ec93-df5a-4aca-a428-f002d7f6c0c4 (HTTP 400) (Request-ID: req-f35b9361-1fb4-4cf9-ba78-2d910fe5bafd)
+ERROR: This rule already exists in group 0f44ec93-df5a-4aca-a428-f002d7f6c0c4 (HTTP 400) (Request-ID: req-ce0829bd-ce5d-4ce1-9557-1ff5d41353ba)
+
+    ################################################################################
+        2. test key 생성 및 nova keypair 등록 !!!
+    ################################################################################
+    
++---------+-------------------------------------------------+
+| Name    | Fingerprint                                     |
++---------+-------------------------------------------------+
+| testkey | 5c:31:5c:3c:d4:f2:79:c1:3f:ed:1e:dd:55:b6:89:93 |
++---------+-------------------------------------------------+
+testkey key already exists !!!
+
+    ################################################################################
+        3. test vm 생성[private, green, orange nic 설정] !!!
+    ################################################################################
+    
+TEST_TENANT_ID:  4e23dcbc89f048b885720a80ed7424c3
+TEST_IMAGE_ID :  1dd85b9c-f753-456c-8c33-cc936fe3cd1d
+TEST_KEY      :  testkey
+
+######################################
+# [test_utm1] vm 생성 => [test_net, green_vlan1_net, orange_vlan1_net] networks 연결
+TEST_NET         test_net -> 21578030-74a1-4cff-bea6-c90898e7af97
+GREEN_VLAN1_NET  green_vlan1_net -> 106106e7-27f8-4049-8145-7933904a27e9
+ORANGE_VLAN1_NET orange_vlan1_net -> 773b058e-472a-4d51-ac8e-68e489dbb0f0
+nova boot test_utm1
+        --flavor 3
+        --image 1dd85b9c-f753-456c-8c33-cc936fe3cd1d
+        --key-name testkey
+        --nic net-id=21578030-74a1-4cff-bea6-c90898e7af97
+        --nic net-id=106106e7-27f8-4049-8145-7933904a27e9
+        --nic net-id=773b058e-472a-4d51-ac8e-68e489dbb0f0
+        --security-groups default 
+
++--------------------------------------+---------------------------------------------------------+
+| Property                             | Value                                                   |
++--------------------------------------+---------------------------------------------------------+
+| OS-DCF:diskConfig                    | MANUAL                                                  |
+| OS-EXT-AZ:availability_zone          | nova                                                    |
+| OS-EXT-SRV-ATTR:host                 | -                                                       |
+| OS-EXT-SRV-ATTR:hypervisor_hostname  | -                                                       |
+| OS-EXT-SRV-ATTR:instance_name        | instance-00000043                                       |
+| OS-EXT-STS:power_state               | 0                                                       |
+| OS-EXT-STS:task_state                | scheduling                                              |
+| OS-EXT-STS:vm_state                  | building                                                |
+| OS-SRV-USG:launched_at               | -                                                       |
+| OS-SRV-USG:terminated_at             | -                                                       |
+| accessIPv4                           |                                                         |
+| accessIPv6                           |                                                         |
+| adminPass                            | A9kKL42hwTe6                                            |
+| config_drive                         |                                                         |
+| created                              | 2014-08-25T12:05:56Z                                    |
+| flavor                               | m1.medium (3)                                           |
+| hostId                               |                                                         |
+| id                                   | e339d606-34db-46c1-b0c7-a742b1c91c7a                    |
+| image                                | endian_community (1dd85b9c-f753-456c-8c33-cc936fe3cd1d) |
+| key_name                             | testkey                                                 |
+| metadata                             | {}                                                      |
+| name                                 | test_utm1                                               |
+| os-extended-volumes:volumes_attached | []                                                      |
+| progress                             | 0                                                       |
+| security_groups                      | default                                                 |
+| status                               | BUILD                                                   |
+| tenant_id                            | 4e23dcbc89f048b885720a80ed7424c3                        |
+| updated                              | 2014-08-25T12:05:57Z                                    |
+| user_id                              | 137418ab91944866bd278e109bd0e8aa                        |
++--------------------------------------+---------------------------------------------------------+
+
+######################################
+# [test_utm2] vm 생성 => [test_net, green_vlan2_net, orange_vlan2_net] networks 연결
+TEST_NET         test_net -> 21578030-74a1-4cff-bea6-c90898e7af97
+GREEN_VLAN2_NET  green_vlan2_net -> 5f6c0b2c-845c-4333-9721-aeab1ef825f5
+ORANGE_VLAN2_NET orange_vlan2_net -> 420dc469-6ece-4c9d-b85b-af8965812b3a
+nova boot test_utm2
+        --flavor 3
+        --image 1dd85b9c-f753-456c-8c33-cc936fe3cd1d
+        --key-name testkey
+        --nic net-id=21578030-74a1-4cff-bea6-c90898e7af97
+        --nic net-id=5f6c0b2c-845c-4333-9721-aeab1ef825f5
+        --nic net-id=420dc469-6ece-4c9d-b85b-af8965812b3a
+        --security-groups default 
+
++--------------------------------------+---------------------------------------------------------+
+| Property                             | Value                                                   |
++--------------------------------------+---------------------------------------------------------+
+| OS-DCF:diskConfig                    | MANUAL                                                  |
+| OS-EXT-AZ:availability_zone          | nova                                                    |
+| OS-EXT-SRV-ATTR:host                 | -                                                       |
+| OS-EXT-SRV-ATTR:hypervisor_hostname  | -                                                       |
+| OS-EXT-SRV-ATTR:instance_name        | instance-00000044                                       |
+| OS-EXT-STS:power_state               | 0                                                       |
+| OS-EXT-STS:task_state                | scheduling                                              |
+| OS-EXT-STS:vm_state                  | building                                                |
+| OS-SRV-USG:launched_at               | -                                                       |
+| OS-SRV-USG:terminated_at             | -                                                       |
+| accessIPv4                           |                                                         |
+| accessIPv6                           |                                                         |
+| adminPass                            | SZExjK4Uxzhc                                            |
+| config_drive                         |                                                         |
+| created                              | 2014-08-25T12:06:00Z                                    |
+| flavor                               | m1.medium (3)                                           |
+| hostId                               |                                                         |
+| id                                   | bcb046d8-e3dc-4ed6-9b25-2f4f1617d267                    |
+| image                                | endian_community (1dd85b9c-f753-456c-8c33-cc936fe3cd1d) |
+| key_name                             | testkey                                                 |
+| metadata                             | {}                                                      |
+| name                                 | test_utm2                                               |
+| os-extended-volumes:volumes_attached | []                                                      |
+| progress                             | 0                                                       |
+| security_groups                      | default                                                 |
+| status                               | BUILD                                                   |
+| tenant_id                            | 4e23dcbc89f048b885720a80ed7424c3                        |
+| updated                              | 2014-08-25T12:06:00Z                                    |
+| user_id                              | 137418ab91944866bd278e109bd0e8aa                        |
++--------------------------------------+---------------------------------------------------------+
+
+    ################################################################################
+        4. floating ip 생성 & 할당 !!!
+    ################################################################################
+    
+tenant_name[zerooffice] -> tenant_id[4e23dcbc89f048b885720a80ed7424c3]
+
+###############################
+[test_utm1] VM [test_net] network: port_id -> [7d299942-7c3a-4fd2-9dce-af8325811aad]
+neutron floatingip-create --port_id 7d299942-7c3a-4fd2-9dce-af8325811aad public_net
+
+Created a new floatingip:
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| fixed_ip_address    | 10.10.10.2                           |
+| floating_ip_address | 221.145.180.87                       |
+| floating_network_id | 53822f53-bd64-4957-98da-4ad1cb74c86e |
+| id                  | 4242c232-1c46-413f-83f0-46aa905252d5 |
+| port_id             | 7d299942-7c3a-4fd2-9dce-af8325811aad |
+| router_id           | b69ce067-50d7-428b-b0e4-bbdd32f9f718 |
+| status              | DOWN                                 |
+| tenant_id           | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------+--------------------------------------+
+tenant_name[zerooffice] -> tenant_id[4e23dcbc89f048b885720a80ed7424c3]
+
+###############################
+[test_utm2] VM [test_net] network: port_id -> [e48ebc0a-2ee4-48fc-8187-4f8e050ca9ae]
+neutron floatingip-create --port_id e48ebc0a-2ee4-48fc-8187-4f8e050ca9ae public_net
+
+Created a new floatingip:
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| fixed_ip_address    | 10.10.10.4                           |
+| floating_ip_address | 221.145.180.88                       |
+| floating_network_id | 53822f53-bd64-4957-98da-4ad1cb74c86e |
+| id                  | 72741264-da38-463c-8d3d-f3bed13f3ca5 |
+| port_id             | e48ebc0a-2ee4-48fc-8187-4f8e050ca9ae |
+| router_id           | b69ce067-50d7-428b-b0e4-bbdd32f9f718 |
+| status              | DOWN                                 |
+| tenant_id           | 4e23dcbc89f048b885720a80ed7424c3     |
++---------------------+--------------------------------------+
+
+
+http://211.224.204.141/project/images/?action=row_update&table=images&obj_id=ccd91202-c62d-44b2-aaa4-d8f096fab781
+
+glance image-download: error: too few arguments
+root@controller:~# glance image-download --file ubuntu-12.04-rtl8139.qcow --progress ubuntu-12.04-rtl8139
+[=============================>] 100%
+root@controller:~# glance image-download --file ubuntu-14.04-rtl8139.qcow --progress ubuntu-14.04-rtl8139
+[=============================>] 100%
+root@controller:~# glance image-download --file ubuntu-14.04-virtio.qcow --progress ubuntu-14.04-virtio
+[=============================>] 100%
+root@controller:~# glance image-download --file ubuntu12.04.qcow --progress ubuntu12.04
+[=============================>] 100%
+root@controller:~# glance image-download --file endian_originial.qcow --progress endian_originial
+[=============================>] 100%
+root@controller:~# glance image-download --file vEFW_Community.qcow --progress vEFW_Community
+[=============================>] 100%
+
+
+root@havana:~/openstack/havana# 1make_base_public_network.sh
+admin -> 767bd7be3fd547e383ab3a3887d0de1b
+
+    ################################################################################
+        1. public_network 생성 !!!
+    ################################################################################
+    
+neutron net-create public_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_ext
+        --provider:segmentation_id 4001
+        --router:external True
+        --shared
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 89767f78-764d-4b93-80c2-bf3521d1d71d |
+| name                      | public_net                           |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_ext                          |
+| provider:segmentation_id  | 4001                                 |
+| router:external           | True                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        2. public sub_network 생성 !!!
+    ################################################################################
+    
+neutron subnet-create public_net 221.145.180.64/26
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --allocation-pool start=221.145.180.71,end=221.145.180.75
+        --enable_dhcp=False
+        --dns-nameservers list=true 8.8.8.8 8.8.4.4
+        --name public_subnet
+Created a new subnet:
++------------------+------------------------------------------------------+
+| Field            | Value                                                |
++------------------+------------------------------------------------------+
+| allocation_pools | {"start": "221.145.180.71", "end": "221.145.180.75"} |
+| cidr             | 221.145.180.64/26                                    |
+| dns_nameservers  | 8.8.4.4                                              |
+|                  | 8.8.8.8                                              |
+| enable_dhcp      | False                                                |
+| gateway_ip       | 221.145.180.65                                       |
+| host_routes      |                                                      |
+| id               | 0368fb74-7fab-4bb6-9bd3-93c99ebbfe3e                 |
+| ip_version       | 4                                                    |
+| name             | public_subnet                                        |
+| network_id       | 89767f78-764d-4b93-80c2-bf3521d1d71d                 |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b                     |
++------------------+------------------------------------------------------+
+root@havana:~/openstack/havana# cat /etc/hosts
+127.0.0.1	localhost
+211.224.204.147	havana.east.dj.zo.kt	havana
+
+10.0.0.101 controller  controller.east.dj_lab.zo.kt
+10.0.0.101 nnode       nnode.east.dj_lab.zo.kt
+10.0.0.101 cnode01     cnode01.east.dj_lab.zo.kt
+root@havana:~/openstack/havana# ll
+total 280K
+drwxr-xr-x 2 root root 4.0K Sep 12 19:01 .
+drwxr-xr-x 4 root root 4.0K Sep 11 20:52 ..
+-rwxr-xr-x 1 root root 3.7K Sep 12 19:44 1make_base_public_network.sh
+-rwxr-xr-x 1 root root 7.4K Sep 12 19:20 2make_test_private_network.sh
+-rwxr-xr-x 1 root root  13K Sep 12 19:20 3make_hybrid_cloud_network.sh
+-rwxr-xr-x 1 root root 7.6K Sep 12 19:32 4make_base_vm.sh
+-rwxr-xr-x 1 root root  17K Sep 12 19:32 5make_hybrid_vm.sh
+-rwxr-xr-x 1 root root  13K Sep 12 19:20 6delete_cloud_test.sh
+-rw-r--r-- 1 root root  101 Sep 11 11:31 admin.token.creds
+-rw-r--r-- 1 root root  132 Sep 11 11:32 admin.user.creds
+-rw-r--r-- 1 root root 178K Sep 11 21:01 havana_install.log
+-rwxr-xr-x 1 root root 5.9K Sep 11 10:28 havana.sh
+-rw-r--r-- 1 root root 3.4K Sep 11 17:40 _readme.txt
+root@havana:~/openstack/havana# 2make_test_private_network.sh
+
+    ################################################################################
+        1. customer tenant(test)/user(test) 생성 및 role(member) 추가 !!!
+    ################################################################################
+    
+admin tenant already exists !!!
+admin user already exists !!!
+keystone user-role-add --user admin --role  --tenant my_rolekeystone user-role-add --user admin --role  --tenant No role with a name or ID of 'my_role' exists.
+
+    ################################################################################
+        2. customer(test) test_network(test_net) 생성 !!!
+    ################################################################################
+    
+neutron net-create my_network
+                --os-region-name RegionOne
+                --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+neutron net-create my_network --os-region-name RegionOne --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+                                
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 1cc08b91-de49-42d2-8f95-11898afcc69a |
+| name                      | my_network                           |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_guest                        |
+| provider:segmentation_id  | 2001                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        3. customer(test) test_subnet(test_subnet) 생성 !!!
+    ################################################################################
+    
+neutron subnet-create my_network 10.10.10.0/24 --tenant-id 767bd7be3fd547e383ab3a3887d0de1b --name my_subnetwork
+neutron subnet-create my_network 10.10.10.0/24 --tenant-id 767bd7be3fd547e383ab3a3887d0de1b --name my_subnetwork2
+Created a new subnet:
++------------------+------------------------------------------------+
+| Field            | Value                                          |
++------------------+------------------------------------------------+
+| allocation_pools | {"start": "10.10.10.2", "end": "10.10.10.254"} |
+| cidr             | 10.10.10.0/24                                  |
+| dns_nameservers  |                                                |
+| enable_dhcp      | True                                           |
+| gateway_ip       | 10.10.10.1                                     |
+| host_routes      |                                                |
+| id               | bc4db314-2c68-4da7-9ac1-4bc137895ecb           |
+| ip_version       | 4                                              |
+| name             | my_subnetwork                                  |
+| network_id       | 1cc08b91-de49-42d2-8f95-11898afcc69a           |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b               |
++------------------+------------------------------------------------+
+
+    ################################################################################
+        4. customer test router() 생성 !!!
+    ################################################################################
+    
+neutron router-create my_router --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+Created a new router:
++-----------------------+--------------------------------------+
+| Field                 | Value                                |
++-----------------------+--------------------------------------+
+| admin_state_up        | True                                 |
+| external_gateway_info |                                      |
+| id                    | 26dc220f-07fd-434f-80bb-1b8ebcc5464d |
+| name                  | my_router                            |
+| status                | ACTIVE                               |
+| tenant_id             | 767bd7be3fd547e383ab3a3887d0de1b     |
++-----------------------+--------------------------------------+
+
+    ################################################################################
+        5. customer router에 subnet 연결 !!!
+    ################################################################################
+    
+TEST_SUBNET_ID ->  bc4db314-2c68-4da7-9ac1-4bc137895ecb
+neutron router-interface-add my_router bc4db314-2c68-4da7-9ac1-4bc137895ecbAdded interface 792fe663-95db-4489-b590-fa24f5450713 to router my_router.
+
+    ################################################################################
+        6. customer router에 public_network 연결 !!!
+    ################################################################################
+    
+TEST_ROUTER_ID ->  26dc220f-07fd-434f-80bb-1b8ebcc5464d
+PUBLIC_NET_ID ->  89767f78-764d-4b93-80c2-bf3521d1d71d
+neutron router-gateway-set 26dc220f-07fd-434f-80bb-1b8ebcc5464d 89767f78-764d-4b93-80c2-bf3521d1d71dSet gateway for router 26dc220f-07fd-434f-80bb-1b8ebcc5464d
+
+
+root@havana:~/openstack/havana# 3make_hybrid_cloud_network.sh
+
+    ################################################################################
+        1. hybrid red(public:shared) network 생성 !!!
+    ################################################################################
+    
+REGION          : RegionOne
+ADMIN_TENANT_ID : 767bd7be3fd547e383ab3a3887d0de1b
+HYBRID_PHYSNET_NAME : physnet_hybrid
+
+RED_PUBLIC_NET  : red_shared_public_net
+RED_PUBLIC_VLAN : 2000
+
+neutron net-create red_shared_public_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_hybrid
+        --provider:segmentation_id 2000
+        --shared
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 5d9e9ae0-3d2c-4a23-bd99-91d0dc07da1d |
+| name                      | red_shared_public_net                |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 2000                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        1. hybrid red(public:shared) sub_network 생성 !!!
+    ################################################################################
+    
+
+############################
+# hybrid red sub-network 생성 !!!RED_PUBLIC_NET     : red_shared_public_net
+RED_PUBLIC_SUBNET  : red_shared_public_subnet
+RED_PUBLIC_SUBNET_CIDR    : 221.145.180.64/26
+RED_PUBLIC_IP_RANGE: 221.145.180.96 ~ 221.145.180.99
+
+neutron subnet-create red_shared_public_net 221.145.180.64/26 \
+        --os-region-name RegionOne \
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b \
+        --allocation-pool start=221.145.180.96,end=221.145.180.99 \
+        --enable_dhcp=False \
+        --name red_shared_public_subnet 
+
+400-{u'NeutronError': {u'message': u'Invalid input for operation: Requested subnet 
+with cidr: 221.145.180.64/26 for network: 5d9e9ae0-3d2c-4a23-bd99-91d0dc07da1d overlaps with another subnet.', u'type': u'InvalidInput', u'detail': u''}}
+
+    ################################################################################
+        2. hybrid_green_network 생성 !!!
+    ################################################################################
+    
+REGION          : RegionOne
+TEST_TENANT_ID : 767bd7be3fd547e383ab3a3887d0de1b
+HYBRID_PHYSNET_NAME : physnet_hybrid
+
+
+############################
+# green network 1 생성 !!!
+GREEN_VLAN1_NET : green_vlan1_net
+GREEN_VLAN1     : 11
+
+neutron net-create green_vlan1_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_hybrid
+        --provider:segmentation_id 11
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 94dc5d26-732c-48e1-b732-94f2087dbf70 |
+| name                      | green_vlan1_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 11                                   |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+############################
+# green network 2 생성 !!!
+GREEN_VLAN2_NET : green_vlan2_net
+GREEN_VLAN2     : 21
+
+neutron net-create green_vlan2_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_hybrid
+        --provider:segmentation_id 21
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 5c05addc-6709-4ff5-b25b-1fdaf7772df5 |
+| name                      | green_vlan2_net                      |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 21                                   |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        3. hybrid_orange_network 생성 !!!
+    ################################################################################
+    
+REGION          : RegionOne
+TEST_TENANT_ID : 767bd7be3fd547e383ab3a3887d0de1b
+HYBRID_PHYSNET_NAME : physnet_hybrid
+
+
+############################
+# orange network 1 생성 !!!
+ORANGE_VLAN1_NET : orange_vlan1_net
+ORANGE_VLAN1     : 10
+
+neutron net-create orange_vlan1_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_hybrid
+        --provider:segmentation_id 10
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | e2d89e71-a198-4550-b2db-351a165a596b |
+| name                      | orange_vlan1_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 10                                   |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+############################
+# orange network 2 생성 !!!
+ORANGE_VLAN2_NET : orange_vlan2_net
+ORANGE_VLAN2     : 20
+
+neutron net-create orange_vlan2_net
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --provider:network_type vlan
+        --provider:physical_network physnet_hybrid
+        --provider:segmentation_id 20
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 8cd92ff9-524a-4011-9294-03581bb73cf5 |
+| name                      | orange_vlan2_net                     |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | physnet_hybrid                       |
+| provider:segmentation_id  | 20                                   |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 767bd7be3fd547e383ab3a3887d0de1b     |
++---------------------------+--------------------------------------+
+
+    ################################################################################
+        2. hybrid sub_network 생성 !!!
+    ################################################################################
+    
+REGION          : RegionOne
+TEST_TENANT_ID : 767bd7be3fd547e383ab3a3887d0de1b
+
+############################
+# green sub-network 1 생성 !!!GREEN_VLAN1_NET     : green_vlan1_net
+GREEN_VLAN1_SUBNET  : green_vlan1_subnet
+GREEN_VLAN1_CIDR    : 192.168.1.0/24
+neutron subnet-create green_vlan1_net 192.168.1.0/24
+        --enable_dhcp=True
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --name green_vlan1_subnet
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.1.2", "end": "192.168.1.254"} |
+| cidr             | 192.168.1.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | True                                             |
+| gateway_ip       | 192.168.1.1                                      |
+| host_routes      |                                                  |
+| id               | ae8f2e2a-23f1-4adf-8d43-62ed6d2bca3d             |
+| ip_version       | 4                                                |
+| name             | green_vlan1_subnet                               |
+| network_id       | 94dc5d26-732c-48e1-b732-94f2087dbf70             |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b                 |
++------------------+--------------------------------------------------+
+
+############################
+# green sub-network 2 생성 !!!GREEN_VLAN2_NET     : green_vlan2_net
+GREEN_VLAN2_SUBNET  : green_vlan2_subnet
+GREEN_VLAN2_CIDR    : 192.168.2.0/24
+neutron subnet-create green_vlan2_net 192.168.2.0/24
+        --enable_dhcp=True
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --name green_vlan2_subnet
+
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.2.2", "end": "192.168.2.254"} |
+| cidr             | 192.168.2.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | True                                             |
+| gateway_ip       | 192.168.2.1                                      |
+| host_routes      |                                                  |
+| id               | bd5a3c5e-1a11-4efe-8721-612b2aa8550d             |
+| ip_version       | 4                                                |
+| name             | green_vlan2_subnet                               |
+| network_id       | 5c05addc-6709-4ff5-b25b-1fdaf7772df5             |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b                 |
++------------------+--------------------------------------------------+
+
+    ################################################################################
+        2. hybrid sub_network 생성 !!!
+    ################################################################################
+    
+REGION          : RegionOne
+TEST_TENANT_ID : 767bd7be3fd547e383ab3a3887d0de1b
+
+############################
+# orange sub-network 1 생성 !!!ORANGE_VLAN1_NET     : orange_vlan1_net
+ORANGE_VLAN1_SUBNET  : orange_vlan1_subnet
+ORANGE_VLAN1_CIDR    : 192.168.51.0/24
+neutron subnet-create orange_vlan1_net 192.168.51.0/24 \
+        --enable_dhcp=True \
+        --os-region-name RegionOne \
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b \
+        --name orange_vlan1_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.51.2", "end": "192.168.51.254"} |
+| cidr             | 192.168.51.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | True                                               |
+| gateway_ip       | 192.168.51.1                                       |
+| host_routes      |                                                    |
+| id               | f9b9f4b1-8ab9-44f6-b5e6-a90df3b6943e               |
+| ip_version       | 4                                                  |
+| name             |                                                    |
+| network_id       | e2d89e71-a198-4550-b2db-351a165a596b               |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b                   |
++------------------+----------------------------------------------------+
+
+############################
+# orange sub-network 2 생성 !!!ORANGE_VLAN2_NET     : orange_vlan2_net
+ORANGE_VLAN2_SUBNET  : orange_vlan2_subnet
+ORANGE_VLAN2_CIDR    : 192.168.52.0/24
+neutron subnet-create orange_vlan2_net 192.168.52.0/24
+        --enable_dhcp=True
+        --os-region-name RegionOne
+        --tenant-id 767bd7be3fd547e383ab3a3887d0de1b
+        --name orange_vlan2_subnet
+
+Created a new subnet:
++------------------+----------------------------------------------------+
+| Field            | Value                                              |
++------------------+----------------------------------------------------+
+| allocation_pools | {"start": "192.168.52.2", "end": "192.168.52.254"} |
+| cidr             | 192.168.52.0/24                                    |
+| dns_nameservers  |                                                    |
+| enable_dhcp      | True                                               |
+| gateway_ip       | 192.168.52.1                                       |
+| host_routes      |                                                    |
+| id               | 3db5289f-d61e-4fac-aa11-01a2f427ffd6               |
+| ip_version       | 4                                                  |
+| name             | orange_vlan2_subnet                                |
+| network_id       | 8cd92ff9-524a-4011-9294-03581bb73cf5               |
+| tenant_id        | 767bd7be3fd547e383ab3a3887d0de1b                   |
++------------------+----------------------------------------------------+
+
+root@havana:/var/lib/glance/images# ip netns
+qdhcp-0a7b81d1-a33d-4244-b85a-b82fa7b7f762
+qdhcp-015e55f9-d36f-47b8-9cf2-b113ab8dac84
+qdhcp-eb0f1b2c-3952-4e86-b4f9-ac85105d6608
+qdhcp-be66c7c9-3260-4eb2-b60c-642f30720cb9
+qdhcp-f8081fb7-6910-411d-a0f5-d1e5d652780e
+qrouter-70637728-7113-46d3-b3ee-993e3694fe80
+root@havana:/var/lib/glance/images# ip netns exec qrouter-70637728-7113-46d3-b3ee-993e3694fe80 ifconfig
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+qg-c9b10f86-e5 Link encap:Ethernet  HWaddr fa:16:3e:55:49:83  
+          inet addr:221.145.180.71  Bcast:221.145.180.127  Mask:255.255.255.192
+          inet6 addr: fe80::f816:3eff:fe55:4983/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:175203 errors:0 dropped:10 overruns:0 frame:0
+          TX packets:87834 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:259558846 (259.5 MB)  TX bytes:5942913 (5.9 MB)
+
+qr-b2d72550-27 Link encap:Ethernet  HWaddr fa:16:3e:ad:9f:cc  
+          inet addr:10.10.10.1  Bcast:10.10.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::f816:3eff:fead:9fcc/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:88690 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:172043 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:6026676 (6.0 MB)  TX bytes:258851740 (258.8 MB)
+
+root@havana:/var/lib/glance/images# ip netns exec qrouter-70637728-7113-46d3-b3ee-993e3694fe80 iperf -c 10.10.10.5
+------------------------------------------------------------
+Client connecting to 10.10.10.5, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  5] local 10.10.10.1 port 51351 connected with 10.10.10.5 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0-10.0 sec  12.7 GBytes  10.9 Gbits/sec

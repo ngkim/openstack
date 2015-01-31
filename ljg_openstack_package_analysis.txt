@@ -1,0 +1,626 @@
+################################################################################################################################################################
+#
+#   하나의 서버에 오픈스택 설치한 경우 설치된 패키지들 분석 
+#   - ceilometer, heat 제외 상황
+#
+################################################################################################################################################################
+
+# ------------------------------------------------------------------------------
+#
+#   host에 설치된 총 패키지(/var/cache/apt/archives) -> 358개 패키지
+#       openstack 연관 패키지 ??
+#
+# ------------------------------------------------------------------------------
+
+root@icehouse:/var/cache/apt/archives# ll | more
+total 137M
+drwxr-xr-x 3 root root  28K Oct 20 14:30 .
+drwxr-xr-x 3 root root 4.0K Oct 22 09:35 ..
+-rw-r--r-- 1 root root  43K May 23  2013 acl_2.2.52-1_amd64.deb
+-rw-r--r-- 1 root root 137K Jan  8  2014 alembic_0.6.2+ds-1_all.deb
+-rw-r--r-- 1 root root  86K Jul 24 05:03 apache2_2.4.7-1ubuntu4.1_amd64.deb
+-rw-r--r-- 1 root root 820K Jul 24 05:03 apache2-bin_2.4.7-1ubuntu4.1_amd64.deb
+-rw-r--r-- 1 root root 157K Jul 24 05:03 apache2-data_2.4.7-1ubuntu4.1_all.deb
+-rw-r--r-- 1 root root 225K Jun 11 01:38 augeas-lenses_1.2.0-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 2.0M Apr 16  2014 binutils_2.24-5ubuntu3_amd64.deb
+-rw-r--r-- 1 root root  29K Jan 11  2014 bridge-utils_1.5-6ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 4.8K Nov 26  2013 build-essential_11.6ubuntu6_amd64.deb
+-rw-r--r-- 1 root root 3.9K Apr  1  2014 cgroup-lite_1.9_all.deb
+-rw-r--r-- 1 root root 3.4K Aug 13 23:33 cinder-api_1%3a2014.1.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  13K Aug 13 23:33 cinder-common_1%3a2014.1.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 3.4K Aug 13 23:33 cinder-scheduler_1%3a2014.1.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 7.1K Aug 13 23:33 cinder-volume_1%3a2014.1.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  27K Apr  8  2014 cpp_4%3a4.8.2-1ubuntu6_amd64.deb
+-rw-r--r-- 1 root root 4.3M Apr  5  2014 cpp-4.8_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 6.7K Feb 20  2014 cpu-checker_0.7-0ubuntu4_amd64.deb
+-rw-r--r-- 1 root root  15K Dec  9  2013 dnsmasq_2.68-1_all.deb
+-rw-r--r-- 1 root root 252K Dec  9  2013 dnsmasq-base_2.68-1_amd64.deb
+-rw-r--r-- 1 root root 7.8K Dec  9  2013 dnsmasq-utils_2.68-1_amd64.deb
+-rw-r--r-- 1 root root  68K Feb  2  2014 dos2unix_6.0.4-1_amd64.deb
+-rw-r--r-- 1 root root 709K Jun 10 20:38 dpkg-dev_1.17.5ubuntu5.3_all.deb
+-rw-r--r-- 1 root root  67K Apr 21  2013 dstat_0.7.2-3build1_all.deb
+-rw-r--r-- 1 root root  76K Nov 22  2013 ebtables_2.0.10.4-3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 721K Aug 20 02:08 erlang-asn1_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 6.3M Aug 20 02:08 erlang-base_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 2.2M Aug 20 02:08 erlang-corba_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  69K Aug 20 02:08 erlang-crypto_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 587K Aug 20 02:08 erlang-diameter_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 292K Aug 20 02:08 erlang-edoc_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  90K Aug 20 02:08 erlang-eldap_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 131K Aug 20 02:08 erlang-erl-docgen_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 134K Aug 20 02:08 erlang-eunit_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 800K Aug 20 02:08 erlang-ic_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 736K Aug 20 02:08 erlang-inets_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 643K Aug 20 02:08 erlang-mnesia_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  18K Aug 20 02:18 erlang-nox_1%3a16.b.3-dfsg-1ubuntu2.1_all.deb
+-rw-r--r-- 1 root root  49K Aug 20 02:08 erlang-odbc_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  93K Aug 20 02:08 erlang-os-mon_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 153K Aug 20 02:08 erlang-parsetools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 134K Aug 20 02:08 erlang-percept_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 486K Aug 20 02:08 erlang-public-key_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 154K Aug 20 02:08 erlang-runtime-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 1.5M Aug 20 02:08 erlang-snmp_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 353K Aug 20 02:08 erlang-ssh_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 546K Aug 20 02:08 erlang-ssl_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 283K Aug 20 02:08 erlang-syntax-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 490K Aug 20 02:08 erlang-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  39K Aug 20 02:08 erlang-webtool_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root 950K Aug 20 02:08 erlang-xmerl_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+-rw-r--r-- 1 root root  54K Mar 24  2014 fakeroot_1.20-3ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 1.5K Apr  8  2014 g++_4%3a4.8.2-1ubuntu6_amd64.deb
+-rw-r--r-- 1 root root 6.8M Apr  5  2014 g++-4.8_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 5.0K Apr  8  2014 gcc_4%3a4.8.2-1ubuntu6_amd64.deb
+-rw-r--r-- 1 root root 4.8M Apr  5  2014 gcc-4.8_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 574K Oct  2  2012 genisoimage_9%3a1.1.11-2ubuntu3_amd64.deb
+-rw-r--r-- 1 root root 1.8K Aug 22 04:48 glance_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  23K Aug 22 04:48 glance-api_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 6.4K Aug 22 04:48 glance-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 6.8K Aug 22 04:48 glance-registry_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 2.4K Feb 17  2014 iproute_1%3a3.12.0-2_all.deb
+-rw-r--r-- 1 root root  26K May  8 07:03 iputils-arping_3%3a20121221-4ubuntu1.1_amd64.deb
+-rw-r--r-- 1 root root 495K Jan  6  2014 ipxe-qemu_1.0.0+git-20131111.c3d1e78-2ubuntu1_all.deb
+-rw-r--r-- 1 root root  24K Aug 22 04:48 keystone_1%3a2014.1.2.1-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  25K Jan 30  2013 kpartx_0.4.9-3ubuntu7_amd64.deb
+-rw-r--r-- 1 root root 6.3K May  9  2013 libaio1_0.3.109-4_amd64.deb
+-rw-r--r-- 1 root root  49K Nov  3  2012 libalgorithm-diff-perl_1.19.02-3_all.deb
+-rw-r--r-- 1 root root  13K Oct 21  2013 libalgorithm-diff-xs-perl_0.04-2build4_amd64.deb
+-rw-r--r-- 1 root root  13K Oct 15  2010 libalgorithm-merge-perl_0.08-2_all.deb
+-rw-r--r-- 1 root root  66K May 26 21:38 libapache2-mod-wsgi_3.4-4ubuntu2.1.14.04.1_amd64.deb
+-rw-r--r-- 1 root root  84K Dec 31  2013 libapr1_1.5.0-1_amd64.deb
+-rw-r--r-- 1 root root  75K Dec 11  2013 libaprutil1_1.5.3-1_amd64.deb
+-rw-r--r-- 1 root root  11K Dec 11  2013 libaprutil1-dbd-sqlite3_1.5.3-1_amd64.deb
+-rw-r--r-- 1 root root 8.5K Dec 11  2013 libaprutil1-ldap_1.5.3-1_amd64.deb
+-rw-r--r-- 1 root root  62K Apr  5  2014 libasan0_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 320K Mar 11  2014 libasound2_1.0.27.2-3ubuntu7_amd64.deb
+-rw-r--r-- 1 root root  26K Mar 11  2014 libasound2-data_1.0.27.2-3ubuntu7_all.deb
+-rw-r--r-- 1 root root  12K Dec  8  2013 libasyncns0_0.8-4ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 8.5K Apr  5  2014 libatomic1_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 132K Jun 11 01:38 libaugeas0_1.2.0-0ubuntu1.1_amd64.deb
+-rw-r--r-- 1 root root  25K Jan 14  2014 libavahi-client3_0.6.31-4ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  22K Jan 14  2014 libavahi-common3_0.6.31-4ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  21K Jan 14  2014 libavahi-common-data_0.6.31-4ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 210K Oct 21  2013 libblas3_1.2.20110419-7_amd64.deb
+-rw-r--r-- 1 root root  53K Apr 11  2014 libbluetooth3_4.101-0ubuntu13_amd64.deb
+-rw-r--r-- 1 root root 9.9K Jun 21 13:23 libboost-system1.54.0_1.54.0-4ubuntu3.1_amd64.deb
+-rw-r--r-- 1 root root  26K Jun 21 13:23 libboost-thread1.54.0_1.54.0-4ubuntu3.1_amd64.deb
+-rw-r--r-- 1 root root  21K Apr  1  2014 libbrlapi0.6_5.0-2ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 4.6M Aug 29 04:34 libc6_2.19-0ubuntu6.3_amd64.deb
+-rw-r--r-- 1 root root 1.9M Aug 29 04:34 libc6-dev_2.19-0ubuntu6.3_amd64.deb
+-rw-r--r-- 1 root root 198K Dec 16  2013 libcaca0_0.99.beta18-1ubuntu5_amd64.deb
+-rw-r--r-- 1 root root  68K Aug 29 04:34 libc-dev-bin_2.19-0ubuntu6.3_amd64.deb
+-rw-r--r-- 1 root root  11K Mar  5  2013 libck-connector0_0.4.5-3.1ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  57K Feb 27  2014 libcloog-isl4_0.18.2-1_amd64.deb
+-rw-r--r-- 1 root root  58K Jul 15  2013 libconfig-general-perl_2.52-1_all.deb
+-rw-r--r-- 1 root root  97K Nov  7  2013 libdbd-mysql-perl_4.025-1_amd64.deb
+-rw-r--r-- 1 root root 859K Nov  6  2013 libdbi-perl_1.630-1_amd64.deb
+-rw-r--r-- 1 root root 175K Jun 10 20:38 libdpkg-perl_1.17.5ubuntu5.3_all.deb
+-rw-r--r-- 1 root root  54K Jan 25  2014 libdrm-intel1_2.4.52-1_amd64.deb
+-rw-r--r-- 1 root root  14K Jan 25  2014 libdrm-nouveau2_2.4.52-1_amd64.deb
+-rw-r--r-- 1 root root  24K Jan 25  2014 libdrm-radeon1_2.4.52-1_amd64.deb
+-rw-r--r-- 1 root root  25K Mar 24  2014 libfakeroot_1.20-3ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  16K Jan  4  2014 libfdt1_1.4.0+dfsg-1_amd64.deb
+-rw-r--r-- 1 root root  16K Oct 21  2013 libfile-fcntllock-perl_0.14-2build1_amd64.deb
+-rw-r--r-- 1 root root  93K Oct 21  2013 libflac8_1.3.0-2_amd64.deb
+-rw-r--r-- 1 root root 1.7M Apr  5  2014 libgcc-4.8-dev_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 244K Apr  5  2014 libgfortran3_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 4.8M May 15 18:58 libgl1-mesa-dri_10.1.3-0ubuntu0.1_amd64.deb
+-rw-r--r-- 1 root root 111K May 15 18:58 libgl1-mesa-glx_10.1.3-0ubuntu0.1_amd64.deb   
+-rw-r--r-- 1 root root  21K May 15 18:58 libglapi-mesa_10.1.3-0ubuntu0.1_amd64.deb
+-rw-r--r-- 1 root root 214K Jan  7  2014 libgmp10_2%3a5.1.3+dfsg-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  23K Apr  5  2014 libgomp1_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  64K Oct 23  2013 libhtml-template-perl_2.95-1_all.deb
+-rw-r--r-- 1 root root  23K Jan  6  2014 libibverbs1_1.1.7-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 410K Feb 14  2014 libisl10_0.12.2-1_amd64.deb
+-rw-r--r-- 1 root root  28K Apr  5  2014 libitm1_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 2.2K Jul 10  2013 libjpeg8_8c-2ubuntu8_amd64.deb
+-rw-r--r-- 1 root root 102K Dec 20  2013 libjpeg-turbo8_1.3.0-0ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  77K Jul  5  2013 libjs-jquery_1.7.2+dfsg-2ubuntu1_all.deb
+-rw-r--r-- 1 root root  41K May  8 04:13 libjs-sphinxdoc_1.2.2+dfsg-1ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 8.3K May  2  2012 libjs-swfobject_2.2+dfsg-1_all.deb
+-rw-r--r-- 1 root root  45K Jun 21  2013 libjs-underscore_1.4.4-2ubuntu1_all.deb
+-rw-r--r-- 1 root root 1.7M Feb 27  2014 liblapack3_3.5.0-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 6.3M Mar  6  2014 libllvm3.4_1%3a3.4-1ubuntu3_amd64.deb
+-rw-r--r-- 1 root root  35K Feb 11  2014 libltdl7_2.4.2-1.7ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  12K Dec  7  2013 libmnl0_1.0.3-3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  38K Nov 26  2013 libmpc3_1.0.1-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 198K Oct 22  2013 libmpfr4_3.1.2-1_amd64.deb
+-rw-r--r-- 1 root root 584K Oct 16 05:04 libmysqlclient18_5.5.40-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root  41K Dec  4  2013 libnet1_1.1.6+dfsg-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  44K Dec 22  2013 libnetcf1_1%3a0.2.3-4ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  45K Oct 21  2013 libnetfilter-conntrack3_1.0.4-1_amd64.deb
+-rw-r--r-- 1 root root  94K Dec 11  2013 libnl-route-3-200_3.2.21-1_amd64.deb
+-rw-r--r-- 1 root root 108K Sep 22 20:43 libnspr4_2%3a4.10.7-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 1.1M Sep 25 04:09 libnss3_2%3a3.17.1-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root  11K Sep 25 04:09 libnss3-nssdb_2%3a3.17.1-0ubuntu0.14.04.1_all.deb
+-rw-r--r-- 1 root root 172K Dec 11  2013 libodbc1_2.2.14p2-5ubuntu5_amd64.deb
+-rw-r--r-- 1 root root  17K Dec 14  2013 libogg0_1.3.1-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  54K Dec 14  2013 libopts25_1%3a5.18-2ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  20K Aug 16  2013 libpciaccess0_0.13.2-1_amd64.deb
+-rw-r--r-- 1 root root 222K Dec 17  2013 libpixman-1-0_0.30.2-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 220K Apr  4  2014 libpulse0_1%3a4.0-0ubuntu11_amd64.deb
+-rw-r--r-- 1 root root 124K Apr  5  2014 libquadmath0_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  35K Nov  9  2013 librabbitmq1_0.4.1-1_amd64.deb
+-rw-r--r-- 1 root root 1.4M Aug  6 01:09 librados2_0.80.5-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 309K Aug  6 01:09 librbd1_0.80.5-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root  36K Oct 29  2012 librdmacm1_1.0.16-1_amd64.deb
+-rw-r--r-- 1 root root 9.1K May 13  2013 libsctp1_1.0.15+dfsg-1_amd64.deb
+-rw-r--r-- 1 root root 159K May 10 13:43 libsdl1.2debian_1.2.15-8ubuntu1.1_amd64.deb
+-rw-r--r-- 1 root root  34K Oct 21  2013 libseccomp2_2.1.0+dfsg-1_amd64.deb
+-rw-r--r-- 1 root root  52K Dec 19  2013 libsgutils2-2_1.36-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 133K Dec 16  2013 libsndfile1_1.0.25-7ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 406K Nov 12  2013 libspice-server1_0.12.4-0nocelt2_amd64.deb
+-rw-r--r-- 1 root root 1.1M Apr  5  2014 libstdc++-4.8-dev_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  19K Dec 16  2013 libsysfs2_2.1.0+repack-3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  27K Oct 30  2013 libterm-readkey-perl_2.31-1_amd64.deb
+-rw-r--r-- 1 root root  93K Apr  5  2014 libtsan0_4.8.2-19ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  51K Dec 31  2013 libtxc-dxtn-s2tc0_0~git20131104-1.1_amd64.deb
+-rw-r--r-- 1 root root  13K Jan  3  2014 libusbredirparser1_0.6-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 811K Oct  1 02:54 libvirt0_1.2.2-0ubuntu13.1.5_amd64.deb
+-rw-r--r-- 1 root root 2.0M Oct  1 02:54 libvirt-bin_1.2.2-0ubuntu13.1.5_amd64.deb
+-rw-r--r-- 1 root root  86K Dec 16  2013 libvorbis0a_1.3.2-1.3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  83K Dec 16  2013 libvorbisenc2_1.3.2-1.3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  46K Jan 13  2014 libwrap0_7.6.q-25_amd64.deb
+-rw-r--r-- 1 root root 9.3K Dec  5  2013 libx11-xcb1_2%3a1.6.2-1ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  82K Jun 12  2012 libx86-1_1.1+ds1-10_amd64.deb
+-rw-r--r-- 1 root root 6.6K Jan 15  2014 libxcb-dri2-0_1.10-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 5.0K Jan 15  2014 libxcb-dri3-0_1.10-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  20K Jan 15  2014 libxcb-glx0_1.10-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 5.2K Jan 15  2014 libxcb-present0_1.10-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 8.0K Jan 15  2014 libxcb-sync1_1.10-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 7.5K Oct 12  2013 libxdamage1_1%3a1.1.4-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 266K Oct  1 21:34 libxen-4.4_4.4.0-0ubuntu5.2_amd64.deb
+-rw-r--r-- 1 root root  19K Oct  1 21:34 libxenstore3.0_4.4.0-0ubuntu5.2_amd64.deb
+-rw-r--r-- 1 root root  12K Jul  5  2013 libxfixes3_1%3a5.0.1-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  34K Jun 17 20:33 libxml2-utils_2.9.1+dfsg1-3ubuntu4.3_amd64.deb
+-rw-r--r-- 1 root root 4.6K Dec 16  2013 libxshmfence1_1.1-2_amd64.deb
+-rw-r--r-- 1 root root 142K Feb 23  2014 libxslt1.1_1.1.28-2build1_amd64.deb
+-rw-r--r-- 1 root root  12K Aug 16  2013 libxxf86vm1_1%3a1.1.3-1_amd64.deb
+-rw-r--r-- 1 root root  21K Jun 13  2013 libyajl2_2.0.4-4_amd64.deb
+-rw-r--r-- 1 root root  48K Apr  3  2014 libyaml-0-2_0.1.4-3ubuntu3_amd64.deb
+-rw-r--r-- 1 root root 783K Sep 26 06:44 linux-libc-dev_3.13.0-37.64_amd64.deb
+-rw-r--r-- 1 root root  51K May 13  2013 lksctp-tools_1.0.15+dfsg-1_amd64.deb
+-rw-r----- 1 root root    0 Jul 23 07:52 lock
+-rw-r--r-- 1 root root 117K Jun  9  2013 make_3.81-8.2ubuntu3_amd64.deb
+-rw-r--r-- 1 root root 1.8M Oct  4  2013 manpages-dev_3.54-1ubuntu1_all.deb
+-rw-r--r-- 1 root root  66K Jan 14  2014 memcached_1.4.14-0ubuntu9_amd64.deb
+-rw-r--r-- 1 root root  11K Oct 23  2013 msr-tools_1.3-2_amd64.deb
+-rw-r--r-- 1 root root 1.4M Oct 16 05:04 mysql-client-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 687K Oct 16 05:04 mysql-client-core-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root  14K Oct 16 05:04 mysql-common_5.5.40-0ubuntu0.14.04.1_all.deb
+-rw-r--r-- 1 root root  13K Oct 16 05:04 mysql-server_5.5.40-0ubuntu0.14.04.1_all.deb
+-rw-r--r-- 1 root root 1.9M Oct 16 05:04 mysql-server-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 3.1M Oct 16 05:04 mysql-server-core-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 237K Mar 23  2014 ncurses-term_5.9+20140118-1ubuntu1_all.deb
+-rw-r--r-- 1 root root  14K Aug 22 04:48 neutron-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 5.3K Aug 22 04:48 neutron-dhcp-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 3.1K Aug 22 04:48 neutron-l3-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 3.8K Aug 22 04:48 neutron-metadata-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.8K Aug 22 04:48 neutron-plugin-ml2_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 3.8K Aug 22 04:48 neutron-plugin-openvswitch-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 3.5K Aug 22 04:48 neutron-server_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  29K May  1  2012 ngrep_1.45.ds2-12_amd64.deb
+-rw-r--r-- 1 root root 2.6K Aug 22 04:48 nova-ajax-console-proxy_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.7K Aug 22 04:48 nova-api_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.5K Aug 22 04:48 nova-api-metadata_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.3K Aug 22 04:48 nova-cert_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  11K Aug 22 04:48 nova-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 6.6K Aug 22 04:48 nova-compute_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 2.8K Aug 22 04:48 nova-compute-libvirt_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 2.8K Aug 22 04:48 nova-compute-qemu_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.3K Aug 22 04:48 nova-conductor_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.4K Aug 22 04:48 nova-consoleauth_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 1.9M Aug 22 04:48 nova-doc_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.4K Aug 22 04:48 nova-novncproxy_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.5K Aug 22 04:48 nova-objectstore_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 4.4K Aug 22 04:48 nova-scheduler_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 109K Dec 26  2013 novnc_1%3a0.4+dfsg+1+20131010+gitf68af8af3d-2_all.deb
+-rw-r--r-- 1 root root 597K Oct 10  2013 ntp_1%3a4.2.6.p5+dfsg-3ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 262K Feb 27  2014 open-iscsi_2.0.873-3ubuntu9_amd64.deb
+-rw-r--r-- 1 root root 312K May 13 01:24 openssh-server_1%3a6.6p1-2ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  34K May 13 01:24 openssh-sftp-server_1%3a6.6p1-2ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 1.3M Aug 22 04:48 openstack-dashboard_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  30K Aug 22 04:48 openstack-dashboard-ubuntu-theme_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 434K Aug 15 23:53 openvswitch-common_2.0.2-0ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 844K Aug 15 23:53 openvswitch-switch_2.0.2-0ubuntu0.14.04.1_amd64.deb
+drwxr-xr-x 2 root root 4.0K Oct 20 14:30 partial
+-rw-r--r-- 1 root root  50K Jul 16 00:18 pm-utils_1.4.1-13ubuntu0.1_all.deb
+-rw-r--r-- 1 root root  35K Jan  8  2014 python-amqp_1.3.3-1ubuntu1_all.deb
+-rw-r--r-- 1 root root  35K May  1  2012 python-amqplib_1.0.2-1_all.deb
+-rw-r--r-- 1 root root 7.0K Feb 24  2014 python-anyjson_0.3.3-1build1_all.deb
+-rw-r--r-- 1 root root 7.6K Feb 24  2014 python-appconf_0.5-2build1_all.deb
+-rw-r--r-- 1 root root  69K Jun 25 02:40 python-babel_1.3+dfsg.1-2ubuntu2_all.deb
+-rw-r--r-- 1 root root 1.9M Jun 25 02:40 python-babel-localedata_1.3+dfsg.1-2ubuntu2_all.deb
+-rw-r--r-- 1 root root 604K Mar 28  2014 python-boto_2.20.1-2ubuntu2_all.deb
+-rw-r--r-- 1 root root  47K Jan 22  2014 python-ceilometerclient_1.0.8-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 828K Aug 13 23:33 python-cinder_1%3a2014.1.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  71K Mar  7  2014 python-cinderclient_1%3a1.0.8-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  17K Feb 24  2014 python-cliff_1.4.5-1ubuntu2_all.deb
+-rw-r--r-- 1 root root  40K Feb 24  2014 python-cliff-doc_1.4.5-1ubuntu2_all.deb
+-rw-r--r-- 1 root root  20K Feb 24  2014 python-cloudfiles_1.7.11-2build1_all.deb
+-rw-r--r-- 1 root root  22K Feb 23  2014 python-cmd2_0.6.7-2fakesync1build1_all.deb
+-rw-r--r-- 1 root root  18K Feb 13  2014 python-colorama_0.2.5-0.1ubuntu1_all.deb
+-rw-r--r-- 1 root root  54K Mar  7  2014 python-compressor_1.3-1ubuntu3_all.deb
+-rw-r--r-- 1 root root  33K Mar 10  2014 python-concurrent.futures_2.1.6-3_all.deb
+-rw-r--r-- 1 root root 234K Mar 24  2014 python-crypto_2.6.1-4build1_amd64.deb
+-rw-r--r-- 1 root root  81K Mar 24  2014 python-dbus_1.2.0-2build2_amd64.deb
+-rw-r--r-- 1 root root 5.0K Mar 24  2014 python-dbus-dev_1.2.0-2build2_all.deb
+-rw-r--r-- 1 root root  19K Feb 24  2014 python-decorator_3.4.0-2build1_all.deb
+-rw-r--r-- 1 root root 111K Apr  9  2014 python-distlib_0.1.8-1_all.deb
+-rw-r--r-- 1 root root 2.2M Sep 24 06:33 python-django_1.6.1-2ubuntu0.5_all.deb
+-rw-r--r-- 1 root root 567K Aug 22 04:48 python-django-horizon_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  26K Feb 18  2014 python-dns_2.3.6-3_all.deb
+-rw-r--r-- 1 root root  26K Feb 24  2014 python-dogpile.cache_0.5.1-0ubuntu2_all.deb
+-rw-r--r-- 1 root root 9.5K Feb 24  2014 python-dogpile.core_0.4.1-0ubuntu3_all.deb
+-rw-r--r-- 1 root root 198K Feb 24  2014 python-eventlet_0.13.0-1ubuntu2_all.deb
+-rw-r--r-- 1 root root  74K Feb 24  2014 python-formencode_1.2.6-1ubuntu1_all.deb
+-rw-r--r-- 1 root root 188K Jul  9 16:13 python-gi_3.12.0-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 391K Aug 22 04:48 python-glance_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  34K Jan 21  2014 python-glanceclient_1%3a0.12.0-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  17K Apr  1  2014 python-greenlet_0.4.2-1build1_amd64.deb
+-rw-r--r-- 1 root root  50K Mar  7  2014 python-heatclient_0.2.8-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  82K Jan 12  2014 python-html5lib_0.999-2_all.deb
+-rw-r--r-- 1 root root  35K Feb 24  2014 python-httplib2_0.8-2build1_all.deb
+-rw-r--r-- 1 root root  12K Mar 18  2014 python-iso8601_0.1.10-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 157K Jan 13  2014 python-jinja2_2.7.2-2_all.deb
+-rw-r--r-- 1 root root 2.3K Jan  2  2014 python-json-patch_1.3-4_all.deb
+-rw-r--r-- 1 root root 8.9K Jan  2  2014 python-jsonpatch_1.3-4_all.deb
+-rw-r--r-- 1 root root 5.1K Feb 24  2014 python-json-pointer_1.0-2build1_all.deb
+-rw-r--r-- 1 root root  14K Feb 24  2014 python-jsonrpclib_0.1.3-1build1_all.deb
+-rw-r--r-- 1 root root  27K Feb 24  2014 python-jsonschema_2.3.0-1build1_all.deb
+-rw-r--r-- 1 root root  51K Feb 18  2014 python-keyring_3.5-1_all.deb
+-rw-r--r-- 1 root root 413K Aug 22 04:48 python-keystone_1%3a2014.1.2.1-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 136K Mar 28  2014 python-keystoneclient_1%3a0.7.1-ubuntu1_all.deb
+-rw-r--r-- 1 root root 131K Jan 14  2014 python-kombu_3.0.7-1ubuntu1_all.deb
+-rw-r--r-- 1 root root  27K Jan 15  2014 python-librabbitmq_1.0.3-0ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  97K Sep 24 04:08 python-libvirt_1.2.2-0ubuntu2_amd64.deb
+-rw-r--r-- 1 root root 8.0K Feb 28  2014 python-lockfile_1%3a0.8-2ubuntu2_all.deb
+-rw-r--r-- 1 root root 615K May 22 00:43 python-lxml_3.3.3-1ubuntu0.1_amd64.deb
+-rw-r--r-- 1 root root 153K Feb 18  2014 python-m2crypto_0.21.1-3ubuntu5_amd64.deb
+-rw-r--r-- 1 root root  59K Dec 30  2013 python-mako_0.9.1-1_all.deb
+-rw-r--r-- 1 root root  14K Apr  1  2014 python-markupsafe_0.18-1build2_amd64.deb
+-rw-r--r-- 1 root root  17K Feb 24  2014 python-memcache_1.53-1build1_all.deb
+-rw-r--r-- 1 root root 119K Jan 21  2014 python-migrate_0.8.2-3ubuntu1_all.deb
+-rw-r--r-- 1 root root  24K Feb 27  2014 python-mock_1.0.1-3_all.deb
+-rw-r--r-- 1 root root  55K Jan 30  2014 python-mysqldb_1.2.3-2ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 832K Feb 24  2014 python-netaddr_0.7.10-1build1_all.deb
+-rw-r--r-- 1 root root 495K Jan 28  2014 python-networkx_1.8.1-0ubuntu3_all.deb
+-rw-r--r-- 1 root root 1.2M Aug 22 04:48 python-neutron_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  80K Mar 13  2014 python-neutronclient_1%3a2.3.4-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 1.8M Aug 22 04:48 python-nova_1%3a2014.1.2-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 137K Mar 18  2014 python-novaclient_1%3a2.17.0-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  19K Dec 26  2013 python-novnc_1%3a0.4+dfsg+1+20131010+gitf68af8af3d-2_all.deb
+-rw-r--r-- 1 root root 1.6M Sep 18 00:34 python-numpy_1%3a1.8.2-0ubuntu0.1_amd64.deb
+-rw-r--r-- 1 root root  58K Jan 29  2014 python-oauthlib_0.6.1-1_all.deb
+-rw-r--r-- 1 root root 116K Dec 18  2011 python-openid_2.2.5-3ubuntu1_all.deb
+-rw-r--r-- 1 root root  27K Feb 25  2014 python-openstack-auth_1.1.3-0ubuntu3_all.deb
+-rw-r--r-- 1 root root  22K Feb 24  2014 python-oslo.config_1%3a1.2.1-0ubuntu2_all.deb
+-rw-r--r-- 1 root root  62K Apr  2  2014 python-oslo.messaging_1.3.0-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  16K Mar 26  2014 python-oslo.rootwrap_1.2.0-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  30K Mar  4  2014 python-oslo.vmware_0.2-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 104K Feb 24  2014 python-paramiko_1.10.1-1git1build1_all.deb
+-rw-r--r-- 1 root root 120K Feb 24  2014 python-passlib_1.5.3-0ubuntu3_all.deb
+-rw-r--r-- 1 root root 359K Apr 11  2014 python-paste_1.7.5.1-6ubuntu3_all.deb
+-rw-r--r-- 1 root root  25K Dec 30  2013 python-pastedeploy_1.5.2-1_all.deb
+-rw-r--r-- 1 root root 4.5K Dec 30  2013 python-pastedeploy-tpl_1.5.2-1_all.deb
+-rw-r--r-- 1 root root 115K Feb 24  2014 python-pastescript_1.7.5-3build1_all.deb
+-rw-r--r-- 1 root root  36K Mar 27  2014 python-pbr_0.7.0-0ubuntu2_all.deb
+-rw-r--r-- 1 root root  96K Apr  1  2014 python-pip_1.5.4-1_all.deb
+-rw-r--r-- 1 root root  20K Feb 24  2014 python-prettytable_0.7.2-2ubuntu2_all.deb
+-rw-r--r-- 1 root root  50K Apr  1  2014 python-psutil_1.2.1-1ubuntu2_amd64.deb
+-rw-r--r-- 1 root root  44K Feb 24  2014 python-pyasn1_0.1.7-1ubuntu2_all.deb
+-rw-r--r-- 1 root root  43K Aug 12 02:18 python-pycadf_0.4.1-0ubuntu1.1_all.deb
+-rw-r--r-- 1 root root  34K Feb 24  2014 python-pyparsing_2.0.1+dfsg1-1build1_all.deb
+-rw-r--r-- 1 root root  12K Feb 25  2014 python-repoze.lru_0.6-4_all.deb
+-rw-r--r-- 1 root root  42K Oct 14 23:24 python-requests_2.2.1-1ubuntu0.1_all.deb
+-rw-r--r-- 1 root root  75K Feb 24  2014 python-routes_2.0-1build1_all.deb
+-rw-r--r-- 1 root root  18K Feb 24  2014 python-scgi_1.13-1.1build1_amd64.deb
+-rw-r--r-- 1 root root  12K Aug  9 07:18 python-secretstorage_2.0.0-1ubuntu1.1_all.deb
+-rw-r--r-- 1 root root 225K Mar 23  2014 python-setuptools_3.3-1ubuntu1_all.deb
+-rw-r--r-- 1 root root  54K Apr  1  2014 python-simplejson_3.3.1-1ubuntu6_amd64.deb
+-rw-r--r-- 1 root root 520K Feb 24  2014 python-sqlalchemy_0.8.4-1build1_all.deb
+-rw-r--r-- 1 root root  14K Feb 24  2014 python-sqlalchemy-ext_0.8.4-1build1_amd64.deb
+-rw-r--r-- 1 root root  15K Feb 17  2014 python-stevedore_0.14.1-1_all.deb
+-rw-r--r-- 1 root root  90K Jun 11 01:38 python-suds_0.4.1-11ubuntu0.1_all.deb
+-rw-r--r-- 1 root root  31K Mar  7  2014 python-swiftclient_1%3a2.0.3-0ubuntu1_all.deb
+-rw-r--r-- 1 root root 103K Apr 17  2014 python-taskflow_0.1.3-0ubuntu3_all.deb
+-rw-r--r-- 1 root root  14K Feb 24  2014 python-tempita_0.5.2-1build1_all.deb
+-rw-r--r-- 1 root root  67K Feb 19  2014 python-troveclient_1%3a1.0.3-0ubuntu3_all.deb
+-rw-r--r-- 1 root root  32K Feb 24  2014 python-tz_2012c-1build1_all.deb
+-rw-r--r-- 1 root root  38K Feb 24  2014 python-urllib3_1.7.1-1build1_all.deb
+-rw-r--r-- 1 root root 5.2K Feb 24  2014 python-warlock_1.1.0-0ubuntu2_all.deb
+-rw-r--r-- 1 root root  57K Jan 29  2014 python-webob_1.3.1-1_all.deb
+-rw-r--r-- 1 root root 100K Apr  1  2014 python-yaml_3.10-4build4_amd64.deb
+-rw-r--r-- 1 root root 164K Sep 18 00:33 qemu_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root  20K Sep 18 00:34 qemu-keymaps_2.0.0+dfsg-2ubuntu1.5_all.deb
+-rw-r--r-- 1 root root 6.0K Sep 18 00:34 qemu-system_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 1.7M Sep 18 00:34 qemu-system-arm_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 154K Sep 18 00:34 qemu-system-common_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 2.4M Sep 18 00:34 qemu-system-mips_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 5.2M Sep 18 00:34 qemu-system-misc_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 2.7M Sep 18 00:33 qemu-system-ppc_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 1.6M Sep 18 00:33 qemu-system-sparc_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 1.9M Sep 18 00:34 qemu-system-x86_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 5.4M Sep 18 00:34 qemu-user_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 403K Sep 18 00:34 qemu-utils_2.0.0+dfsg-2ubuntu1.5_amd64.deb
+-rw-r--r-- 1 root root 3.8M Mar  6  2014 rabbitmq-server_3.2.4-1_all.deb
+-rw-r--r-- 1 root root 106K Feb 19  2014 seabios_1.7.4-4_all.deb
+-rw-r--r-- 1 root root 526K Dec 19  2013 sg3-utils_1.36-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 142K Jan  6  2014 sharutils_1%3a4.14-1ubuntu1_amd64.deb
+-rw-r--r-- 1 root root 9.4K Feb 28  2014 ssh-import-id_3.21-0ubuntu1_all.deb
+-rw-r--r-- 1 root root  17K Aug 28  2013 ssl-cert_1.0.33_all.deb
+-rw-r--r-- 1 root root  13K Dec 16  2013 sysfsutils_2.1.0+repack-3ubuntu1_amd64.deb
+-rw-r--r-- 1 root root  23K Jan 13  2014 tcpd_7.6.q-25_amd64.deb
+-rw-r--r-- 1 root root 198K Apr 12  2014 tgt_1%3a1.0.43-0ubuntu4_amd64.deb
+-rw-r--r-- 1 root root  12K Dec 20  2012 vbetool_1.1-3_amd64.deb
+-rw-r--r-- 1 root root  30K Mar 22  2014 vlan_1.9-3ubuntu10_amd64.deb
+-rw-r--r-- 1 root root  35K Aug  5 23:53 websockify_0.5.1+dfsg1-3ubuntu0.14.04.1_amd64.deb
+-rw-r--r-- 1 root root 497K Dec 19  2013 xfsprogs_3.1.9ubuntu2_amd64.deb
+
+
+# ------------------------------------------------------------------------------
+#   nova 패키지 => 16
+# ------------------------------------------------------------------------------
+    
+    root@icehouse:/var/cache/apt/archives# ll | grep nova
+    root root 2.6K nova-ajax-console-proxy_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.7K nova-api_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.5K nova-api-metadata_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.3K nova-cert_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root  11K nova-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 6.6K nova-compute_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 2.8K nova-compute-libvirt_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 2.8K nova-compute-qemu_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.3K nova-conductor_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.4K nova-consoleauth_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 1.9M nova-doc_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.4K nova-novncproxy_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.5K nova-objectstore_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 4.4K nova-scheduler_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 1.8M python-nova_1%3a2014.1.2-0ubuntu1.1_all.deb
+    root root 137K python-novaclient_1%3a2.17.0-0ubuntu1_all.deb
+
+    # --------------------------------------------------------------------------
+    # nova-api 분석
+    root@icehouse:/var/cache/apt/archives# dpkg -c nova-api_1%3a2014.1.2-0ubuntu1.1_all.deb                                                                                          
+    -rwxr-xr-x 152  /usr/bin/nova-api
+    -rw-r--r-- 215  /usr/share/doc/nova-api/copyright
+    -rw-r--r-- 756  /usr/share/man/man1/nova-api.1.gz
+    -rw-r--r-- 391  /etc/init/nova-api.conf
+    -rw-r--r-- 589  /etc/nova/rootwrap.d/api-metadata.filters
+    -rw-r--r-- 101  /etc/logrotate.d/nova-api
+    lrwxrwxrwx   0  /usr/share/doc/nova-api/changelog.Debian.gz -> ../python-nova/changelog.Debian.gz./python-nova/changelog.Debian.gz
+
+    #
+    # nova-api 실행 프로그램 
+    
+        root@icehouse:/var/cache/apt/archives# cat /usr/bin/nova-api
+        #! /usr/bin/python
+        # PBR Generated from u'console_scripts'
+        
+        import sys
+        
+        from nova.cmd.api import main
+        
+        if __name__ == "__main__":
+            sys.exit(main())
+
+    #
+    # nova-api start/stop/restart 설정
+    
+        root@icehouse:/var/cache/apt/archives# cat /etc/init/nova-api.conf
+        description "Nova API server"
+        author "Soren Hansen <soren@linux2go.dk>"
+        
+        start on runlevel [2345]
+        stop on runlevel [!2345]
+          
+        chdir /var/run
+        
+        pre-start script
+        	mkdir -p /var/run/nova
+        	chown nova:root /var/run/nova/
+        
+        	mkdir -p /var/lock/nova
+        	chown nova:root /var/lock/nova/
+        end script
+        
+        exec start-stop-daemon --start --chuid nova --exec /usr/bin/nova-api -- --config-file=/etc/nova/nova.conf
+    
+    #
+    # nova-api rootwrap filter 설정
+    
+        root@icehouse:/var/cache/apt/archives# cat /etc/nova/rootwrap.d/api-metadata.filters
+        # nova-rootwrap command filters for api-metadata nodes
+        # This is needed on nova-api hosts running with "metadata" in enabled_apis
+        # or when running nova-api-metadata
+        # This file should be owned by (and only-writeable by) the root user
+        
+        [Filters]
+        # nova/network/linux_net.py: 'ip[6]tables-save' % (cmd, '-t', ...
+        iptables-save: CommandFilter, iptables-save, root
+        ip6tables-save: CommandFilter, ip6tables-save, root
+        
+        # nova/network/linux_net.py: 'ip[6]tables-restore' % (cmd,)
+        iptables-restore: CommandFilter, iptables-restore, root
+        ip6tables-restore: CommandFilter, ip6tables-restore, root
+    
+    #
+    # nova-api log 설정
+
+        root@icehouse:/var/cache/apt/archives# cat /etc/logrotate.d/nova-api
+        /var/log/nova/nova-api.log {
+            daily
+            missingok
+            compress
+            delaycompress
+            notifempty
+        }
+    
+    # --------------------------------------------------------------------------
+        
+        
+        
+        
+# nova util 
+root@icehouse:/var/cache/apt/archives# ll | grep libvirt
+164:-rw-r--r-- 1 root root 811K Oct  1 02:54 libvirt0_1.2.2-0ubuntu13.1.5_amd64.deb
+165:-rw-r--r-- 1 root root 2.0M Oct  1 02:54 libvirt-bin_1.2.2-0ubuntu13.1.5_amd64.deb
+214:-rw-r--r-- 1 root root 2.8K Aug 22 04:48 nova-compute-libvirt_1%3a2014.1.2-0ubuntu1.1_all.deb
+281:-rw-r--r-- 1 root root  97K Sep 24 04:08 python-libvirt_1.2.2-0ubuntu2_amd64.de
+
+
+# ------------------------------------------------------------------------------
+#   neutron 패키지 => 9
+# ------------------------------------------------------------------------------
+
+root@icehouse:/var/cache/apt/archives# ll | grep neutron 
+199:-rw-r--r-- 1 root root  14K Aug 22 04:48 neutron-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+200:-rw-r--r-- 1 root root 5.3K Aug 22 04:48 neutron-dhcp-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+201:-rw-r--r-- 1 root root 3.1K Aug 22 04:48 neutron-l3-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+202:-rw-r--r-- 1 root root 3.8K Aug 22 04:48 neutron-metadata-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+203:-rw-r--r-- 1 root root 4.8K Aug 22 04:48 neutron-plugin-ml2_1%3a2014.1.2-0ubuntu1.1_all.deb
+204:-rw-r--r-- 1 root root 3.8K Aug 22 04:48 neutron-plugin-openvswitch-agent_1%3a2014.1.2-0ubuntu1.1_all.deb
+205:-rw-r--r-- 1 root root 3.5K Aug 22 04:48 neutron-server_1%3a2014.1.2-0ubuntu1.1_all.deb
+292:-rw-r--r-- 1 root root 1.2M Aug 22 04:48 python-neutron_1%3a2014.1.2-0ubuntu1.1_all.deb
+293:-rw-r--r-- 1 root root  80K Mar 13  2014 python-neutronclient_1%3a2.3.4-0ubuntu1_all.deb
+
+# neutron util -> 'dnsmasq','ovsdb-client','ovsdb-server','ovs-vswitchd'
+root@icehouse:/var/cache/apt/archives# ll | grep dnsmasq
+22:-rw-r--r-- 1 root root  15K Dec  9  2013 dnsmasq_2.68-1_all.deb
+23:-rw-r--r-- 1 root root 252K Dec  9  2013 dnsmasq-base_2.68-1_amd64.deb
+24:-rw-r--r-- 1 root root 7.8K Dec  9  2013 dnsmasq-utils_2.68-1_amd64.deb
+
+# ------------------------------------------------------------------------------
+#   glance 패키지 => 6
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep glance
+60:-rw-r--r-- 1 root root 1.8K Aug 22 04:48 glance_1%3a2014.1.2-0ubuntu1.1_all.deb
+61:-rw-r--r-- 1 root root  23K Aug 22 04:48 glance-api_1%3a2014.1.2-0ubuntu1.1_all.deb
+62:-rw-r--r-- 1 root root 6.4K Aug 22 04:48 glance-common_1%3a2014.1.2-0ubuntu1.1_all.deb
+63:-rw-r--r-- 1 root root 6.8K Aug 22 04:48 glance-registry_1%3a2014.1.2-0ubuntu1.1_all.deb
+262:-rw-r--r-- 1 root root 391K Aug 22 04:48 python-glance_1%3a2014.1.2-0ubuntu1.1_all.deb
+263:-rw-r--r-- 1 root root  34K Jan 21  2014 python-glanceclient_1%3a0.12.0-0ubuntu1_all.deb
+
+# ------------------------------------------------------------------------------
+#   cinder 패키지 => 6
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep cinder
+14:-rw-r--r-- 1 root root 3.4K Aug 13 23:33 cinder-api_1%3a2014.1.2-0ubuntu1_all.deb
+15:-rw-r--r-- 1 root root  13K Aug 13 23:33 cinder-common_1%3a2014.1.2-0ubuntu1_all.deb
+16:-rw-r--r-- 1 root root 3.4K Aug 13 23:33 cinder-scheduler_1%3a2014.1.2-0ubuntu1_all.deb
+17:-rw-r--r-- 1 root root 7.1K Aug 13 23:33 cinder-volume_1%3a2014.1.2-0ubuntu1_all.deb
+240:-rw-r--r-- 1 root root 828K Aug 13 23:33 python-cinder_1%3a2014.1.2-0ubuntu1_all.deb
+241:-rw-r--r-- 1 root root  71K Mar  7  2014 python-cinderclient_1%3a1.0.8-0ubuntu1_all.deb
+
+# cinder util -> 'iscsid', 'tgtd'
+root@icehouse:/var/cache/apt/archives# ll | grep iscsi
+224:-rw-r--r-- 1 root root 262K Feb 27  2014 open-iscsi_2.0.873-3ubuntu9_amd64.deb
+
+# ------------------------------------------------------------------------------
+#   keystone 패키지 => 3
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep keystone 
+68:-rw-r--r-- 1 root root  24K Aug 22 04:48 keystone_1%3a2014.1.2.1-0ubuntu1.1_all.deb
+277:-rw-r--r-- 1 root root 413K Aug 22 04:48 python-keystone_1%3a2014.1.2.1-0ubuntu1.1_all.deb
+278:-rw-r--r-- 1 root root 136K Mar 28  2014 python-keystoneclient_1%3a0.7.1-ubuntu1_all.deb
+
+# ------------------------------------------------------------------------------
+#   horizon util 패키지 => 
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep django
+255:-rw-r--r-- 1 root root 2.2M Sep 24 06:33 python-django_1.6.1-2ubuntu0.5_all.deb
+256:-rw-r--r-- 1 root root 567K Aug 22 04:48 python-django-horizon_1%3a2014.1.2-0ubuntu1.1_all.deb
+
+root@icehouse:/var/cache/apt/archives# ll | grep sqlalchemy
+326:-rw-r--r-- 1 root root 520K Feb 24  2014 python-sqlalchemy_0.8.4-1build1_all.deb
+327:-rw-r--r-- 1 root root  14K Feb 24  2014 python-sqlalchemy-ext_0.8.4-1build1_amd64.deb
+
+root@icehouse:/var/cache/apt/archives# ll | grep apache2
+7:-rw-r--r-- 1 root root  86K Jul 24 05:03 apache2_2.4.7-1ubuntu4.1_amd64.deb
+8:-rw-r--r-- 1 root root 820K Jul 24 05:03 apache2-bin_2.4.7-1ubuntu4.1_amd64.deb
+9:-rw-r--r-- 1 root root 157K Jul 24 05:03 apache2-data_2.4.7-1ubuntu4.1_all.deb
+74:-rw-r--r-- 1 root root  66K May 26 21:38 libapache2-mod-wsgi_3.4-4ubuntu2.1.14.04.1_amd64.deb
+
+root@icehouse:/var/cache/apt/archives# ll | grep memcached
+191:-rw-r--r-- 1 root root  66K Jan 14  2014 memcached_1.4.14-0ubuntu9_amd64.deb
+
+# ------------------------------------------------------------------------------
+#   database 패키지 => 9
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep mysql
+100:-rw-r--r-- 1 root root  97K Nov  7  2013 libdbd-mysql-perl_4.025-1_amd64.deb
+133:-rw-r--r-- 1 root root 584K Oct 16 05:04 libmysqlclient18_5.5.40-0ubuntu0.14.04.1_amd64.deb
+193:-rw-r--r-- 1 root root 1.4M Oct 16 05:04 mysql-client-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+194:-rw-r--r-- 1 root root 687K Oct 16 05:04 mysql-client-core-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+195:-rw-r--r-- 1 root root  14K Oct 16 05:04 mysql-common_5.5.40-0ubuntu0.14.04.1_all.deb
+196:-rw-r--r-- 1 root root  13K Oct 16 05:04 mysql-server_5.5.40-0ubuntu0.14.04.1_all.deb
+197:-rw-r--r-- 1 root root 1.9M Oct 16 05:04 mysql-server-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+198:-rw-r--r-- 1 root root 3.1M Oct 16 05:04 mysql-server-core-5.5_5.5.40-0ubuntu0.14.04.1_amd64.deb
+290:-rw-r--r-- 1 root root  55K Jan 30  2014 python-mysqldb_1.2.3-2ubuntu1_amd64.deb
+
+# ------------------------------------------------------------------------------
+#   message bus 패키지 => rabbit(3), erlang(26)
+# ------------------------------------------------------------------------------
+root@icehouse:/var/cache/apt/archives# ll | grep rabbit
+148:-rw-r--r-- 1 root root  35K Nov  9  2013 librabbitmq1_0.4.1-1_amd64.deb
+280:-rw-r--r-- 1 root root  27K Jan 15  2014 python-librabbitmq_1.0.3-0ubuntu1_amd64.deb
+351:-rw-r--r-- 1 root root 3.8M Mar  6  2014 rabbitmq-server_3.2.4-1_all.deb
+
+root@icehouse:/var/cache/apt/archives# ll | grep erlang
+29:-rw-r--r-- 1 root root 721K Aug 20 02:08 erlang-asn1_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+30:-rw-r--r-- 1 root root 6.3M Aug 20 02:08 erlang-base_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+31:-rw-r--r-- 1 root root 2.2M Aug 20 02:08 erlang-corba_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+32:-rw-r--r-- 1 root root  69K Aug 20 02:08 erlang-crypto_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+33:-rw-r--r-- 1 root root 587K Aug 20 02:08 erlang-diameter_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+34:-rw-r--r-- 1 root root 292K Aug 20 02:08 erlang-edoc_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+35:-rw-r--r-- 1 root root  90K Aug 20 02:08 erlang-eldap_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+36:-rw-r--r-- 1 root root 131K Aug 20 02:08 erlang-erl-docgen_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+37:-rw-r--r-- 1 root root 134K Aug 20 02:08 erlang-eunit_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+38:-rw-r--r-- 1 root root 800K Aug 20 02:08 erlang-ic_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+39:-rw-r--r-- 1 root root 736K Aug 20 02:08 erlang-inets_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+40:-rw-r--r-- 1 root root 643K Aug 20 02:08 erlang-mnesia_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+41:-rw-r--r-- 1 root root  18K Aug 20 02:18 erlang-nox_1%3a16.b.3-dfsg-1ubuntu2.1_all.deb
+42:-rw-r--r-- 1 root root  49K Aug 20 02:08 erlang-odbc_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+43:-rw-r--r-- 1 root root  93K Aug 20 02:08 erlang-os-mon_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+44:-rw-r--r-- 1 root root 153K Aug 20 02:08 erlang-parsetools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+45:-rw-r--r-- 1 root root 134K Aug 20 02:08 erlang-percept_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+46:-rw-r--r-- 1 root root 486K Aug 20 02:08 erlang-public-key_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+47:-rw-r--r-- 1 root root 154K Aug 20 02:08 erlang-runtime-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+48:-rw-r--r-- 1 root root 1.5M Aug 20 02:08 erlang-snmp_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+49:-rw-r--r-- 1 root root 353K Aug 20 02:08 erlang-ssh_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+50:-rw-r--r-- 1 root root 546K Aug 20 02:08 erlang-ssl_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+51:-rw-r--r-- 1 root root 283K Aug 20 02:08 erlang-syntax-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+52:-rw-r--r-- 1 root root 490K Aug 20 02:08 erlang-tools_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+53:-rw-r--r-- 1 root root  39K Aug 20 02:08 erlang-webtool_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+54:-rw-r--r-- 1 root root 950K Aug 20 02:08 erlang-xmerl_1%3a16.b.3-dfsg-1ubuntu2.1_amd64.deb
+
+
+# ------------------------------------------------------------------------------
+#
+#   주요 패키지 설치내용 분석
+#
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+#   nova-api
+# ------------------------------------------------------------------------------

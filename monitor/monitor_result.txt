@@ -1,0 +1,379 @@
+2015-01-14 11:41:42,752 DEBUG: ################################################################################
+2015-01-14 11:41:42,752 DEBUG: # db_host    : 221.151.188.15
+2015-01-14 11:41:42,753 DEBUG: # db_id      : root
+2015-01-14 11:41:42,753 DEBUG: # db_pw      : ohhberry3333
+2015-01-14 11:41:42,753 DEBUG: # db_name    : monitor
+2015-01-14 11:41:42,753 DEBUG: # db_port    : 3306
+2015-01-14 11:41:42,753 DEBUG: ################################################################################
+2015-01-14 11:41:42,753 DEBUG: # host_list    : ['mnnode', 'cnode01', 'cnode02']
+2015-01-14 11:41:42,753 DEBUG: ################################################################################
+2015-01-14 11:41:42,753 DEBUG: # mnnode : {'pw': 'ohhberry3333', 'ip': '221.151.188.15', 'port': 22, 'id': 'root'}
+2015-01-14 11:41:42,754 DEBUG: #     mnnode.ip  : 221.151.188.15
+2015-01-14 11:41:42,754 DEBUG: #     mnnode.port: 22
+2015-01-14 11:41:42,754 DEBUG: #     mnnode.id  : root
+2015-01-14 11:41:42,754 DEBUG: #     mnnode.pw  : ohhberry3333
+2015-01-14 11:41:42,754 DEBUG: # cnode01: {'pw': 'ohhberry3333', 'ip': '221.151.188.16', 'port': 22, 'id': 'root'}
+2015-01-14 11:41:42,754 DEBUG: #     cnode01.ip  : 221.151.188.16
+2015-01-14 11:41:42,754 DEBUG: #     cnode01.port: 22
+2015-01-14 11:41:42,755 DEBUG: #     cnode01.id  : root
+2015-01-14 11:41:42,755 DEBUG: #     cnode01.pw  : ohhberry3333
+2015-01-14 11:41:42,755 DEBUG: # cnode02: {'pw': 'ohhberry3333', 'ip': '221.151.188.17', 'port': 22, 'id': 'root'}
+2015-01-14 11:41:42,755 DEBUG: #     cnode02.ip  : 221.151.188.17
+2015-01-14 11:41:42,755 DEBUG: #     cnode02.port: 22
+2015-01-14 11:41:42,755 DEBUG: #     cnode02.id  : root
+2015-01-14 11:41:42,755 DEBUG: #     cnode02.pw  : ohhberry3333
+2015-01-14 11:41:42,755 DEBUG: ################################################################################
+2015-01-14 11:41:42,756 DEBUG: # mnode_components: {'db_utils': ['mysqld'], 'keystone': ['keystone-all'], 'neutron': ['neutron-server'], 'horizon_utils': ['apache2', 'memcached', 'django'], 'cinder': ['cinder-api', 'cinder-scheduler', 'cinder-volume'], 'glance': ['glance-api', 'glance-registry'], 'cinder_utils': ['iscsid', 'tgtd'], 'nova': ['nova-api', 'nova-conductor', 'nova-scheduler', 'nova-cert', 'nova-consoleauth', 'nova-novncproxy'], 'message_utils': ['epmd', 'beam.smp']}
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.nova         : ['nova-api', 'nova-conductor', 'nova-scheduler', 'nova-cert', 'nova-consoleauth', 'nova-novncproxy']
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.neutron      : ['neutron-server']
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.cinder       : ['cinder-api', 'cinder-scheduler', 'cinder-volume']
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.glance       : ['glance-api', 'glance-registry']
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.keystone     : ['keystone-all']
+2015-01-14 11:41:42,756 DEBUG: #     mnnode_comp.cinder_utils : ['iscsid', 'tgtd']
+2015-01-14 11:41:42,757 DEBUG: #     mnnode_comp.horizon_utils: ['apache2', 'memcached', 'django']
+2015-01-14 11:41:42,757 DEBUG: #     mnnode_comp.message_utils: ['epmd', 'beam.smp']
+2015-01-14 11:41:42,757 DEBUG: #     mnnode_comp.db_utils     : ['mysqld']
+2015-01-14 11:41:42,757 DEBUG: 
+2015-01-14 11:41:42,757 DEBUG: # nnode_components: {'neutron_utils': ['dnsmasq', 'ovsdb-client', 'ovsdb-server', 'ovs-vswitchd'], 'neutron': ['neutron-openvswitch-agent', 'neutron-dhcp-agent', 'neutron-l3-agent', 'neutron-metadata-agent', 'neutron-ns-metadata-proxy']}
+2015-01-14 11:41:42,757 DEBUG: #     nnode_components.neutron       : ['neutron-openvswitch-agent', 'neutron-dhcp-agent', 'neutron-l3-agent', 'neutron-metadata-agent', 'neutron-ns-metadata-proxy']
+2015-01-14 11:41:42,757 DEBUG: #     nnode_components.neutron_utils : ['neutron-openvswitch-agent', 'neutron-dhcp-agent', 'neutron-l3-agent', 'neutron-metadata-agent', 'neutron-ns-metadata-proxy']
+2015-01-14 11:41:42,758 DEBUG: 
+2015-01-14 11:41:42,758 DEBUG: # cnode_components: {'neutron_utils': ['dnsmasq', 'ovsdb-client', 'ovsdb-server', 'ovs-vswitchd'], 'nova_utils': ['libvirt'], 'neutron': ['neutron-openvswitch-agent'], 'nova': ['nova-compute']}
+2015-01-14 11:41:42,758 DEBUG: #     cnode_components.nova    : ['nova-compute']
+2015-01-14 11:41:42,758 DEBUG: #     cnode_components.neutron : ['neutron-openvswitch-agent']
+2015-01-14 11:41:42,758 DEBUG: #     cnode_components.neutron_utils : ['libvirt']
+2015-01-14 11:41:42,758 DEBUG: #     cnode_components.neutron_utils : ['dnsmasq', 'ovsdb-client', 'ovsdb-server', 'ovs-vswitchd']
+[seocho] db connect
+2015-01-14 11:41:42,769 DEBUG: mnnode   [221.151.188.15] node connect
+2015-01-14 11:41:42,865 DEBUG: cnode01  [221.151.188.16] node connect
+2015-01-14 11:41:42,970 DEBUG: cnode02  [221.151.188.17] node connect
+2015-01-14 11:41:43,081 DEBUG: mnnode   [221.151.188.15] node connect
+mnnode check mnnode
+2015-01-14 11:41:43,081 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,081 INFO : # Host <mnnode> :: 221.151.188.15 component status
+2015-01-14 11:41:43,081 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,319 INFO : 
+2015-01-14 11:41:43,320 INFO : # [db_utils] list ::
+2015-01-14 11:41:43,326 INFO :                         mysqld -> 1
+2015-01-14 11:41:43,327 INFO : 
+2015-01-14 11:41:43,327 INFO : # [neutron_utils] list ::
+2015-01-14 11:41:43,332 INFO :                        dnsmasq -> 3
+2015-01-14 11:41:43,337 INFO :                   ovsdb-client -> 2
+2015-01-14 11:41:43,343 INFO :                   ovsdb-server -> 2
+2015-01-14 11:41:43,348 INFO :                   ovs-vswitchd -> 2
+2015-01-14 11:41:43,349 INFO : 
+2015-01-14 11:41:43,349 INFO : # [keystone] list ::
+2015-01-14 11:41:43,354 INFO :                   keystone-all -> 1
+2015-01-14 11:41:43,354 INFO : 
+2015-01-14 11:41:43,355 INFO : # [neutron] list ::
+2015-01-14 11:41:43,360 INFO :                 neutron-server -> 1
+2015-01-14 11:41:43,365 INFO :      neutron-openvswitch-agent -> 1
+2015-01-14 11:41:43,370 INFO :             neutron-dhcp-agent -> 1
+2015-01-14 11:41:43,376 INFO :               neutron-l3-agent -> 1
+2015-01-14 11:41:43,382 INFO :         neutron-metadata-agent -> 1
+2015-01-14 11:41:43,387 INFO :      neutron-ns-metadata-proxy -> 2
+2015-01-14 11:41:43,388 INFO : 
+2015-01-14 11:41:43,388 INFO : # [horizon_utils] list ::
+2015-01-14 11:41:43,393 INFO :                        apache2 -> 6
+2015-01-14 11:41:43,398 INFO :                      memcached -> 1
+2015-01-14 11:41:43,399 INFO : 
+2015-01-14 11:41:43,399 INFO : # [cinder] list ::
+2015-01-14 11:41:43,404 INFO :                     cinder-api -> 2
+2015-01-14 11:41:43,409 INFO :               cinder-scheduler -> 1
+2015-01-14 11:41:43,415 INFO :                  cinder-volume -> 2
+2015-01-14 11:41:43,415 INFO : 
+2015-01-14 11:41:43,415 INFO : # [glance] list ::
+2015-01-14 11:41:43,420 INFO :                     glance-api -> 2
+2015-01-14 11:41:43,426 INFO :                glance-registry -> 2
+2015-01-14 11:41:43,426 INFO : 
+2015-01-14 11:41:43,426 INFO : # [cinder_utils] list ::
+2015-01-14 11:41:43,431 INFO :                         iscsid -> 2
+2015-01-14 11:41:43,437 INFO :                           tgtd -> 2
+2015-01-14 11:41:43,437 INFO : 
+2015-01-14 11:41:43,437 INFO : # [nova] list ::
+2015-01-14 11:41:43,442 INFO :                       nova-api -> 37
+2015-01-14 11:41:43,448 INFO :                 nova-conductor -> 13
+2015-01-14 11:41:43,453 INFO :                 nova-scheduler -> 1
+2015-01-14 11:41:43,459 INFO :                      nova-cert -> 1
+2015-01-14 11:41:43,464 INFO :               nova-consoleauth -> 1
+2015-01-14 11:41:43,469 INFO :                nova-novncproxy -> 1
+2015-01-14 11:41:43,470 INFO : 
+2015-01-14 11:41:43,470 INFO : # [message_utils] list ::
+2015-01-14 11:41:43,475 INFO :                           epmd -> 1
+2015-01-14 11:41:43,481 INFO :                       beam.smp -> 1
+2015-01-14 11:41:43,481 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,519 DEBUG: cnode01  [221.151.188.16] node connect
+cnode check cnode01
+2015-01-14 11:41:43,520 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,520 INFO : # Host <cnode01> :: 221.151.188.16 component status
+2015-01-14 11:41:43,520 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,571 INFO : 
+2015-01-14 11:41:43,571 INFO : # [neutron_utils] list ::
+2015-01-14 11:41:43,578 INFO :                        dnsmasq -> 1
+2015-01-14 11:41:43,583 INFO :                   ovsdb-client -> 2
+2015-01-14 11:41:43,588 INFO :                   ovsdb-server -> 2
+2015-01-14 11:41:43,593 INFO :                   ovs-vswitchd -> 2
+2015-01-14 11:41:43,594 INFO : 
+2015-01-14 11:41:43,594 INFO : # [nova_utils] list ::
+2015-01-14 11:41:43,601 INFO :                        libvirt -> 7
+2015-01-14 11:41:43,601 INFO : 
+2015-01-14 11:41:43,601 INFO : # [neutron] list ::
+2015-01-14 11:41:43,608 INFO :      neutron-openvswitch-agent -> 1
+2015-01-14 11:41:43,608 INFO : 
+2015-01-14 11:41:43,608 INFO : # [nova] list ::
+2015-01-14 11:41:43,615 INFO :                   nova-compute -> 1
+2015-01-14 11:41:43,616 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,671 DEBUG: cnode02  [221.151.188.17] node connect
+cnode check cnode02
+2015-01-14 11:41:43,671 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,671 INFO : # Host <cnode02> :: 221.151.188.17 component status
+2015-01-14 11:41:43,672 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,710 INFO : 
+2015-01-14 11:41:43,710 INFO : # [neutron_utils] list ::
+2015-01-14 11:41:43,716 INFO :                        dnsmasq -> 1
+2015-01-14 11:41:43,721 INFO :                   ovsdb-client -> 2
+2015-01-14 11:41:43,727 INFO :                   ovsdb-server -> 2
+2015-01-14 11:41:43,733 INFO :                   ovs-vswitchd -> 2
+2015-01-14 11:41:43,733 INFO : 
+2015-01-14 11:41:43,733 INFO : # [nova_utils] list ::
+2015-01-14 11:41:43,738 INFO :                        libvirt -> 2
+2015-01-14 11:41:43,739 INFO : 
+2015-01-14 11:41:43,739 INFO : # [neutron] list ::
+2015-01-14 11:41:43,745 INFO :      neutron-openvswitch-agent -> 1
+2015-01-14 11:41:43,746 INFO : 
+2015-01-14 11:41:43,746 INFO : # [nova] list ::
+2015-01-14 11:41:43,751 INFO :                   nova-compute -> 1
+2015-01-14 11:41:43,751 INFO : --------------------------------------------------------------------------------
+2015-01-14 11:41:43,810 DEBUG: [{"host": "mnnode", "service": "db_utils", "component": "mysqld", "num": "1"}, {"host": "mnnode", "service": "neutron_utils", "component": "dnsmasq", "num": "3"}, {"host": "mnnode", "service": "neutron_utils", "component": "ovsdb-client", "num": "2"}, {"host": "mnnode", "service": "neutron_utils", "component": "ovsdb-server", "num": "2"}, {"host": "mnnode", "service": "neutron_utils", "component": "ovs-vswitchd", "num": "2"}, {"host": "mnnode", "service": "keystone", "component": "keystone-all", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-server", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-openvswitch-agent", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-dhcp-agent", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-l3-agent", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-metadata-agent", "num": "1"}, {"host": "mnnode", "service": "neutron", "component": "neutron-ns-metadata-proxy", "num": "2"}, {"host": "mnnode", "service": "horizon_utils", "component": "apache2", "num": "6"}, {"host": "mnnode", "service": "horizon_utils", "component": "memcached", "num": "1"}, {"host": "mnnode", "service": "cinder", "component": "cinder-api", "num": "2"}, {"host": "mnnode", "service": "cinder", "component": "cinder-scheduler", "num": "1"}, {"host": "mnnode", "service": "cinder", "component": "cinder-volume", "num": "2"}, {"host": "mnnode", "service": "glance", "component": "glance-api", "num": "2"}, {"host": "mnnode", "service": "glance", "component": "glance-registry", "num": "2"}, {"host": "mnnode", "service": "cinder_utils", "component": "iscsid", "num": "2"}, {"host": "mnnode", "service": "cinder_utils", "component": "tgtd", "num": "2"}, {"host": "mnnode", "service": "nova", "component": "nova-api", "num": "37"}, {"host": "mnnode", "service": "nova", "component": "nova-conductor", "num": "13"}, {"host": "mnnode", "service": "nova", "component": "nova-scheduler", "num": "1"}, {"host": "mnnode", "service": "nova", "component": "nova-cert", "num": "1"}, {"host": "mnnode", "service": "nova", "component": "nova-consoleauth", "num": "1"}, {"host": "mnnode", "service": "nova", "component": "nova-novncproxy", "num": "1"}, {"host": "mnnode", "service": "message_utils", "component": "epmd", "num": "1"}, {"host": "mnnode", "service": "message_utils", "component": "beam.smp", "num": "1"}, {"host": "cnode01", "service": "neutron_utils", "component": "dnsmasq", "num": "1"}, {"host": "cnode01", "service": "neutron_utils", "component": "ovsdb-client", "num": "2"}, {"host": "cnode01", "service": "neutron_utils", "component": "ovsdb-server", "num": "2"}, {"host": "cnode01", "service": "neutron_utils", "component": "ovs-vswitchd", "num": "2"}, {"host": "cnode01", "service": "nova_utils", "component": "libvirt", "num": "7"}, {"host": "cnode01", "service": "neutron", "component": "neutron-openvswitch-agent", "num": "1"}, {"host": "cnode01", "service": "nova", "component": "nova-compute", "num": "1"}, {"host": "cnode02", "service": "neutron_utils", "component": "dnsmasq", "num": "1"}, {"host": "cnode02", "service": "neutron_utils", "component": "ovsdb-client", "num": "2"}, {"host": "cnode02", "service": "neutron_utils", "component": "ovsdb-server", "num": "2"}, {"host": "cnode02", "service": "neutron_utils", "component": "ovs-vswitchd", "num": "2"}, {"host": "cnode02", "service": "nova_utils", "component": "libvirt", "num": "2"}, {"host": "cnode02", "service": "neutron", "component": "neutron-openvswitch-agent", "num": "1"}, {"host": "cnode02", "service": "nova", "component": "nova-compute", "num": "1"}]
+[seocho] db finish(delete info & disconn dictionary)
+2015-01-14 11:41:43,811 DEBUG: ################################################################################
+2015-01-14 11:41:43,811 DEBUG: # db_host    : 221.151.188.15
+2015-01-14 11:41:43,811 DEBUG: # db_id      : root
+2015-01-14 11:41:43,812 DEBUG: # db_pw      : ohhberry3333
+2015-01-14 11:41:43,812 DEBUG: # db_name    : monitor
+2015-01-14 11:41:43,812 DEBUG: # db_port    : 3306
+2015-01-14 11:41:43,812 DEBUG: ################################################################################
+2015-01-14 11:41:43,812 DEBUG: # switch_list    : ['aggr_sw', 'tor_sw']
+2015-01-14 11:41:43,813 DEBUG: ################################################################################
+2015-01-14 11:41:43,813 DEBUG: # aggr_sw : {'ip': '221.151.188.9'}
+2015-01-14 11:41:43,813 DEBUG: # tor_sw  : {'ip': '221.151.188.19'}
+[seocho] db connect
+
+
+
+############################################################
+aggr_sw : 221.151.188.9 switch port status
+############################################################
+          1 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:     Ethernet1
+          2 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:     Ethernet2
+          3 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:     Ethernet3
+          4 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:     Ethernet4
+          5 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet5
+          6 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet6
+          7 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet7
+          8 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet8
+          9 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:     Ethernet9
+         10 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet10
+         11 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet11
+         12 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet12
+         13 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet13
+         14 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet14
+         15 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet15
+         16 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet16
+         17 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet17
+         18 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet18
+         19 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet19
+         20 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet20
+         21 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet21
+         22 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet22
+         23 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet23
+         24 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet24
+         25 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet25
+         26 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet26
+         27 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet27
+         28 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet28
+         29 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet29
+         30 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet30
+         31 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet31
+         32 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet32
+         33 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet33
+         34 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet34
+         35 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet35
+         36 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet36
+         37 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet37
+         38 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet38
+         39 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet39
+         40 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet40
+         41 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet41
+         42 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet42
+         43 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet43
+         44 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet44
+         45 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet45
+         46 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet46
+         47 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet47
+         48 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet48
+         49 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet49
+         50 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet50
+         51 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet51
+         52 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet52
+    2000009 ifOperStatus: 1 ifType:  136 ifSpeed:            0 ifName:         Vlan9
+    2000010 ifOperStatus: 1 ifType:  136 ifSpeed:            0 ifName:        Vlan10
+    2002000 ifOperStatus: 1 ifType:  136 ifSpeed:            0 ifName:      Vlan2000
+     999001 ifOperStatus: 2 ifType:    6 ifSpeed:     10000000 ifName:   Management1
+
+############################################################
+aggr_sw : 221.151.188.9 switch port db
+############################################################
+  vlan:   10 mac: 00:0c:29:60:e4:39 port: 8
+  vlan:   10 mac: 00:15:17:48:ee:48 port: 5
+  vlan:   10 mac: 00:1a:64:c6:ae:00 port: 8
+  vlan:   10 mac: 00:1c:c0:23:1c:22 port: 8
+  vlan:   10 mac: 00:1e:67:1e:6c:2f port: 23
+  vlan:   10 mac: 00:24:21:54:71:8d port: 8
+  vlan:   10 mac: 00:25:22:0a:42:e8 port: 8
+  vlan:   10 mac: 00:50:b6:67:4c:cb port: 8
+  vlan:   10 mac: 08:00:37:a1:59:8d port: 8
+  vlan:   10 mac: 1c:6f:65:49:52:73 port: 8
+  vlan:   10 mac: 1c:6f:65:49:5b:3f port: 8
+  vlan:   10 mac: 1c:6f:65:85:d7:36 port: 8
+  vlan:   10 mac: 40:3c:fc:00:ae:17 port: 8
+  vlan:   10 mac: 8c:89:a5:67:ab:02 port: 8
+  vlan:   10 mac: 8c:89:a5:67:b0:64 port: 8
+  vlan:   10 mac: bc:5f:f4:41:f2:5c port: 8
+  vlan:   10 mac: bc:5f:f4:42:3a:f3 port: 8
+  vlan:   10 mac: bc:5f:f4:47:55:ef port: 8
+  vlan:   10 mac: bc:5f:f4:55:31:92 port: 8
+  vlan:   10 mac: bc:5f:f4:93:0f:6f port: 8
+  vlan:   10 mac: bc:5f:f4:a4:f9:d6 port: 8
+  vlan:   10 mac: c8:2a:14:2f:3b:b2 port: 8
+  vlan:   10 mac: c8:2a:14:2f:4c:7e port: 8
+  vlan:   10 mac: e8:11:32:18:ec:3e port: 8
+  vlan:   10 mac: f4:f9:51:f2:33:62 port: 8
+  vlan:   11 mac: 00:07:70:ee:6c:68 port: 47
+  vlan:   11 mac: 00:0c:29:60:e4:39 port: 47
+  vlan:   11 mac: 00:15:17:48:ee:48 port: 8
+  vlan:   11 mac: 00:18:7b:f4:c0:c3 port: 47
+  vlan:   11 mac: 00:1a:64:c6:ae:00 port: 8
+  vlan:   11 mac: 00:1c:73:4f:32:df port: 8
+  vlan:   11 mac: 00:1c:c0:23:1c:22 port: 47
+  vlan:   11 mac: 00:1e:67:1e:6c:2f port: 8
+  vlan:   11 mac: 00:24:21:54:71:8d port: 47
+  vlan:   11 mac: 00:25:22:0a:42:e8 port: 47
+  vlan:   11 mac: 00:50:b6:67:4c:cb port: 47
+  vlan:   11 mac: 08:00:37:a1:59:8d port: 47
+  vlan:   11 mac: 1c:6f:65:49:52:73 port: 47
+  vlan:   11 mac: 1c:6f:65:49:5b:3f port: 47
+  vlan:   11 mac: 1c:6f:65:85:d7:36 port: 47
+  vlan:   11 mac: 28:d2:44:67:50:a6 port: 47
+  vlan:   11 mac: 40:3c:fc:00:ae:17 port: 47
+  vlan:   11 mac: 64:e5:99:51:36:a2 port: 47
+  vlan:   11 mac: 64:e5:99:51:99:62 port: 47
+  vlan:   11 mac: 8c:89:a5:67:ab:02 port: 47
+  vlan:   11 mac: 8c:89:a5:67:b0:64 port: 47
+  vlan:   11 mac: bc:5f:f4:36:6d:92 port: 47
+  vlan:   11 mac: bc:5f:f4:41:f2:5c port: 47
+  vlan:   11 mac: bc:5f:f4:42:3a:f3 port: 47
+  vlan:   11 mac: bc:5f:f4:47:55:ef port: 47
+  vlan:   11 mac: bc:5f:f4:55:31:92 port: 47
+  vlan:   11 mac: bc:5f:f4:93:0f:6f port: 47
+  vlan:   11 mac: bc:5f:f4:a4:f9:d6 port: 47
+  vlan:   11 mac: c8:2a:14:2f:3b:b2 port: 47
+  vlan:   11 mac: c8:2a:14:2f:4c:7e port: 47
+  vlan:   11 mac: e8:11:32:18:ec:3e port: 47
+  vlan:   11 mac: f4:f9:51:f2:33:62 port: 47
+  vlan: 2000 mac: 00:0c:86:e7:82:4a port: 48
+  vlan: 2000 mac: 00:1a:64:c6:ae:02 port: 6
+  vlan: 2000 mac: 00:1c:73:4d:40:c8 port: 18
+  vlan: 2000 mac: 00:26:66:53:b2:45 port: 12
+  vlan: 2000 mac: 00:26:b9:37:92:ef port: 25
+  vlan: 2000 mac: 44:1e:a1:61:6f:e4 port: 9
+  vlan: 2000 mac: 9c:b6:54:ad:ca:36 port: 18
+  vlan: 2000 mac: a0:d3:c1:f2:92:9d port: 18
+  vlan: 2000 mac: d8:9d:67:18:86:41 port: 18
+  vlan: 2000 mac: d8:9d:67:66:bf:44 port: 18
+  vlan: 2000 mac: d8:d3:85:a5:00:44 port: 10
+  vlan: 2000 mac: e4:11:5b:d4:35:ce port: 18
+  vlan: 2000 mac: e4:11:5b:d4:6c:d2 port: 18
+  vlan: 2000 mac: e4:11:5b:d4:d3:10 port: 1
+  vlan: 2000 mac: fa:16:3e:d2:96:fe port: 18
+
+
+
+############################################################
+tor_sw : 221.151.188.19 switch port status
+############################################################
+          1 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet1
+          2 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet2
+          3 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet3
+          4 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:     Ethernet4
+          5 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:     Ethernet5
+          6 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:     Ethernet6
+          7 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet7
+          8 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:     Ethernet8
+          9 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:     Ethernet9
+         10 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet10
+         11 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet11
+         12 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet12
+         13 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet13
+         14 ifOperStatus: 2 ifType:    6 ifSpeed:            0 ifName:    Ethernet14
+         15 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet15
+         16 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet16
+         17 ifOperStatus: 1 ifType:    6 ifSpeed:    100000000 ifName:    Ethernet17
+         18 ifOperStatus: 1 ifType:    6 ifSpeed:   1000000000 ifName:    Ethernet18
+         19 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet19
+         20 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet20
+         21 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet21
+         22 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet22
+         23 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet23
+         24 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet24
+         25 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet25
+         26 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet26
+         27 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet27
+         28 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet28
+         29 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet29
+         30 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet30
+         31 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet31
+         32 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet32
+         33 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet33
+         34 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet34
+         35 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet35
+         36 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet36
+         37 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet37
+         38 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet38
+         39 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet39
+         40 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet40
+         41 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet41
+         42 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet42
+         43 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet43
+         44 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet44
+         45 ifOperStatus: 1 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet45
+         46 ifOperStatus: 1 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet46
+         47 ifOperStatus: 1 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet47
+         48 ifOperStatus: 1 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet48
+         49 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet49
+         50 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet50
+         51 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet51
+         52 ifOperStatus: 6 ifType:    6 ifSpeed:   4294967295 ifName:    Ethernet52
+    2000003 ifOperStatus: 7 ifType:  136 ifSpeed:            0 ifName:         Vlan3
+    2000004 ifOperStatus: 1 ifType:  136 ifSpeed:            0 ifName:         Vlan4
+    2002000 ifOperStatus: 1 ifType:  136 ifSpeed:            0 ifName:      Vlan2000
+     999001 ifOperStatus: 2 ifType:    6 ifSpeed:     10000000 ifName:   Management1
+
+############################################################
+tor_sw : 221.151.188.19 switch port db
+############################################################
+  vlan:    4 mac: a0:d3:c1:f2:92:9c port: 2
+  vlan:    4 mac: d8:9d:67:18:86:40 port: 3
+  vlan:    4 mac: e4:11:5b:d4:35:cc port: 1
+  vlan: 2000 mac: 00:0c:86:e7:82:4a port: 9
+  vlan: 2000 mac: 00:1c:73:4f:32:d7 port: 9
+  vlan: 2000 mac: 9c:b6:54:ad:ca:36 port: 16
+  vlan: 2000 mac: a0:d3:c1:f2:92:9d port: 12
+  vlan: 2000 mac: d8:9d:67:18:86:41 port: 13
+  vlan: 2000 mac: d8:9d:67:66:bf:44 port: 17
+  vlan: 2000 mac: e4:11:5b:d4:35:ce port: 11
+  vlan: 2000 mac: e4:11:5b:d4:6c:d2 port: 15
+  vlan: 2000 mac: fa:16:3e:d2:96:fe port: 18
+  vlan: 2002 mac: fa:16:3e:04:90:45 port: 7
+  vlan: 2002 mac: fa:16:3e:73:8c:fe port: 45
+[seocho] db finish(delete info & disconn dictionary)

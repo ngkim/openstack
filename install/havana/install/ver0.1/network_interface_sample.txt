@@ -1,0 +1,154 @@
+################################################################################
+#
+#   오픈스택을 하나의 서버에 설치하는 경우 서버의 네트워크 설정파일
+#   (/etc/network/interfaces)
+#
+################################################################################
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# management network
+auto eth0
+iface eth0 inet static
+    address 10.0.0.101
+    netmask 255.255.255.0
+
+# api network
+auto eth1
+iface eth1 inet static
+    address 211.224.204.141
+    netmask 255.255.255.224
+    gateway 211.224.204.129
+    # dns-* options are implemented by the resolvconf package, if installed
+    dns-nameservers 8.8.8.8
+
+# external network 
+auto eth2
+iface eth2 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down
+
+# private network 
+auto eth4
+iface eth4 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down
+
+# hybrid network
+auto eth5
+iface eth5 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down
+    
+################################################################################
+#
+#   오픈스택을 3대의 서버에 설치하는 경우 각 서버들의 네트워크 설정파일
+#   (/etc/network/interfaces)
+#
+################################################################################
+
+/etc/hosts (3개의 서버 모두 공통)    
+
+# controller
+10.0.0.11 controller 
+# nnode(network)
+10.0.0.21 nnode 
+# cnode01(compute)
+10.0.0.31 cnode
+ 
+
+# ------------------------------------------------------------------------------
+#   controller node
+# ------------------------------------------------------------------------------
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# management network
+auto em1 
+iface em1 inet static
+    address 10.0.0.11
+    netmask 255.255.255.0
+
+# api network
+auto em3 
+iface em3 inet static
+    address 211.224.204.143
+    netmask 255.255.255.224
+    gateway 211.224.204.129
+    dns-nameservers 8.8.8.8
+
+# ------------------------------------------------------------------------------
+#   network node
+# ------------------------------------------------------------------------------
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# management network
+auto em1
+iface em1 inet static
+    address 10.0.0.21
+    netmask 255.255.255.0
+    # gateway 10.0.0.1 -> 적어주면 routing table에 default gateway로 설정됨        
+        
+# guest network
+auto em2
+iface em2 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down        
+        
+# external network(floating ip 대역: 211.145.180.86~90)
+auto em3
+iface em3 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down  
+                
+# install network -> 설치시에만 필요, 나중에 삭제
+auto em4
+iface em4 inet static
+    address 211.224.204.144
+    netmask 255.255.255.224
+    network 211.224.204.128
+    broadcast 211.224.204.159
+    gateway 211.224.204.129
+                               
+                                
+# ------------------------------------------------------------------------------
+#   compute node
+# ------------------------------------------------------------------------------
+
+# management network
+auto em1
+iface em1 inet static
+    address 10.0.0.31
+    netmask 255.255.255.0
+        
+# guest network
+auto em2
+iface em2 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down    
+        
+#  hybrid network
+auto em3
+iface em3 inet manual
+    up ip link set dev $IFACE up
+    down ip link set dev $IFACE down 
+            
+# install network -> 설치시에만 필요, 나중에 삭제
+auto em4
+iface em4 inet static
+    address 211.224.204.145
+    netmask 255.255.255.224
+    network 211.224.204.128
+    broadcast 211.224.204.159
+    gateway 211.224.204.129
+
+
+
+                                                                                                                                
