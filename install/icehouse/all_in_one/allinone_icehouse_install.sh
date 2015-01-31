@@ -177,10 +177,10 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-	source ./ctrl_horizon_install.sh
-	    ctrl_horizon_install
-	    ctrl_horizon_configure
-	    ctrl_apache_configure_restart
+    source ./ctrl_horizon_install.sh
+        ctrl_horizon_install
+        ctrl_horizon_configure
+        ctrl_apache_configure_restart
 fi
 
 echo '
@@ -190,8 +190,9 @@ echo '
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
     source ./ctrl_ovs_install.sh
-    	openvswitch_install
-    	openvswitch_execute
+        openvswitch_install
+        openvswitch_execute
+fi
         
 echo '
 --------------------------------------------------------------------------------
