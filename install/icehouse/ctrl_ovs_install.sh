@@ -10,11 +10,11 @@ openvswitch_install() {
     echo "apt-get -y install linux-headers-`uname -r`"
     
     apt-get -y install \
-        linux-headers-`uname -r`
-   
-    apt-get -y install \
+    	linux-headers-`uname -r`
+    	
+    apt-get -y install \        
         vlan \
-        bridge-utils build-essential \
+        bridge-utils build-essential\
         dnsmasq-base dnsmasq-utils \
         openvswitch-switch
 

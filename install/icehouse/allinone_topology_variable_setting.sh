@@ -89,8 +89,7 @@ function openstack_install_allinnode_env() {
     ################################################################################
     
     export CONTROLLER_HOST=10.0.0.101
-    #export CONTROLLER_PUBLIC_HOST=211.224.204.156
-    export CONTROLLER_PUBLIC_HOST=10.0.2.15
+    export CONTROLLER_PUBLIC_HOST=211.224.204.156
 
     #
     # controller node
@@ -99,12 +98,12 @@ function openstack_install_allinnode_env() {
     CTRL_MGMT_SUBNET_MASK=255.255.255.0
 
     CTRL_API_IP=$CONTROLLER_PUBLIC_HOST     # horizon api ip
-    CTRL_API_SUBNET_MASK=255.255.255.0
-    CTRL_API_GW=10.0.2.2
+    CTRL_API_SUBNET_MASK=255.255.255.224
+    CTRL_API_GW=211.224.204.129
     CTRL_API_DNS=8.8.8.8
 
-    CTRL_MGMT_NIC=eth1                   # management network nic info
-    CTRL_API_NIC=eth0                    # horizon api nic info
+    CTRL_MGMT_NIC=em1                   # management network nic info
+    CTRL_API_NIC=em2                    # horizon api nic info
    
     #
     # network node
@@ -118,8 +117,8 @@ function openstack_install_allinnode_env() {
     NTWK_PUB_MGMT_DNS=$CTRL_API_DNS
     
     NTWK_MGMT_NIC=$CTRL_MGMT_NIC        # management network nic info
-    NTWK_EXT_NIC=eth3                    # external network trunk -> trunk 이므로 설정 불필요
-    #NTWK_PRVT_NIC=                  # guest network trunk  -> trunk 이므로 설정 불필요    
+    NTWK_EXT_NIC=em3                    # external network trunk -> trunk 이므로 설정 불필요
+    NTWK_PRVT_NIC=p1p1                  # guest network trunk  -> trunk 이므로 설정 불필요    
     NTWK_PUB_MGMT_NIC=$CTRL_API_NIC     # public management ip -> 초창기 패키지 설치시에 필요, 보안문제로 나중에는 빼야함
 
     #
@@ -135,7 +134,7 @@ function openstack_install_allinnode_env() {
 
     COM01_MGMT_NIC=$CTRL_MGMT_NIC       # management network ip
     COM01_PRVT_NIC=$NTWK_PRVT_NIC       # 1G NIC guest network trunk -> trunk 이므로 설정 불필요
-    COM01_HYBR_NIC=eth2                 # 1G NIC hybrid networkt trunk -> trunk 이므로 설정 불필요
+    COM01_HYBR_NIC=p1p2                 # 1G NIC hybrid networkt trunk -> trunk 이므로 설정 불필요
     COM01_PUB_MGMT_NIC=$CTRL_API_NIC     # public management ip -> 초창기 패키지 설치시에 필요, 보안문제로 나중에는 빼야함
 
 }

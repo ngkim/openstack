@@ -11,8 +11,8 @@ ctrl_nova_install() {
     apt-get -y install \
         rabbitmq-server \
         dnsmasq \
-        nova-novncproxy \
-        nova-api \
+        nova-novncproxy \        
+        nova-api \        
         nova-cert \
         nova-conductor \
         nova-consoleauth \
@@ -24,12 +24,10 @@ ctrl_nova_install() {
     rm /var/lib/nova/nova.sqlite
     
     echo '>>> check result------------------------------------------------------'
-
     dpkg -l | egrep "rabbitmq-server|dnsmasq|\
         nova-novncproxy|nova-api|nova-cert|nova-conductor|\
         nova-consoleauth|nova-doc|nova-scheduler|\
-        python-novaclient|" 
-
+        python-novaclient|   
     echo '# --------------------------------------------------------------------'
     
 }
