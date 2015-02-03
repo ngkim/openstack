@@ -136,6 +136,8 @@ enabled_apis=ec2,osapi_compute,metadata
 libvirt_use_virtio_for_bridges=True
 connection_type=libvirt
 libvirt_type=kvm
+# Virtualbox 상에서 동작시에는 libvirt_type=qemu이용
+#libvirt_type=qemu
 
 #Messaging
 rabbit_host=${MYSQL_HOST}
@@ -244,6 +246,8 @@ cat > ${NOVA_COMPUTE_CONF} <<EOF
 compute_driver=libvirt.LibvirtDriver
 [libvirt]
 virt_type=kvm
+#Virtualbox + Vagrant 환경에서는 qemu 이용
+#virt_type=qemu
 # ------------------------------------------------------------------------------
 EOF
 
