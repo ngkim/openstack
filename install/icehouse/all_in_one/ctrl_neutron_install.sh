@@ -12,13 +12,13 @@ ctrl_neutron_server_and_plugin_install() {
     apt-get -y install \
     	neutron-server
         
-    echo '  neutron plugin 설치'    
+    echo '  neutron plugin 설치'
     apt-get -y install \
     	neutron-common \
-        neutron-plugin-ml2 
+        neutron-plugin-ml2
     
-    echo '  neutron agent 설치'    
-    apt-get -y install \    
+    echo '  neutron agent 설치'
+    apt-get -y install \
         neutron-plugin-openvswitch-agent \
         neutron-l3-agent \
         neutron-dhcp-agent
@@ -52,8 +52,8 @@ ctrl_neutron_server_configure() {
     # ------------------------------------------------------------------------------
     ### ctrl_neutron_server_configure(${NEUTRON_CONF}) !!!
     # ------------------------------------------------------------------------------"
-    
-    SERVICE_TENANT_ID=$(keystone tenant-list | grep ${SERVICE_TENANT} | awk '{print $2}')
+   
+    SERVICE_TENANT_ID=`keystone tenant-list | awk '/'$SERVICE_TENANT'/{print $2}'`
     NEUTRON_USER_ID=$(keystone user-list | awk '/\ neutron \ / {print $2}')
     
     #List the new user and role assigment

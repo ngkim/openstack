@@ -192,7 +192,9 @@ rabbit_password=guest
 
 #NoVNC
 novnc_enabled=true
-novncproxy_host=${CTRL_API_IP}   # 외부접속을 허용하려면 controller public ip 사용해야 함
+#novncproxy_host=${CTRL_API_IP}
+novncproxy_host=0.0.0.0
+# 외부접속을 허용하려면 controller public ip 사용해야 함
 novncproxy_base_url=http://${CTRL_API_IP}:6080/vnc_auto.html
 novncproxy_port=6080
 
