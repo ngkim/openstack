@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 ctrl_horizon_install() {
 

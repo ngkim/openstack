@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 openvswitch_install() {
 
@@ -6,12 +6,12 @@ openvswitch_install() {
     # ------------------------------------------------------------------------------
     ### openvswitch_install() !!!
     # ------------------------------------------------------------------------------'
-  
+
     echo "apt-get -y install linux-headers-`uname -r`"
-    
+
     apt-get -y install \
         linux-headers-`uname -r`
-   
+
     apt-get -y install \
         vlan \
         bridge-utils build-essential \
@@ -22,9 +22,9 @@ openvswitch_install() {
     /etc/init.d/openvswitch-switch restart
 
     echo '>>> check result'
-    echo '# ------------------------------------------------------------------------------'    
+    echo '# ------------------------------------------------------------------------------'
     dpkg -l | egrep "linux-headers-`uname -r`"
-    dpkg -l | egrep "vlan|bridge-utils|dnsmasq-base|dnsmasq-utils|openvswitch-switch"    
+    dpkg -l | egrep "vlan|bridge-utils|dnsmasq-base|dnsmasq-utils|openvswitch-switch"
     echo '# ------------------------------------------------------------------------------'
 
 }
@@ -46,18 +46,18 @@ openvswitch_execute() {
     else
         COM_HYBR_NIC=$COM01_HYBR_NIC
     fi
-        
+
     echo '# openvswitch-switch 구성 !!!'
     #br-int will be used for VM integration
     echo "  -> ovs-vsctl add-br $LOG_INT_BR"
     ovs-vsctl add-br $LOG_INT_BR
-    
+ 
     # guest network
     echo "  -> ovs-vsctl add-br $LOG_PRVT_BR"
     ovs-vsctl add-br $LOG_PRVT_BR
     echo "  -> ovs-vsctl add-port $LOG_PRVT_BR $NTWK_PRVT_NIC"
     ovs-vsctl add-port $LOG_PRVT_BR $NTWK_PRVT_NIC
-    
+
     # external network
     echo "  -> ovs-vsctl add-br $LOG_EXT_BR"
     ovs-vsctl add-br $LOG_EXT_BR
@@ -69,7 +69,7 @@ openvswitch_execute() {
     ovs-vsctl add-br $LOG_HYBRID_BR
     echo "  -> ovs-vsctl add-port $LOG_HYBRID_BR $COM_HYBR_NIC"
     ovs-vsctl add-port $LOG_HYBRID_BR $COM_HYBR_NIC
-    
+ 
     echo '>>> check result'
     echo '# ------------------------------------------------------------------------------'
     ovs-vsctl show

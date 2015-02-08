@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 ctrl_nova_install() {
 
@@ -135,7 +135,7 @@ enabled_apis=ec2,osapi_compute,metadata
 #Libvirt and Virtualization
 libvirt_use_virtio_for_bridges=True
 connection_type=libvirt
-libvirt_type=kvm
+libvirt_type=${NOVA_VIRT_TYPE}
 # Virtualbox 상에서 동작시에는 libvirt_type=qemu이용
 #libvirt_type=qemu
 
@@ -245,9 +245,7 @@ cat > ${NOVA_COMPUTE_CONF} <<EOF
 [DEFAULT]
 compute_driver=libvirt.LibvirtDriver
 [libvirt]
-virt_type=kvm
-#Virtualbox + Vagrant 환경에서는 qemu 이용
-#virt_type=qemu
+virt_type=${NOVA_VIRT_TYPE}
 # ------------------------------------------------------------------------------
 EOF
 

@@ -6,7 +6,7 @@ echo '
 ################################################################################
 '
 
-source ./common_util.sh
+source "./common_util.sh"
 
 preprocessing="
     ############################################################################
@@ -33,7 +33,7 @@ echo '
 --------------------------------------------------------------------------------
     openstack install topology 설정에 따른 global_env 설정
 --------------------------------------------------------------------------------'
-source ./allinone_topology_variable_setting.sh
+source "./allinone_topology_variable_setting.sh"
     openstack_install_allinnode_env
     topology_check
     ask_continue_stop
@@ -47,7 +47,7 @@ echo '
 
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./allinone_network_setting.sh
+    source "./allinone_network_setting.sh"
         all_in_one_hosts_info_setting
         all_in_one_NIC_setting \
     	    $CTRL_MGMT_NIC $CTRL_MGMT_IP $CTRL_MGMT_SUBNET_MASK \
@@ -61,7 +61,7 @@ echo '
     allinone_global_variable_setting 설정
 --------------------------------------------------------------------------------'
 
-source ./allinone_global_variable_setting.sh
+source "./allinone_global_variable_setting.sh"
 
 echo '
 --------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ echo '
 
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./host_base_setting.sh
+    source "./host_base_setting.sh"
         server_syscontrol_change
         timezone_setting
         repository_setting
@@ -96,7 +96,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_mysql_install.sh
+    source "./ctrl_mysql_install.sh"
         ctrl_mysql_install
 fi
 
@@ -116,7 +116,7 @@ if [ "$_answer" = "p" ]; then
     unset OS_AUTH_URL
     unset OS_NO_CACHE
 
-    source ./ctrl_keystone_install.sh
+    source "./ctrl_keystone_install.sh"
         ctrl_keystone_install
         ctrl_keystone_config
         ask_continue_stop
@@ -149,7 +149,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_glance_install.sh
+    source "./ctrl_glance_install.sh"
         ctrl_glance_install
         ctrl_glance_db_create
         ctrl_glance_api_registry_configure
@@ -164,7 +164,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_cinder_install.sh
+    source "./ctrl_cinder_install.sh"
         ctrl_cinder_install
         ctrl_cinder_db_create
         ctrl_cinder_configure
@@ -177,7 +177,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_horizon_install.sh
+    source "./ctrl_horizon_install.sh"
         ctrl_horizon_install
         ctrl_horizon_configure
         ctrl_apache_configure_restart
@@ -189,7 +189,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_ovs_install.sh
+    source "./ctrl_ovs_install.sh"
         openvswitch_install
         openvswitch_execute
 fi
@@ -200,7 +200,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_neutron_install.sh
+    source "./ctrl_neutron_install.sh"
         ctrl_neutron_server_and_plugin_install
         ctrl_neutron_db_create
         ctrl_neutron_server_configure
@@ -218,7 +218,7 @@ echo '
 --------------------------------------------------------------------------------'
 ask_proceed_skip _answer
 if [ "$_answer" = "p" ]; then
-    source ./ctrl_nova_install.sh
+    source "./ctrl_nova_install.sh"
         ctrl_nova_install
         ctrl_nova_db_create
         ctrl_nova_configure

@@ -74,18 +74,35 @@ mv ${_nic_conf} ${_nic_conf}_$(date +"%Y%m%d-%T").bak
 
 # reboot 되어도 network환경이 적용되도록 설정
 
+cat /etc/network/interfaces.d/eth0.cfg
+
 cat > ${_nic_conf}<<EOF
 # ------------------------------------------------------------------------------
 # The loopback network interface
 auto lo
 iface lo inet loopback
 
+source /etc/network/interfaces.d/*.cfg
+EOF
+
+_nic_conf_dir="/etc/network/interfaces.d"
+mkdir -p $_nic_conf_dir
+
+mgmt_nic_conf="${_nic_conf_dir}/${_mgmt_nic}.cfg"
+api_nic_conf="${_nic_conf_dir}/${_api_nic}.cfg"
+ext_nic_conf="${_nic_conf_dir}/${_ext_nic}.cfg"
+gst_nic_conf="${_nic_conf_dir}/${_guest_nic}.cfg"
+hbr_nic_conf="${_nic_conf_dir}/${_hbrd_nic}.cfg"
+
+cat > ${mgmt_nic_conf}<<EOF
 # management network
 auto $_mgmt_nic
 iface $_mgmt_nic inet static
     address $_mgmt_ip
     netmask $_mgmt_subnet_mask
+EOF
 
+cat > ${api_nic_conf}<<EOF
 # api network
 auto $_api_nic
 iface $_api_nic inet static
@@ -94,19 +111,25 @@ iface $_api_nic inet static
     gateway $_api_gw
     # dns-* options are implemented by the resolvconf package, if installed
     dns-nameservers $_api_dns
+EOF
 
+cat > ${ext_nic_conf}<<EOF
 # external network        
 auto $_ext_nic
 iface $_ext_nic inet manual
     up ip link set dev \$IFACE up
     down ip link set dev \$IFACE down
+EOF
 
+cat > ${gst_nic_conf}<<EOF
 # guest network
 auto $_guest_nic
 iface $_guest_nic inet manual
     up ip link set dev \$IFACE up
     down ip link set dev \$IFACE down
+EOF
 
+cat > ${hbr_nic_conf}<<EOF
 # hybrid network
 auto $_hbrd_nic
 iface $_hbrd_nic inet manual
@@ -141,5 +164,3 @@ EOF
     ifconfig
     echo "----------------------------------------------------------------------"
 }
-
-

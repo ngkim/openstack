@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 ctrl_neutron_server_and_plugin_install() {
 
@@ -52,15 +52,19 @@ ctrl_neutron_server_configure() {
     # ------------------------------------------------------------------------------
     ### ctrl_neutron_server_configure(${NEUTRON_CONF}) !!!
     # ------------------------------------------------------------------------------"
-   
+  
     SERVICE_TENANT_ID=`keystone tenant-list | awk '/'$SERVICE_TENANT'/{print $2}'`
     NEUTRON_USER_ID=$(keystone user-list | awk '/\ neutron \ / {print $2}')
     
+
     #List the new user and role assigment
     keystone user-list --tenant-id $SERVICE_TENANT_ID
     keystone user-role-list --tenant-id $SERVICE_TENANT_ID --user-id $NEUTRON_USER_ID
 
     echo '  4.3 neutron 서버 콤포넌트 구성(/etc/neutron/neutron.conf)'
+
+    echo "SERVICE_TENANT= $SERVICE_TENANT" 
+    echo "SERVICE_TENANT_ID= $SERVICE_TENANT_ID" 
 
     cp ${NEUTRON_CONF} ${NEUTRON_CONF}_$(date +"%Y%m%d-%T").bak
     

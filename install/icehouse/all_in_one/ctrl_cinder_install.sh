@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 ctrl_cinder_install() {
 

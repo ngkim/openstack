@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 function ctrl_glance_install() {
 
