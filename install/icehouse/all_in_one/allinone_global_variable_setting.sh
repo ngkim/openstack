@@ -225,12 +225,17 @@ echo "--------------------------------------------------------------------------
 
 #NOVA_VIRT_TYPE=kvm
 NOVA_VIRT_TYPE=qemu
+# 외부에서 NOVNC 접속시 이용할 아이피와 포트
+NOVA_NOVNC_EXT_IP=211.224.204.145
+NOVA_NOVNC_EXT_PORT=26080
 
 echo "
 --------------------------------------------------------------------------------
  오픈스택 nova-compute 설정 내역
 --------------------------------------------------------------------------------"
 printf "%30s -> %s \n" NOVA_VIRT_TYPE $NOVA_VIRT_TYPE
+printf "%30s -> %s \n" NOVA_NOVNC_EXT_IP $NOVA_NOVNC_EXT_IP
+printf "%30s -> %s \n" NOVA_NOVNC_EXT_PORT $NOVA_NOVNC_EXT_PORT
 echo "--------------------------------------------------------------------------"
 
 #

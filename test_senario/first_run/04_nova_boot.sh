@@ -2,6 +2,10 @@
 
 source 'tenant-net.ini'
 
+if [ -z ${OS_AUTH_URL+x} ]; then
+    source ~/openstack_rc
+fi
+
 IMAGE_ID=`glance image-list | awk '/'$IMAGE_NAME'/{print $2}'`
 NET_ID=`neutron net-list | awk '/'$TENANT_NET'/{print $2}'`
 

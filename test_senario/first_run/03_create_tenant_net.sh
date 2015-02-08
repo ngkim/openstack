@@ -3,6 +3,10 @@
 source "ext-net.ini"
 source "tenant-net.ini"
 
+if [ -z ${OS_AUTH_URL+x} ]; then
+    source ~/openstack_rc
+fi
+
 echo 'neutron net-create $TENANT_NET'
 neutron net-create $TENANT_NET
 

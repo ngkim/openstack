@@ -6,6 +6,10 @@ CONTAINERFORMAT="bare"
 ACCESSVALUE="True"
 IMAGEFILE="images/cirros-0.3.0-x86_64-disk.img"
 
+if [ -z ${OS_AUTH_URL+x} ]; then
+    source ~/openstack_rc
+fi
+
 mkdir -p images
 
 echo "wget http://cdn.download.cirros-cloud.net/0.3.2/cirros-0.3.2-x86_64-disk.img -O $IMAGEFILE"

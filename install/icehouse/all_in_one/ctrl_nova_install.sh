@@ -197,7 +197,7 @@ novnc_enabled=true
 #novncproxy_host=${CTRL_API_IP}
 novncproxy_host=0.0.0.0
 # 외부접속을 허용하려면 controller public ip 사용해야 함
-novncproxy_base_url=http://${CTRL_API_IP}:6080/vnc_auto.html
+novncproxy_base_url=http://${NOVA_NOVNC_EXT_IP}:${NOVA_NOVNC_EXT_PORT}/vnc_auto.html
 novncproxy_port=6080
 
 vncserver_proxyclient_address=${CTRL_MGMT_IP}

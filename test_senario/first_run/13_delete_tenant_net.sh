@@ -3,6 +3,10 @@
 source "ext-net.ini"
 source "tenant-net.ini"
 
+if [ -z ${OS_AUTH_URL+x} ]; then
+    source ~/openstack_rc
+fi
+
 neutron router-list
 TENANT_ROUTER_ID=`neutron router-list | awk '/'$TENANT_ROUTER'/{print $2}'`
 TENANT_SBNET_ID=`neutron subnet-list | awk '/'$TENANT_SBNET'/{print $2}'`
