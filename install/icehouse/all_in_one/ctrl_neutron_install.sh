@@ -52,10 +52,13 @@ ctrl_neutron_server_configure() {
     # ------------------------------------------------------------------------------
     ### ctrl_neutron_server_configure(${NEUTRON_CONF}) !!!
     # ------------------------------------------------------------------------------"
-  
+
+    if [ -z ${OS_AUTH_URL+x} ]; then
+        source ~/openstack_rc
+    fi
+
     SERVICE_TENANT_ID=`keystone tenant-list | awk '/'$SERVICE_TENANT'/{print $2}'`
     NEUTRON_USER_ID=$(keystone user-list | awk '/\ neutron \ / {print $2}')
-    
 
     #List the new user and role assigment
     keystone user-list --tenant-id $SERVICE_TENANT_ID

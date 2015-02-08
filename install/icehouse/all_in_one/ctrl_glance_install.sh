@@ -169,6 +169,10 @@ ctrl_glance_demo_image_create() {
         # Download then store on local host for next time
         wget --quiet http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img -O ./${UBUNTU_IMAGE}
     fi
+
+    if [ -z ${OS_AUTH_URL+x} ]; then
+        source ~/openstack_rc
+    fi
     
     glance image-create --name='trusty-image' --disk-format=qcow2 --container-format=bare --public < ./${UBUNTU_IMAGE}
     glance image-create --name='cirros-image' --disk-format=qcow2 --container-format=bare --public < ./${CIRROS_IMAGE}

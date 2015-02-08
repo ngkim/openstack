@@ -162,7 +162,7 @@ ctrl_cinder_restart() {
     #vgcreate cinder-volumes /dev/sda3
     
     #Restart services
-    cd /etc/init/; for c in $( ls cinder-* | cut -d '.' -f1) ; do stop $c; start $c; done
+    cd /etc/init/; for c in $( ls cinder-* | cut -d '.' -f1) ; do stop $c; start $c; done; cd -
     
     echo '>>> check result -----------------------------------------------------'
     ps -ef | grep cinder
