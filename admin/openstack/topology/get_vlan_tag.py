@@ -3,7 +3,7 @@ import sys, socket
 import json
 import collections
 
-OVSDB_IP = '211.224.204.156'
+OVSDB_IP = '127.0.0.1'
 OVSDB_PORT = 6632
 
 

@@ -3,9 +3,15 @@
 VM_LIST=`virsh list | awk '$1 ~ /^[0-9]+$/{print $2}'`
 
 NOVA_USER="nova"
-NOVA_PASS="ohhberry3333"
+NOVA_PASS="nova"
 NOVA_DB="nova"
-DB_HOST="211.224.204.147"
+DB_HOST="127.0.0.1"
+
+# prerequisite: jq
+jq 2> /dev/null
+if [ $? -eq 127 ]; then
+  apt-get -y install jq
+fi
 
 get_mac() {
 	vm=$1

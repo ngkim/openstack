@@ -1,1 +1,1 @@
-select hostname,uuid from instances where id = '15';
+select hostname,uuid from instances where id = '1';
