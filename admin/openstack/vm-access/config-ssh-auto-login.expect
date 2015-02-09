@@ -1,0 +1,10 @@
+#!/usr/bin/expect -f
+
+set timeout 20
+
+set binDir [lindex $argv 0]
+set machineIp [lindex $argv 1]
+set adminUser [lindex $argv 2]
+set adminPass [lindex $argv 3]
+
+spawn "$binDir ./netns.sh ssh-copy-id $adminUser
