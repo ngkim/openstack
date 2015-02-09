@@ -124,8 +124,8 @@ get_interface_ip() {
 	echo $vm_ip
 }
 
-
 blue=$(tput setaf 4)
+green=$(tput setaf 2)
 red=$(tput setaf 1)
 normal=$(tput sgr0)
 
