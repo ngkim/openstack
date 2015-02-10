@@ -33,18 +33,34 @@ create_provider_net() {
 	run_commands $cmd
 }
 
+create_provider_net_shared() {
+    NET_NAME=$1
+    PHYSNET_NAME=$2
+    VLAN_ID=$3
 
-create_provider_subnet() {
+	delete_provider_net $NET_NAME
+	
+	cmd="neutron net-create $NET_NAME \
+		--provider:network_type vlan \
+		--provider:physical_network $PHYSNET_NAME \
+		--provider:segmentation_id $VLAN_ID \
+        --shared"
+		
+	run_commands $cmd
+}
+
+create_provider_subnet_shared() {
 	NET_NAME=$1
     SBNET_NAME=$2
     SBNET_CIDR=$3
+    GW_IP=$4
     
     delete_provider_subnet $SBNET_NAME
 	
     cmd="neutron subnet-create $NET_NAME $SBNET_CIDR \
 			--name $SBNET_NAME \
 		 	--enable_dhcp False \
-			--no-gateway"
+            --gateway $GW_IP"
 	
 	run_commands $cmd
 }
