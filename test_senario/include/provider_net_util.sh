@@ -49,6 +49,21 @@ create_provider_net_shared() {
 	run_commands $cmd
 }
 
+create_provider_subnet() {
+	NET_NAME=$1
+    SBNET_NAME=$2
+    SBNET_CIDR=$3
+    
+    delete_provider_subnet $SBNET_NAME
+	
+    cmd="neutron subnet-create $NET_NAME $SBNET_CIDR \
+			--name $SBNET_NAME \
+		 	--enable_dhcp False \
+            --no-gateway"
+	
+	run_commands $cmd
+}
+
 create_provider_subnet_shared() {
 	NET_NAME=$1
     SBNET_NAME=$2
