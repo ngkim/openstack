@@ -9,8 +9,12 @@ fi
 VM_ID_GREEN=`nova list | awk '/'$VM_NAME-green'/{print $2}'`
 VM_ID_ORANGE=`nova list | awk '/'$VM_NAME-orange'/{print $2}'`
 
-echo "nova delete $VM_ID_GREEN"
-nova delete $VM_ID_GREEN
+if [ ! -z $VM_ID_GREEN ]; then
+	echo "nova delete $VM_ID_GREEN"
+	nova delete $VM_ID_GREEN
+fi
 
-echo "nova delete $VM_ID_ORANGE"
-nova delete $VM_ID_ORANGE
+if [ ! -z $VM_ID_ORANGE ]; then
+	echo "nova delete $VM_ID_ORANGE"
+	nova delete $VM_ID_ORANGE
+fi

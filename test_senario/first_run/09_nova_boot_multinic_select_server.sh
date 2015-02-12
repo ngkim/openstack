@@ -15,6 +15,13 @@ NET_RED_ID=`neutron net-list | awk '/'$NET_RED'/{print $2}'`
 NET_GRN_ID=`neutron net-list | awk '/'$NET_GRN'/{print $2}'`
 NET_ORG_ID=`neutron net-list | awk '/'$NET_ORG'/{print $2}'`
 
+if [ -z $NET_GRN_ID ] && [ -z $ORG_ID ]; then
+	./05_create_provider_net.sh
+
+	NET_GRN_ID=`neutron net-list | awk '/'$NET_GRN'/{print $2}'`
+	NET_ORG_ID=`neutron net-list | awk '/'$NET_ORG'/{print $2}'`
+fi
+
 source "bootstrap/provider_bootstrap_template.sh" \
 		"dat/provider-$VM_NAME.dat" \
 		$NIC_GRN \
@@ -28,7 +35,7 @@ do_nova_boot() {
 	# TODO: 입력값의 오류 확인, empty string일 경우 return
 	
     cmd="nova boot $VM_NAME \
-        --flavor $VM_FLAVOR \
+        --flavor $VM_FLAVOR_UTM \
         --image $IMAGE_ID \
 		--nic net-id=$NET_MGMT_ID \
         --nic net-id=$NET_RED_ID \

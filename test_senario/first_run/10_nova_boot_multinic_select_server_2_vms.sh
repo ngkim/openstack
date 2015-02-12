@@ -37,7 +37,7 @@ do_nova_boot_end_node() {
 	END_NODE_DATA=$3
 	
     cmd="nova boot $END_VM_NAME \
-        --flavor $VM_FLAVOR \
+        --flavor $VM_FLAVOR_END \
         --image $IMAGE_ID \
 		--nic net-id=$NET_MGMT_ID \
         --nic net-id=$NET_END_NODE \
