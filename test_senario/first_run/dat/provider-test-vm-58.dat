@@ -1,14 +1,5 @@
 #!/bin/bash
 
-file_name=$1
-_nic=$2
-_ip_cidr=$3
-_gw=$4
-_gw=${_gw%/*} # get the string before '/' 
-
-cat > $file_name <<EOF
-#!/bin/bash
-
 echo "
 ################################################################################
 #
@@ -19,37 +10,44 @@ echo "
 
 echo "
 # ---------------------------------------------------
-# 0. parameters 
-# ---------------------------------------------------
-"
-
-echo "_nic=     $_nic"
-echo "_ip_cidr= $_ip_cidr"
-echo "_gw=      $_gw"
-
-echo "
-# ---------------------------------------------------
 # 1. install tools
 # ---------------------------------------------------
 "
 
 apt-get -y update  
-apt-get -y install iperf ifstat sysstat
+apt-get -y install iperf ifstat sysstat bridge-utils
 
 echo "
 # --------------------------------------------------- 
 # 2. nic activate
 # ---------------------------------------------------
 "
-ifconfig $_nic $_ip_cidr up
+ifconfig eth2 up
+ifconfig eth3 up
 
 echo "
 # --------------------------------------------------- 
-# 3. configure gateway
+# 3. create bridge & allocate IP
 # ---------------------------------------------------
 "
-route add -net 221.145.180.0/26 gw $_gw dev $_nic
-#route add default gw $_gw dev $_nic
+brctl addbr br0
+brctl addif br0 eth2
+brctl addif br0 eth3
+
+ifconfig br0 192.168.58.1/24 up
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+echo "
+# --------------------------------------------------- 
+# 4. configure red interface & apply nat rules
+# ---------------------------------------------------
+"
+ifconfig eth1 221.145.180.58/26 up
+
+iptables -A FORWARD -i br0 -o eth1 -s 192.168.58.0/24 -m conntrack --ctstate NEW -j ACCEPT
+iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -t nat -F POSTROUTING
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
 echo "
 ################################################################################
@@ -59,4 +57,3 @@ echo "
 ################################################################################
 "
 
-EOF

@@ -47,7 +47,7 @@ IP_ORG="192.168.$VLAN_ORG.$VLAN_ORG/24"
 EOF
 }
 
-for vlan_org in `seq 20 2 38`; do
+for vlan_org in `seq 20 2 58`; do
 	vlan_grn=$(echo $vlan_org + 1 | bc)
     echo "vlan_grn= $vlan_grn vlan_org= $vlan_org"
 	generate_provider-net-ini $vlan_grn $vlan_org
