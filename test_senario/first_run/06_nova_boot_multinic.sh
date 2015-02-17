@@ -28,7 +28,7 @@ do_nova_boot() {
 	# TODO: 입력값의 오류 확인, empty string일 경우 return
 	
     cmd="nova boot $VM_NAME \
-        --flavor $VM_FLAVOR \
+        --flavor $VM_FLAVOR_UTM \
         --image $IMAGE_ID \
 		--nic net-id=$NET_MGMT_ID \
         --nic net-id=$NET_RED_ID \

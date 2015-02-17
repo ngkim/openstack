@@ -14,8 +14,8 @@ echo "
 # ---------------------------------------------------
 "
 
-apt-get -y update  
-apt-get -y install iperf ifstat sysstat bridge-utils
+#apt-get -y update  
+#apt-get -y install iperf ifstat sysstat bridge-utils
 
 echo "
 # --------------------------------------------------- 
