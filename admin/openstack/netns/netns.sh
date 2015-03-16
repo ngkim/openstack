@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NSHOME=$HOME/admin/openstack/netns
+NSHOME=$HOME/workspace/openstack/admin/openstack/netns
 NSNAME=`cat $NSHOME/nsname`
 NETNS_CMD="ip netns exec $NSNAME $@"
 

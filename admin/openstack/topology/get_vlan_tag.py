@@ -6,7 +6,6 @@ import collections
 OVSDB_IP = '127.0.0.1'
 OVSDB_PORT = 6632
 
-
 def send_query(socket, query):
     socket.send(json.dumps(query))
     
