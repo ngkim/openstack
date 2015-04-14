@@ -74,7 +74,8 @@ create_provider_subnet_shared() {
 	
     cmd="neutron subnet-create $NET_NAME $SBNET_CIDR \
 			--name $SBNET_NAME \
-		 	--enable_dhcp False \
+		 	--enable_dhcp True \
+                        --dns-nameservers list=true 8.8.8.8 8.8.8.9 \
             --gateway $GW_IP"
 	
 	run_commands $cmd

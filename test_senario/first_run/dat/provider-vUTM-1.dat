@@ -1,17 +1,5 @@
 #!/bin/bash
 
-file_name=$1
-_nic_grn=$2
-_ip_grn=$3
-_nic_org=$4
-_ip_org=$5
-_nic_red=$6
-_ip_red=$7
-_ip_gw=$8
-
-cat > $file_name <<EOF
-#!/bin/bash
-
 echo "
 ################################################################################
 #
@@ -23,12 +11,12 @@ echo "
 # ---------------------------------------------------
 # 0. parameters 
 # ---------------------------------------------------
-#    _nic_grn= $_nic_grn
-#    _ip_grn= $_ip_grn
-#    _nic_org= $_nic_org
-#    _ip_org= $_ip_org
-#    _nic_grn= $_nic_red
-#    _ip_red= $_ip_red
+#    _nic_grn= eth2
+#    _ip_grn= 192.168.0.1/24
+#    _nic_org= eth3
+#    _ip_org= 211.100.0.1/24
+#    _nic_grn= eth1
+#    _ip_red= 211.196.251.2/30
 # ---------------------------------------------------
 "
 
@@ -46,10 +34,10 @@ echo "
 # 2. nic activate
 # ---------------------------------------------------
 "
-echo "ifconfig $_nic_grn up"
-ifconfig $_nic_grn up
-echo "ifconfig $_nic_org up"
-ifconfig $_nic_org up
+echo "ifconfig eth2 up"
+ifconfig eth2 up
+echo "ifconfig eth3 up"
+ifconfig eth3 up
 
 echo "
 # --------------------------------------------------- 
@@ -58,11 +46,11 @@ echo "
 "
 echo "brctl addbr br0"
 brctl addbr br0
-echo "brctl addif br0 $_nic_grn"
-brctl addif br0 $_nic_grn
+echo "brctl addif br0 eth2"
+brctl addif br0 eth2
 
-echo "ifconfig br0 $_ip_grn up"
-ifconfig br0 $_ip_grn up
+echo "ifconfig br0 192.168.0.1/24 up"
+ifconfig br0 192.168.0.1/24 up
 
 echo "
 # --------------------------------------------------- 
@@ -71,24 +59,24 @@ echo "
 "
 echo "brctl addbr br1"
 brctl addbr br1
-echo "brctl addif br1 $_nic_org"
-brctl addif br1 $_nic_org
+echo "brctl addif br1 eth3"
+brctl addif br1 eth3
 
-echo "ifconfig br1 $_ip_org up"
-ifconfig br1 $_ip_org up
+echo "ifconfig br1 211.100.0.1/24 up"
+ifconfig br1 211.100.0.1/24 up
 
 echo "
 # --------------------------------------------------- 
 # 5. configure red interface & apply nat rules
 # ---------------------------------------------------
 "
-echo "ifconfig $_nic_red $_ip_red up"
-ifconfig $_nic_red $_ip_red up
+echo "ifconfig eth1 211.196.251.2/30 up"
+ifconfig eth1 211.196.251.2/30 up
 
 echo "ip route del default"
 ip route del default
-echo "ip route add default via $_ip_gw"
-ip route add default via $_ip_gw
+echo "ip route add default via 211.196.251.1"
+ip route add default via 211.196.251.1
 
 echo "
 # --------------------------------------------------- 
@@ -98,10 +86,10 @@ echo "
 echo "echo 1 > /proc/sys/net/ipv4/ip_forward"
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
-#iptables -A FORWARD -i br0 -o $_nic_red -s $_cidr_grn -m conntrack --ctstate NEW -j ACCEPT
+#iptables -A FORWARD -i br0 -o eth1 -s  -m conntrack --ctstate NEW -j ACCEPT
 #iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 #iptables -t nat -F POSTROUTING
-#iptables -t nat -A POSTROUTING -o $_nic_red -j MASQUERADE
+#iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
 echo "
 ################################################################################
@@ -111,4 +99,3 @@ echo "
 ################################################################################
 "
 
-EOF

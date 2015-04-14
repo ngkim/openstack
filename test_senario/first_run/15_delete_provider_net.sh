@@ -11,3 +11,7 @@ delete_provider_net 	$NET_GRN
 echo "======== PROVIDER NET: ORANGE ========"
 delete_provider_subnet 	$SBNET_ORG
 delete_provider_net 	$NET_ORG
+
+echo "======== PROVIDER NET: RED ========"
+delete_provider_subnet 	$SBNET_RED
+delete_provider_net 	$NET_RED

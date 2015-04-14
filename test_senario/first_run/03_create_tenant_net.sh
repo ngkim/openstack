@@ -15,8 +15,11 @@ echo "neutron subnet-create $TENANT_NET --name $TENANT_SBNET \
   --dns-nameserver $DNS_NAMESERVER \
   $TENANT_NETWORK_CIDR" 
 
-neutron subnet-create $TENANT_NET --name $TENANT_SBNET \
-  --gateway $TENANT_NETWORK_GW $TENANT_NETWORK_CIDR
+neutron subnet-create $TENANT_NET \
+	--name $TENANT_SBNET \
+	--gateway $TENANT_NETWORK_GW \
+  	--dns-nameserver $DNS_NAMESERVER \
+	$TENANT_NETWORK_CIDR
 
 echo "neutron router-create $TENANT_ROUTER"
 neutron router-create $TENANT_ROUTER

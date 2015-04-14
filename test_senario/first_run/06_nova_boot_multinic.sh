@@ -18,11 +18,12 @@ NET_ORG_ID=`neutron net-list | awk '/'$NET_ORG'/{print $2}'`
 source "bootstrap/provider_bootstrap_template.sh" \
 	"dat/provider-$VM_NAME.dat" \
 	$NIC_GRN \
+	$IP_GRN \
 	$NIC_ORG \
-	$IP_BR0 \
-	$CIDR_GRN \
+	$IP_ORG \
         $NIC_RED \
-        $IP_RED
+        $IP_RED \
+        $GW_RED
 
 do_nova_boot() {
 	# TODO: 입력값의 오류 확인, empty string일 경우 return
@@ -30,6 +31,7 @@ do_nova_boot() {
     cmd="nova boot $VM_NAME \
         --flavor $VM_FLAVOR_UTM \
         --image $IMAGE_ID \
+        --key-name $ACCESS_KEY \
 	--nic net-id=$NET_MGMT_ID \
         --nic net-id=$NET_RED_ID \
 	--nic net-id=$NET_GRN_ID \
