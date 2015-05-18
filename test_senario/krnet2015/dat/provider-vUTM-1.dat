@@ -1,0 +1,84 @@
+#!/bin/bash
+
+echo "
+################################################################################
+#
+#   VM :: User Data Action
+#
+################################################################################
+"
+echo "
+# ---------------------------------------------------
+# 0. parameters 
+# ---------------------------------------------------
+#    _nic_lan= eth2
+#    _ip_lan= 192.168.0.1/24
+#    _nic_wan= eth1
+#    _ip_wan= 211.224.211.2/24
+#    _ip_gw= 211.224.211.1
+# ---------------------------------------------------
+"
+
+echo "
+# ---------------------------------------------------
+# 1. install tools
+# ---------------------------------------------------
+"
+
+apt-get -y update  
+apt-get -y install iperf ifstat sysstat bridge-utils
+
+echo "
+# --------------------------------------------------- 
+# 2. nic activate
+# ---------------------------------------------------
+"
+echo "ifconfig eth2 up"
+ifconfig eth2 up
+
+echo "ifconfig eth1 up"
+ifconfig eth1 up
+
+echo "
+# --------------------------------------------------- 
+# 3. allocate IP
+# ---------------------------------------------------
+"
+echo "ifconfig eth2 192.168.0.1/24 up"
+ifconfig eth2 192.168.0.1/24 up
+
+echo "ifconfig eth1 211.224.211.2/24 up"
+ifconfig eth1 211.224.211.2/24 up
+
+echo "
+# --------------------------------------------------- 
+# 4. apply nat rules
+# ---------------------------------------------------
+"
+echo "ip route del default"
+ip route del default
+
+echo "ip route add default via 211.224.211.1"
+ip route add default via 211.224.211.1
+
+echo "
+# --------------------------------------------------- 
+# 5. enable ip forwarding
+# ---------------------------------------------------
+"
+echo "echo 1 > /proc/sys/net/ipv4/ip_forward"
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+iptables -A FORWARD -i eth2 -o eth1 -s  -m conntrack --ctstate NEW -j ACCEPT
+iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -t nat -F POSTROUTING
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+echo "
+################################################################################
+#
+#   End User Data Action
+#
+################################################################################
+"
+
